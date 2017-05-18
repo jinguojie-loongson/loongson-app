@@ -1,0 +1,19 @@
+/*
+ * CSS定义网格
+ * http://www.jb51.net/css/268311.html
+ */
+.app-icon-grid {
+	width: 80%;
+	display: grid;
+	border: 1px solid green;
+
+	/* 列宽、列间距，行高、行间距 */
+	grid-template-columns: 110px 20px 110px 20px 110px 20px 110px 20px 110px 20px 110px;
+	grid-template-rows: auto 10px auto;
+}
+
+.app-icon {
+	border: 1px solid red;
+	width: 100px;
+	height: 120px;
+}

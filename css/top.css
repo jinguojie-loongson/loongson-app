@@ -1,0 +1,39 @@
+/* 顶部导航 */
+.topbar {
+	height: 50px;
+	background-color: #eaeaea;
+	border: 1px solid #aeaeae;
+	border-width: 0px 0px 1px 0px;
+	padding: 15px 0px 0px 150px;
+
+	position: fixed; width: 100%; z-index:2;
+}
+
+.topbar-button {
+	float: left;
+	margin-right: 30px;
+
+	border: none;
+	cursor: pointer;
+}
+
+.topbar-button-focus {
+	float: left;
+	margin-right: 30px;
+
+	border: 2px red solid;	
+	border-width: 0px 0px 4px 0px;
+	color:red;
+}
+
+/* 搜索框 */
+.input-thin-focus {
+	float: right;
+	margin-right: 250px;
+
+        width: 280px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 11pt;
+	color: gray;
+}

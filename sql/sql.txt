@@ -1,0 +1,74 @@
+# 在mysql客户端中执行命令：
+#
+#   source /var/www/html/app/sql/sql.txt;
+
+drop database app;
+
+create database app;
+use app;
+
+#字典表：操作系统
+create table os (
+  id int(5) NOT NULL auto_increment key,
+  name varchar(50),
+  description varchar(500)
+);
+
+#字典表：应用种类
+create table category (
+  id int(5) NOT NULL auto_increment key,
+  name varchar(50)
+);
+
+#字典表：应用程序
+create table app (
+  id int(5) NOT NULL auto_increment key,
+  name varchar(50),
+  category_id int(5),
+  description varchar(500),
+  icon_file varchar(500),   #图片文件，位于data/icon目录下
+  download_count int        #下载次数
+);
+
+#热门应用（首页轮播）
+create table hot (
+  id int(5) NOT NULL auto_increment key,
+  app_id int(5),
+  banner_file varchar(500)   #图片文件，位于data/hot目录下
+);
+
+#示例数据
+insert into os (name, description) VALUES
+  ("中标桌面32位", "中标桌面操作系统（32位版本）"),
+  ("中标桌面64位", "中标桌面操作系统（64位版本）")
+;
+
+insert into category (name) VALUES
+  ("办公"),
+  ("网络"),
+  ("阅读"),
+  ("音乐"),
+  ("图形"),
+  ("视频"),
+  ("游戏"),
+  ("编程"),
+  ("系统"),
+  ("其它")
+;
+
+insert into app (name, category_id, description, icon_file, download_count) VALUES
+  ("WPS Office", 1, "金山办公软件套装", "1.png", 524502),
+  ("QQ", 2, "腾讯即时通讯软件", "2.png", 235935),
+  ("扫雷", 7, "简单游戏", "3.png", 234),
+  ("Photoshop", 5, "Adobe图像处理软件", "4.png", 93487),
+  ("百度盘", 10, "百度的个人数据同步客户端", "5.png", 82344),
+  ("同花顺", 10, "炒股软件", "6.png", 23434)
+;
+
+insert into hot (app_id, banner_file) VALUES
+  (1, "1.png"),
+  (2, "2.png"),
+  (3, "3.png"),
+  (4, "4.png"),
+  (5, "5.png")
+;

@@ -1,0 +1,26 @@
+body {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        font-size: 14pt;
+        color: #444444;
+        font-family: Sans-Serif;
+}
+
+.category {
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+
+a {
+	text-decoration: none;
+	color: #444444;
+}
+
+
+a:visited {
+	text-decoration: none;
+	color: red;
+}
+

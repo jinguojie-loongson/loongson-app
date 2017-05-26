@@ -7,41 +7,92 @@
 <!-- 
   应用程序：主界面
 -->
-
-<div id="app-back">
-&lt;
-</div>
-
-<div id="app-card-grid">
-<?=
-  get_app_icon_html($_GET['id']);
+<?php
+  $app_id = $_GET['id'];
+  if (is_empty($app_id))
+    fatal_error("传入应用程序的ID不能为空！");
 ?>
-</div>
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-安装、升级
-</div>
+<div class="app-form">
+  <div id="app-back"> &lt; </div>
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-图片展示区
-</div>
+  <table class="app-header" border="0">
+    <tr>
+      <td class="td-img" rowspan="6">
+        <?= get_app_icon_html($_GET['id']); ?> 
+        <div class="button">安 装 / 升 级</div>
+      </td>
+      <td colspan="2" class="title"> <?= get_app_name($app_id) ?> </td>
+    </tr>
+    <tr>
+      <td class="td-label"> 软件作者：</td>
+      <td class="gray"> <?= get_app_vendor($app_id) ?> </td>
+    </tr>
+    <tr>
+      <td class="td-label"> 版本：</td>
+      <td class="gray"> <?= get_app_version($app_id) ?> </td>
+    </tr>
+    <tr>
+      <td> 下载大小：</td>
+      <td class="gray"> <?= get_app_download_size($app_id) ?>  </td>
+    </tr>
+    <tr>
+      <td> 下载次数：</td>
+      <td class="gray"> <?= get_app_download_count($app_id) ?>  </td>
+    </tr>
+    <tr>
+      <td> 软件简介：</td>
+      <td class="gray"> <?= get_app_description($app_id) ?>  </td>
+    </tr>
+  </table>
+<!--
+    <p> 软件作者：<span class="black"> 腾讯 </span> </p>
+    <p> 下载大小：<span class="black"> 13.6MB </span> </p>
+    <p> 下载次数：<span class="black"> 235935 </span> </p>
+    <p> 软件简介：<span class="black"> 2015年1月11日 - 这是一款效果非常炫酷的CSS3表单input输入框美化效果插件。该input输入框美化插件共14种效果。<br>大多数是使用CSS transitions来切换伪元素制作的。其中还有... 2015年1月11日 - 这是一款效果非常炫酷的CSS3表单input输入框美化效果插件。该input输入框美化插件共14种效果。大多数是使用CSS transitions来切换伪元素制作的。其中还有... 2015年1月11日 - 这是一款效果非常炫酷的CSS3表单input输入框美化效果插件。该input输入框美化插件共14种效果。大多数是使用CSS transitions来切换伪元素制作的。其中还有... </span> </p>
+-->
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-发行说明、版本信息
-</div>
+  <div class="vspace">
+  </div>
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-推荐同类应用
+  <div class="gray-box">
+  <!-- 
+  图片展示区
+  -->
+  <?= get_app_screen_file_html($app_id) ?>
+  </div>
+
+  <div class="gray-box" id="longdesc">
+  <!-- 《详细信息》
+       发行说明、版本信息，长文，HTML格式 -->
+  <?= get_app_longdesc($app_id) ?>
+
+<b>版本信息：</b>
 <p>
-（安装过该应用的用户还喜欢）
-</div>
+这个就是我们最好的目标。如果敢兴趣的话好吧，那你继续看吧。
+<br>
+首先这个按钮有用到css3.0的新样式属性。如果你的浏览器没有看到边角圆弧的样式，那就说明你的浏览器版本不支持css3.0的新样式。解决办法，升级浏览器到最新的。据我所知XP、Windows Server2003最高支持的是IE8（可以看到效果了），如果你不想升级IE，那们你可要下载不是IE为内核的浏览器，比如火狐、谷歌、Opera等等。
+<p>
+<br>
+<b>发行说明：</b>
+<p>
+好了前面这么多废话，我们该看一下如何做出我们漂亮的按钮吧。
+<br>
+其实我们这里用到了css的伪元素，hover。
+<br>
+首先我们必须在页面上，放一个input类型的button按钮。对这个button按钮进行css的样式的添加。
+  </div>
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-同开发者其它应用
-</div>
+  <div class="gray-box">
+  TODO: 推荐同类应用
+  <p>
+  （安装过该应用的用户还喜欢）
+  <p>
+  同开发者其它应用
+  <p>
+  评论
+  </div>
 
-<div style="background-color: #eeeeee; height: 20px; margin: 10px; padding: 50px;">
-评论
 </div>
 
 <?php

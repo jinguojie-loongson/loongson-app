@@ -15,4 +15,17 @@ function is_empty($s)
   else
     return $s == null || strlen($s) == 0;
 }
+
+$NOPIC = "../images/nopic.png";
+
+function file_exist($file)
+{
+  return is_file($file);
+}
+
+function black_filename()
+{
+global $NOPIC;
+  return $NOPIC;
+}
 ?>

@@ -20,3 +20,34 @@ h3 {
 	cursor: pointer;
 	border: 1px solid black;
 }
+
+.gray-box {
+	background-color: #eeeeee;
+	min-height: 20px;
+	margin: 10px;
+	padding: 50px;
+}
+
+.gray {
+	color: #222222;
+}
+
+.vspace {
+	height: 20px;
+}
+
+.button {
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	text-align:center;
+
+	border: 1px solid red;
+	background-color: white;
+	color: red;
+
+	cursor:pointer;
+
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}

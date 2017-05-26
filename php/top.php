@@ -4,7 +4,7 @@
   <div class="topbar-button" id="top-category">分类</div>
   <div class="topbar-button" id="top-my">我的</div>
 
-<input id="searchText" class="input-thin-focus" name="searchText" type="text" value="搜索应用..." />
+<input id="searchText" class="input-thin" name="searchText" type="text" value="搜索应用..." />
 </div>
 
 <br/>

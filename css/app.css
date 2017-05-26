@@ -1,5 +1,9 @@
 *{padding:0; margin:0}
 
+/*************************************************** 
+ * 应用程序卡片页面
+ */
+
 /* CSS实现3D阴影背景
  * http://www.iinterest.net/2011/04/21/css3-box-shadow/
  */
@@ -90,6 +94,17 @@
 	clear: both;
 }
 
+/*************************************************** 
+ * 应用程序详细页面
+ */
+.app-form {
+	width: white;
+	background-color: white;
+	margin-left: 50px;
+	margin-right: 50px;
+	padding: 30px;
+}
+
 /* 返回按钮 */
 #app-back {
 	width: 40px;
@@ -107,3 +122,45 @@
 	float: left;
 }
 
+.app-form img {
+	margin-bottom: 20px;
+}
+
+.app-header {
+	text-align: left;
+	color: gray;
+	font-size: 12pt;
+}
+
+.title {
+	font-size: 16pt;
+	font-weight: bold;	
+	color: black;
+	padding-bottom: 20px;
+}
+
+.td-label {
+	width: 120px;
+}
+
+.td-img {
+	padding-left: 150px;
+	padding-right: 150px;
+	text-align: center;
+}
+
+.app-form #longdesc {
+	text-align: left;
+}
+
+.screen-file {
+	width: 320px;
+	height: 240px;
+	border: none;
+	margin-left: 20px;
+	margin-right: 20px;
+
+  -webkit-box-shadow:0 0 20px #888;  
+  -moz-box-shadow:0 0 20px #888;  
+  box-shadow:0 0 20px #888;  
+}

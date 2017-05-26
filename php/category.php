@@ -35,7 +35,7 @@
 ?>
 </div>
 
-<div id="app-icon-grid">
+<div id="app-card-grid">
         <?= get_most_rank_app_html_by_category($_GET["category"]); ?>
 </div>
 

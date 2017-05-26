@@ -24,7 +24,7 @@
 
 <h3>热门下载软件</h3>
 
-<div id="app-icon-grid">
+<div id="app-card-grid">
         <?= get_most_rank_app_html(); ?>
 </div>
 

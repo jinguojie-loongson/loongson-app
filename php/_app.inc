@@ -48,7 +48,7 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_html($id)
+function get_app_card_html($id)
 {
   $name = get_app_name($id);
   $vendor = get_app_vendor($id);

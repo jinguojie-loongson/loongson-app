@@ -3,7 +3,7 @@
 /* CSS实现3D阴影背景
  * http://www.iinterest.net/2011/04/21/css3-box-shadow/
  */
-#app-icon-grid {
+#app-card-grid {
 	font-size: 14pt;
 	display:inline-block;
 	position:relative;
@@ -19,7 +19,7 @@
 	min-height: 200px;
 }
 
-#app-icon-grid::before, #app-icon-grid::after {
+#app-card-grid::before, #app-card-grid::after {
 	position:absolute;
 	content:"";
 	top:10px;
@@ -35,7 +35,7 @@
 	z-index:-1;
 }
 
-#app-icon-grid::after {
+#app-card-grid::after {
 	right:10px;
 	left:auto;
 	-webkit-transform:rotate(3deg);
@@ -45,7 +45,7 @@
 	transform: rotate(3deg);
 }
 
-#app-icon-grid div {
+#app-card-grid div {
         float: left; 
         width: 300px; 		/* 重要：此处定义每一个应用卡片的大小 */
         height: 160px; 
@@ -61,31 +61,49 @@
 	box-shadow: 0px 0px 8px #aaaaaa;
 }
 
-#app-icon-grid img {
+#app-card-grid img {
         float: left; 
 	margin: 5px;
 }
 
-#app-icon-grid .app-text {
+#app-card-grid .app-text {
         float: left; 
 	margin: 5px;
 	text-align: center;
 }
 
-#app-icon-grid .app-title {
+#app-card-grid .app-title {
 	font-size: 16pt;
 	font-weight: bold;
 }
 
-#app-icon-grid .app-info {
+#app-card-grid .app-info {
 	margin: 5px;
 	font-size: 10pt;
 }
 
-#app-icon-grid .app-desc {
+#app-card-grid .app-desc {
 	text-align: left;
         float: left; 
 	margin: 5px;
 	font-size: 9pt;
 	clear: both;
 }
+
+/* 返回按钮 */
+#app-back {
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #dddddd;
+	color: #888888;
+	margin-left: 20px;
+	cursor: pointer;
+
+	font-weight: bold;
+
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	float: left;
+}
+

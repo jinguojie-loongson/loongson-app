@@ -26,7 +26,9 @@ create table app (
   name varchar(50),
   vendor varchar(50),
   category_id int(5),
+  version varchar(50),
   description varchar(500),
+  longdesc varchar(50000),
   icon_file varchar(500),   #图片文件，位于data/icon目录下
   download_count int        #下载次数
 );
@@ -57,13 +59,13 @@ insert into category (name) VALUES
   ("其它")
 ;
 
-insert into app (name, vendor, category_id, description, icon_file, download_count) VALUES
-  ("WPS Office", "金山软件", 1, "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 524502),
-  ("QQ", "腾讯", 2, "腾讯即时通讯软件", "2.png", 235935),
-  ("扫雷", "个人爱好者", 7, "简单游戏", "3.png", 234),
-  ("Photoshop", "Adobe Software Inc.", 5, "Adobe图像处理软件", "4.png", 93487),
-  ("百度盘", "Baidu.com", 10, "百度的个人数据同步客户端", "5.png", 82344),
-  ("同花顺", "北京同花顺科技有限公司", 10, "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 23434)
+insert into app (name, vendor, category_id, version, description, icon_file, download_count) VALUES
+  ("WPS Office", "金山软件", 1, "1.0.012", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 524502),
+  ("QQ", "腾讯", 2, "2.3.245.2500", "腾讯即时通讯软件", "2.png", 235935),
+  ("扫雷", "个人爱好者", 7, "2.3.245.2500", "简单游戏", "3.png", 234),
+  ("Photoshop", "Adobe Software Inc.", 5, "2.3.245.2500", "Adobe图像处理软件", "4.png", 93487),
+  ("百度盘", "Baidu.com", 10, "2.3.245.2500", "百度的个人数据同步客户端", "5.png", 82344),
+  ("同花顺", "北京同花顺科技有限公司", 10, "2.3.245.2500", "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 23434)
 ;
 
 insert into hot (app_id, banner_file) VALUES

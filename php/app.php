@@ -8,9 +8,13 @@
   应用程序：主界面
 -->
 
-<div id="app-icon-grid">
+<div id="app-back">
+&lt;
+</div>
+
+<div id="app-card-grid">
 <?=
-  get_app_html($_GET['id']);
+  get_app_icon_html($_GET['id']);
 ?>
 </div>
 

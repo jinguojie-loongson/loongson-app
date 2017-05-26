@@ -25,7 +25,7 @@ function get_most_rank_app_html()
 
   foreach(get_most_rank_app("", 100) as $id)
   {
-    $html = $html . get_app_html($id);
+    $html = $html . get_app_card_html($id);
   }
 
   return $html;
@@ -44,7 +44,7 @@ function get_most_rank_app_html_by_category($category_id)
 
   foreach($category as $id)
   {
-    $html = $html . get_app_html($id);
+    $html = $html . get_app_card_html($id);
   }
   return $html;
 }

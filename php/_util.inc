@@ -8,4 +8,11 @@ function fatal_error($msg)
   die();
 }
 
+function is_empty($s)
+{
+  if (is_array($s))
+    return count($s) == 0;
+  else
+    return $s == null || strlen($s) == 0;
+}
 ?>

@@ -1,5 +1,6 @@
-function goto_category(c)
+function UrlGetQueryString(name)
 {
-  alert(c);
-  window.location.href = "index.php?category=" + c;
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
 }

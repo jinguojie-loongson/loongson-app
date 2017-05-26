@@ -27,6 +27,15 @@ searchText.onfocus = function() {
   {
     searchText.value = '';
     searchText.style.color = '#222222';
-    // 复用index.php
+    // TODO: 复用index.php
+  }
+}
+
+searchText.onblur = function() {
+  if (searchText.value.length == 0)
+  {
+    searchText.value = '搜索应用...';
+    searchText.style.color = 'gray';
+    // TODO: 复用index.php
   }
 }

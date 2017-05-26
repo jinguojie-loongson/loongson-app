@@ -1,0 +1,21 @@
+.category-menu {
+	float: left;
+	margin: 10px 50px 0px 50px;
+	color: white;
+}
+
+.category-menu div {
+	width: 100px;
+	height: 60px;
+	background-color: #888888;
+	margin-bottom: 1px;
+	cursor: pointer;
+	line-height: 60px; /* 实现div中文本上下居中的最简单方法 */
+
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.category-focus {
+	background-color: red;
+}

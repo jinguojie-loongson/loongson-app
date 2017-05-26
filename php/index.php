@@ -5,10 +5,9 @@
   include('_rank.inc');
 ?>
 
-<link type="text/css" rel="Stylesheet" href="../css/imageflow.css" />
-<link type="text/css" rel="Stylesheet" href="../css/app.css" />
 
-<script type="text/javascript" src="../js/jquery.js"></script>
+<link type="text/css" rel="Stylesheet" href="../css/imageflow.css" />
+
 <script type="text/javascript" src="../js/imageflow.js"></script>
 
 <!-- 主界面：广告轮播 -->
@@ -23,10 +22,10 @@
 	</div>
 </div>
 
-<h3>精品应用 <?= get_hot_count() ?>个</h3>
+<h3>热门下载软件</h3>
 
-<div id="MostRank" class="app-icon-grid"> 
-                <?= get_most_rank_app_html(); ?>
+<div id="app-icon-grid">
+        <?= get_most_rank_app_html(); ?>
 </div>
 
 <?php

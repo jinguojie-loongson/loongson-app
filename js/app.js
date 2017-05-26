@@ -1,21 +1,17 @@
 /* 处理应用卡片的鼠标事件 */
-window.onload = function() {
-  var grid = document.getElementById('app-icon-grid');
+/* 2017/5/26 首次改写成jquery版本 */
 
-  if (grid)
-  {
-    var cs = grid.getElementsByTagName("div");
-    for(i = 0; i < cs.length; i++)
-    {
-      cs[i].onmouseover = function() {
-        this.style.background = "#aaaaaa";
-      }
-      cs[i].onmouseout = function() {
-        this.style.background = "#eeeeee";
-      }
-      cs[i].onclick = function() {
-        window.location.href = "app.php?id=" + this.id;
-      }
-    }
-  }
-}
+$(document).ready(function(){
+  /* 遍历#app-icon-grid里面的每一个应用程序卡片 */
+  $("#app-icon-grid div").mouseover(function () {
+    $(this).css("background-color", "#aaaaaa");
+  });
+
+  $("#app-icon-grid div").mouseout(function () {
+    $(this).css("background-color", "#eeeeee");
+  });
+
+  $("#app-icon-grid div").click(function () {
+    window.location.href = "app.php?id=" + $(this).attr("id");
+  });
+});

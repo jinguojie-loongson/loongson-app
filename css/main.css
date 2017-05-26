@@ -1,26 +1,22 @@
+*{padding:0; margin:0}
+
 body {
         margin: 0px;
         padding: 0px;
-        text-align: center;
-        font-size: 14pt;
+
+	background-color: #b6b6b6;
         color: #444444;
         font-family: Sans-Serif;
+        font-size: 14pt;
+        text-align: center;
+}
+
+h3 {
+	line-height: 60px;
+	color: aliceblue
 }
 
 .category {
 	cursor: pointer;
 	border: 1px solid black;
 }
-
-
-a {
-	text-decoration: none;
-	color: #444444;
-}
-
-
-a:visited {
-	text-decoration: none;
-	color: red;
-}
-

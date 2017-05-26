@@ -47,6 +47,22 @@ global $conn;
   return $a;
 }
 
+function db_get_two_columns($sql)
+{
+global $conn;
+
+  $result = mysql_query($sql, $conn);
+
+  $a = array();
+
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($a, array($row[0], $row[1]));
+  }
+
+  return $a;
+}
+
 /*
  * 入口
  */

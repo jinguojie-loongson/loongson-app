@@ -1,6 +1,7 @@
 <?php
   include_once('header.php');
   include_once('top.php');
+  include_once('_rank.inc');
   include_once('_app.inc');
 ?>
 
@@ -84,15 +85,17 @@
   </div>
 
   <div class="gray-box">
-  TODO: 推荐同类应用
-  <p>
-  （安装过该应用的用户还喜欢）
-  <p>
-  同开发者其它应用
-  <p>
-  评论
+    <div> 推荐同类应用</div>
+    <div id="app-card-grid">
+        <?= get_most_rank_app_html_by_category(get_app_category_id($app_id), 20, $app_id); ?>
+    </div>
   </div>
 
+<!--
+  <div class="gray-box">
+  TODO: 评论
+  </div>
+-->
 </div>
 
 <?php

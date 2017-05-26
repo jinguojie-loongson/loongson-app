@@ -37,6 +37,14 @@ global $conn;
   return db_get_one_value($sql);
 }
 
+function get_app_category_id($id)
+{
+global $conn;
+  $sql = "select category_id from app "
+         . "  where id=${id}";
+  return db_get_one_value($sql);
+}
+
 
 function get_app_version($id)
 {

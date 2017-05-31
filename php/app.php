@@ -21,7 +21,8 @@
     <tr>
       <td class="td-img" rowspan="6">
         <?= get_app_icon_html($_GET['id']); ?> 
-        <div class="button">安 装 / 升 级</div>
+        <div class="button" id="installApp">安 装 / 升 级</div>
+        <input type="hidden" id="app_id" value="<?= $_GET['id'] ?>">
       </td>
       <td colspan="2" class="title"> <?= get_app_name($app_id) ?> </td>
     </tr>

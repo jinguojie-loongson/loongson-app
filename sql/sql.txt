@@ -26,13 +26,21 @@ create table app (
   name varchar(50),
   vendor varchar(50),
   category_id int(5),
-  version varchar(50),
+  version varchar(50),     # 当前最新版本
   download_size varchar(50),
   description varchar(500),
   longdesc varchar(50000),
   icon_file varchar(500),   #图片文件，位于data/icon目录下
   screen_file_count int,   #界面文件（最多5个），位于data/screen目录下，文件名格式“<id>_<i>.png”，其中<i>从0开始
   download_count int        #下载次数
+);
+
+# 子表：应用程序的安装文件
+create table app_file (
+  id int(5) NOT NULL,
+  version varchar(50),
+  filename varchar(150),
+  md5 varchar(50)
 );
 
 #热门应用（首页轮播）
@@ -76,4 +84,9 @@ insert into hot (app_id, banner_file) VALUES
   (3, "3.png"),
   (4, "4.png"),
   (5, "5.png")
+;
+
+insert into app_file (id, version, filename, md5) VALUES
+  (1, "1.0.012", "wps.1.0.012.rpm", "458f33a00909bdf99a6d69c2872a054f"),
+  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5672f920a1c7a4bfcef415343e3bee79")
 ;

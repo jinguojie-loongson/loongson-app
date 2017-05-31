@@ -165,3 +165,36 @@
 	-moz-box-shadow:0 0 20px #888;  
 	box-shadow:0 0 20px #888;  
 }
+
+/* 应用程序：按钮 */
+.not-installed {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+
+	cursor: pointer;
+}
+
+.installed {
+	border: 1px solid gray;
+	background-color: white;
+	color: gray;
+
+	cursor: dafault;
+}
+
+.need-updated {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+
+	cursor: pointer;
+}
+
+.installing {
+	border: 1px solid green;
+	background-color: white;
+	color: green;
+
+	cursor: dafault;
+}

@@ -1,0 +1,200 @@
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:08 /usr/lib/systemd/systemd --switched-root --system --deserialize 20
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:04 [ksoftirqd/0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:00 [migration/0]
+    8 ?        S      0:09 [rcu_preempt]
+    9 ?        S      0:00 [rcu_bh]
+   10 ?        S      0:00 [rcu_sched]
+   11 ?        S      0:00 [migration/1]
+   12 ?        S      0:04 [ksoftirqd/1]
+   14 ?        S<     0:00 [kworker/1:0H]
+   15 ?        S      0:00 [migration/2]
+   16 ?        S      0:04 [ksoftirqd/2]
+   18 ?        S<     0:00 [kworker/2:0H]
+   19 ?        S      0:00 [migration/3]
+   20 ?        S      0:03 [ksoftirqd/3]
+   22 ?        S<     0:00 [kworker/3:0H]
+   23 ?        S<     0:00 [khelper]
+   24 ?        S      0:00 [kdevtmpfs]
+   25 ?        S<     0:00 [netns]
+   26 ?        S<     0:00 [writeback]
+   27 ?        S<     0:00 [kintegrityd]
+   28 ?        S<     0:00 [bioset]
+   29 ?        S<     0:00 [crypto]
+   30 ?        S<     0:00 [kblockd]
+   31 ?        S<     0:00 [ata_sff]
+   32 ?        S      0:00 [khubd]
+   33 ?        S<     0:00 [devfreq_wq]
+   34 ?        S      0:14 [kworker/0:1]
+   36 ?        S      0:09 [kswapd0]
+   37 ?        SN     0:00 [ksmd]
+   38 ?        SN     0:00 [khugepaged]
+   39 ?        S      0:00 [fsnotify_mark]
+   44 ?        S      0:00 [scsi_eh_0]
+   45 ?        S      0:00 [scsi_eh_1]
+   46 ?        S      0:00 [scsi_eh_2]
+   47 ?        S      0:00 [scsi_eh_3]
+   52 ?        S      0:00 [scsi_eh_4]
+   53 ?        S      0:00 [scsi_eh_5]
+   54 ?        S      0:00 [kworker/u8:5]
+   58 ?        S<     0:00 [DWC Notificatio]
+   59 ?        S<     0:00 [kpsmoused]
+   60 ?        S<     0:00 [kmpathd]
+   61 ?        S<     0:00 [kmpath_handlerd]
+   62 ?        S<     0:00 [deferwq]
+   63 ?        S      0:02 [kworker/u8:7]
+   98 ?        S      0:00 [kauditd]
+  224 ?        S<     0:00 [kworker/1:1H]
+  228 ?        S<     0:00 [kworker/2:1H]
+  233 ?        S<     0:00 [kworker/3:1H]
+  247 ?        S<     0:00 [kworker/0:1H]
+  251 ?        S<     0:00 [ttm_swap]
+  252 ?        S<     0:00 [radeon-crtc]
+  253 ?        S<     0:00 [radeon-crtc]
+  254 ?        S<     0:00 [radeon-crtc]
+  255 ?        S<     0:00 [radeon-crtc]
+  268 ?        S      0:01 [jbd2/sda1-8]
+  269 ?        S<     0:00 [ext4-dio-unwrit]
+  353 ?        Ss     0:01 /usr/lib/systemd/systemd-journald
+  363 ?        Ss     0:00 /usr/sbin/lvmetad -f
+  389 ?        Ss     0:00 /usr/lib/systemd/systemd-udevd
+  409 ?        S<     0:00 [cfg80211]
+  410 ?        S<     0:00 [hd-audio0]
+  417 ?        S<     0:00 [hd-audio1]
+  457 ?        S<sl   0:00 /sbin/auditd -n
+  465 ?        S<sl   0:00 /sbin/audispd
+  466 ?        S<     0:00 /usr/sbin/sedispatch
+  471 ?        SNs    0:00 /usr/sbin/alsactl -s -n 19 -c -E ALSA_CONFIG_PATH=/etc/alsa/alsactl.conf --initfile=/lib/alsa/init/00main rdaemon
+  472 ?        Ssl    0:00 /usr/libexec/accounts-daemon
+  473 ?        SNsl   0:00 /usr/libexec/rtkit-daemon
+  474 ?        Ssl    0:00 /usr/sbin/ModemManager
+  477 ?        Ssl    0:00 /usr/sbin/rsyslogd -n
+  478 ?        Ss     0:01 avahi-daemon: running [linux-4.local]
+  479 ?        Ss     0:00 /usr/sbin/irqbalance --foreground
+  481 ?        Ss     0:00 /usr/sbin/smartd -n -q never
+  482 ?        S      0:00 avahi-daemon: chroot helper
+  492 ?        Ss     0:04 /bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+  496 ?        S      0:00 /usr/sbin/chronyd
+  505 ?        Ss     0:00 /usr/lib/systemd/systemd-logind
+  507 ?        Ssl    0:02 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
+  514 ?        Ssl    0:04 /usr/lib/polkit-1/polkitd --no-debug
+  568 ?        Ssl    0:00 /usr/sbin/NetworkManager --no-daemon
+  614 ?        Ss     0:00 /usr/sbin/cupsd -f
+  615 ?        Ss     0:03 /usr/sbin/httpd -DFOREGROUND
+  618 ?        Ss     0:00 /usr/sbin/sshd -D
+  622 ?        Ss     0:00 /usr/sbin/atd -f
+  627 ?        Ss     0:00 /usr/sbin/crond -n
+  664 ?        Ssl    0:00 /usr/libexec/colord
+  719 ?        SLsl   0:00 /usr/sbin/lightdm
+  731 ?        Ss     0:00 /bin/sh /usr/bin/mysqld_safe --basedir=/usr
+  779 tty1     Rsl+  19:53 /usr/libexec/Xorg.bin -background none :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt1 -novtswitch
+ 1008 ?        Sl     0:11 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mariadb/mariadb.log --pid-file=/var/run/mariadb/mariadb.pid --socket=/var/lib/mysql/mysql.sock
+ 1157 pts/1    S+     0:00 python app.py
+ 1231 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+ 1237 ?        S      0:00 (sd-pam)
+ 1414 ?        S      0:00 [kworker/2:0]
+ 1423 ?        S      0:00 /sbin/dhclient -d -sf /usr/libexec/nm-dhcp-helper -pf /var/run/dhclient-enp3s0.pid -lf /var/lib/NetworkManager/dhclient-de7ded66-db82-42cb-89a3-01d34cdc5935-enp3s0.lease -cf /var/lib/NetworkManager/dhclient-enp3s0.conf enp3s0
+ 1430 ?        S      0:00 dbus-launch --autolaunch=03d9609ea1fd41a8b4314026a86c509f --binary-syntax --close-stderr
+ 1432 ?        Ss     0:00 /bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+ 1470 ?        Sl     0:00 lightdm --session-child 12 19
+ 1482 ?        Sl     0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+ 1484 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+ 1485 ?        S      0:00 (sd-pam)
+ 1487 ?        Ssl    0:00 mate-session
+ 1492 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 1494 ?        S      0:00 dbus-launch --sh-syntax --exit-with-session
+ 1495 ?        Ss     0:01 /bin/dbus-daemon --fork --print-pid 4 --print-address 6 --session
+ 1552 ?        Sl     0:00 /usr/libexec/imsettings-daemon
+ 1555 ?        Sl     0:00 /usr/libexec/gvfsd
+ 1560 ?        Sl     0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+ 1631 ?        Ss     0:00 /usr/bin/ssh-agent /bin/sh -c exec -l /bin/bash -c "mate-session"
+ 1653 ?        Sl     0:00 /usr/libexec/dconf-service
+ 1660 ?        Sl     0:13 /usr/libexec/mate-settings-daemon
+ 1662 ?        Sl     0:25 marco
+ 1667 ?        Sl     0:10 mate-panel
+ 1674 ?        S<l    0:00 /usr/bin/pulseaudio --start --log-target=syslog
+ 1685 ?        Sl     0:05 mate-power-manager
+ 1689 ?        Sl     0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+ 1693 ?        Ssl    0:22 /usr/lib/udisks2/udisksd --no-debug
+ 1695 ?        S      0:19 /bin/bash /usr/bin/touchpad-notify
+ 1706 ?        Sl     0:03 mate-screensaver
+ 1709 ?        Sl     0:02 nm-applet
+ 1714 ?        Sl     0:02 mate-volume-control-applet
+ 1736 ?        Sl     0:00 /usr/libexec/polkit-mate-authentication-agent-1
+ 1805 ?        Sl     0:00 /usr/libexec/gvfs-mtp-volume-monitor
+ 1837 ?        Sl     0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+ 1864 ?        Sl     0:00 /usr/libexec/gvfs-afc-volume-monitor
+ 1943 ?        Sl     0:00 /usr/libexec/at-spi-bus-launcher
+ 1969 ?        Sl     0:40 /usr/libexec/mate-panel/wnck-applet
+ 1974 ?        S      0:02 /bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+ 1976 ?        Sl    11:16 /opt/kingsoft/wps-office/office6/wps -quickstart
+ 1992 ?        Sl     0:01 /usr/libexec/mate-applets/drivemount_applet2
+ 1995 ?        Sl     0:02 /usr/libexec/mate-panel/clock-applet
+ 1998 ?        Sl     0:03 /usr/libexec/mate-panel/notification-area-applet
+ 1999 ?        Sl     0:02 /usr/libexec/softupd_applet
+ 2002 ?        Sl     0:07 /usr/libexec/at-spi2-registryd --use-gnome-session
+ 2009 ?        Sl     0:28 /opt/kingsoft/wps-office/office6/wpp -quickstart
+ 2038 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.3 /org/gtk/gvfs/exec_spaw/0
+ 2044 ?        Sl     1:12 /opt/kingsoft/wps-office/office6/et -quickstart
+ 2051 ?        Ssl    0:03 /usr/libexec/upowerd
+ 2092 ?        Ss     0:00 /opt/kingsoft/wps-office/office6/wpsd --component=wps,wpp,et --mode=window
+ 2095 ?        Sl     0:54 /opt/kingsoft/wps-office/office6/wps -shield -multiply -automation -nosplash -rpcclientport=/tmp/wpsrpc-1496192411-578579894 -wait=name,/tmp/wpsrpc-1496192411-1444235786;mode,window
+ 2098 ?        Sl     0:33 /opt/kingsoft/wps-office/office6/wpp -shield -multiply -automation -nosplash -rpcclientport=/tmp/wpsrpc-1496192411-1338543749 -wait=name,/tmp/wpsrpc-1496192411-168882109;mode,window
+ 2100 ?        Sl     0:28 /opt/kingsoft/wps-office/office6/et -shield -multiply -automation -nosplash -rpcclientport=/tmp/wpsrpc-1496192411-370246785 -wait=name,/tmp/wpsrpc-1496192411-1076185699;mode,window
+ 2152 ?        S      5:10 /usr/bin/fcitx -D
+ 2161 ?        Ss     0:18 /bin/dbus-daemon --fork --print-pid 4 --print-address 6 --config-file /usr/share/fcitx/dbus/daemon.conf
+ 2165 ?        SN     0:00 /usr/bin/fcitx-dbus-watcher unix:abstract=/tmp/dbus-8KQZo4oTkx,guid=31336c399e857cfd587d3e76592e159c 2161
+ 2168 ?        S      0:00 /usr/libexec/gconfd-2
+ 2253 ?        Sl     0:00 /usr/libexec/gvfsd-metadata
+ 2267 ?        SLl   17:30 /usr/lib64/chromium-browser/chromium-browser --enable-plugins --enable-extensions --enable-user-scripts --enable-printing --enable-sync --auto-ssl-client-auth
+ 2275 ?        S      0:00 /usr/lib64/chromium-browser/chrome-sandbox /usr/lib64/chromium-browser/chromium-browser --type=zygote
+ 2278 ?        S      0:00 /usr/lib64/chromium-browser/chromium-browser --type=zygote
+ 2282 ?        S      0:00 /usr/lib64/chromium-browser/chromium-browser --type=zygote
+ 2313 ?        Sl    20:08 /usr/lib64/chromium-browser/chromium-browser --type=gpu-process --channel=2267.0.8061429 --mojo-application-channel-token=3E918A1D07221583D2987087DE6842F7 --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/LocalNTPSuggestionsService/Enabled/MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingReportPhishingErrorLink/Enabled/SafeBrowsingUpdateFrequency/UpdateTime15m/SchedulerExpensiveTaskBlocking/Enabled/SdchPersistence/Enabled/SimpleCacheTrial/ExperimentYes/StrictSecureCookies/Enabled/SyncHttpContentCompression/Enabled/TabSyncByRecency/Enabled/*TokenBinding/TokenBinding/*UMA_CheckStates/NoChecks/UsePredictorDNSQueue/Disabled/V8CacheStrategiesForCacheStorage/none/VarationsServiceControl/Interval_30min/WebFontsIntervention/Enabled/WebRTC-EnableWebRtcEcdsa/Enabled/WebRTC-H264WithOpenH264FFmpeg/Enabled/WebRTC-LocalIPPermissionCheck/Enabled/WebRTC-PeerConnectionDTLS1.2/Enabled/use-new-media-cache/Enabled/ --window-depth=24 --x11-visual-id=33 --supports-dual-gpus=false --gpu-driver-bug-workarounds=4,5,19,29,35,51,55 --gpu-vendor-id=0x1002 --gpu-device-id=0x6763 --gpu-driver-vendor=Mesa --gpu-driver-version=11.1.0 --gpu-driver-date --gpu-secondary-vendor-ids=0x1002 --gpu-secondary-device-ids=0x9615 --gpu-active-vendor-id=0x1002 --gpu-active-device-id=0x6763 --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+ 2627 ?        Sl     3:04 /usr/bin/remmina
+ 2711 ?        Sl     0:01 /usr/libexec/gvfsd-sftp --spawner :1.3 /org/gtk/gvfs/exec_spaw/1
+ 2717 pts/0    Ss+    0:00 /bin/ssh -oForwardX11 no -oForwardAgent no -oPermitLocalCommand no -oClearAllForwardings yes -oProtocol 2 -oNoHostAuthenticationForLocalhost yes -l jgj -s 10.2.5.20 sftp
+ 3082 ?        Sl     0:15 caja
+ 3118 ?        Sl     1:44 mate-terminal
+ 3125 ?        S      0:00 gnome-pty-helper
+ 3126 pts/1    Ss     0:00 bash
+ 3733 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 3998 pts/4    S      0:00 su
+ 4004 pts/4    S      0:00 bash
+ 4050 ?        S      0:00 [kworker/3:1]
+ 4308 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 4438 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 4859 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 4960 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 5035 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 5072 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 5110 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 5237 pts/2    S+     0:00 vi app.js
+ 5471 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
+ 6126 ?        S      0:00 [kworker/1:1]
+ 6129 ?        S      0:00 [kworker/0:0]
+ 6609 ?        Sl     0:10 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+ 6652 ?        Sl     0:09 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+ 6754 ?        Sl     0:02 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+ 6910 pts/4    S+     0:00 vi sql.txt
+ 7094 pts/3    S      0:00 su
+ 7100 pts/3    S      0:00 bash
+ 7214 ?        S      0:00 sleep 1
+ 7215 pts/3    R+     0:00 ps ax
+ 7502 ?        Sl     1:20 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+ 9418 pts/1    S      0:00 su
+ 9424 pts/1    S      0:00 bash
+ 9499 ?        S      0:00 [kworker/3:2]
+10232 pts/2    Ss     0:00 bash
+10247 pts/2    S      0:00 su
+10253 pts/2    S      0:00 bash
+10907 pts/3    Ss     0:00 bash
+15753 ?        Sl     0:54 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+18566 ?        Sl     0:18 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+18718 ?        Sl     2:43 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+18772 ?        Sl     2:08 /usr/lib64/chromium-browser/chromium-browser --type=renderer --enable-features=DocumentWriteEvaluator<DisallowFetchForDocWrittenScriptsInMainFrame,IncidentReportingDisableUpload<SafeBrowsingIncidentReportingService,IncidentReportingModuleLoadAnalysis<SafeBrowsingIncidentReportingServiceFeatures,IncidentReportingSuspiciousModuleReporting<SafeBrowsingIncidentReportingServiceFeatures,MainFrameBeforeActivation<MainFrameBeforeActivation,NetworkTimeServiceQuerying<NetworkTimeQueries,PreconnectMore<PreconnectMore,UsePasswordSeparatedSigninFlow<PasswordSeparatedSigninFlow,WebRTC-EnableWebRtcEcdsa<WebRTC-EnableWebRtcEcdsa,WebRTC-H264WithOpenH264FFmpeg<WebRTC-H264WithOpenH264FFmpeg,token-binding<TokenBinding,use-new-media-cache<use-new-media-cache --disable-features=UsePredictorDNSQueue<UsePredictorDNSQueue --force-fieldtrials=AsyncDNS/AsyncDNSA/AutofillClassifier/Enabled/*AutofillFieldMetadata/Enabled/AutofillProfileOrderByFrecency/EnabledLimitTo3/CaptivePortalInterstitial/Enabled/ChromeDashboard/Enabled/ChromotingQUIC/Enabled/*DisallowFetchForDocWrittenScriptsInMainFrame/DocumentWriteEvaluatorGroup/EnableGoogleCachedCopyTextExperiment/Button/*EnableMediaRouter/Enabled/EnableMediaRouterWithCastExtension/Enabled/EnableSessionCrashedBubbleUI/Enabled/ExtensionActionRedesign/Enabled/GoogleBrandedContextMenu/branded/InstanceID/Enabled/*LocalNTPSuggestionsService/Enabled/*MainFrameBeforeActivation/Enabled/MaterialDesignDownloads/Enabled/MojoChannel/Enabled/NetworkTimeQueries/NetworkTimeQueriesEnabled/OfferUploadCreditCards/Enabled/OutOfProcessPac/Enabled/*PageRevisitInstrumentation/Enabled/PasswordBranding/SmartLockBrandingSavePromptOnly/*PasswordManagerSettingsMigration/Enable/PasswordSeparatedSigninFlow/Enabled/*PreconnectMore/Enabled/*QUIC/Enabled/RefreshTokenDeviceId/Enabled/ReportCertificateErrors/ShowAndPossiblySend/*ResourcePriorities/Launch50pct_11011_1_1_10/SSLCommonNameMismatchHandling/Enabled/*SafeBrowsingIncidentReportingService/Enabled/SafeBrowsingIncidentReportingServiceFeatures/WithSuspiciousModuleReporting/SafeBrowsingRe
+25210 ?        S      0:02 [kworker/2:1]
+28149 ?        S      0:01 [kworker/1:0]
+32624 pts/4    Ss     0:00 bash

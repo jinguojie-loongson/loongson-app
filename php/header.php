@@ -15,7 +15,9 @@
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/localserver.js"></script>
 <script type="text/javascript" src="../js/app.js"></script>
+
 </head>
 
 <body>

@@ -3,6 +3,7 @@
   <div class="topbar-button" id="top-rank">榜单</div>
   <div class="topbar-button" id="top-category">分类</div>
   <div class="topbar-button" id="top-my">我的</div>
+  <div class="topbar-button" id="Refresh"><a href="#" onclick="javascript: alert('haha'); window.location.reload();">Refresh</a></div>
 
 <input id="searchText" class="input-thin" name="searchText" type="text" value="搜索应用..." />
 </div>

@@ -4,10 +4,10 @@
  */
 include_once('_app.inc');
 
-$HOT_DIR = "../data/icon/";
+$HOT_DIR = "../data/app/";
 
 $id = $_GET['id'];
-$file = $HOT_DIR . get_app_icon_file_by_id($id);
+$file = $HOT_DIR . get_app_file_by_id($id);
 readfile($file);
 header("Content-type: octet/stream");
 header("Content-disposition:attachment;filename=".basename($file));

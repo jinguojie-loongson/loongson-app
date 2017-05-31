@@ -1,7 +1,9 @@
 /* 处理应用卡片的鼠标事件 */
 /* 2017/5/26 首次改写成jquery版本 */
 
-var SYS_DATA_DIR = "/etc/app";
+var SYS_DATA_DIR = "/etc/app/";
+var SYS_DOWNLOAD_DIR = "/var/lib/app/";
+
 /* 系统目录下，每一个已安装应用的文件名：“ID：版本号” */
 
 /* ---------------------------------------------------- */
@@ -105,12 +107,54 @@ function app_get_button_class(status)
 }
 
 /*
+ * 下载一个应用
+ */
+function app_get_download_url(id)
+{
+  // http://localhost/app/php/app.php?id=1
+  url = window.location.href;
+  // 截取到最后一个“/” 
+
+  n = url.lastIndexOf("/");
+  return url.substr(0, n) + "/getAppFile.php?id=" + id;
+}
+
+function app_get_download_local_file(id)
+{
+  return SYS_DOWNLOAD_DIR + id + ".bin";
+}
+
+function app_download(id, func) {
+  console.log("download app: " + id);
+
+  /* 开始下载，以后台方式调用wget */
+  /* 先删除文件 */
+  download_file = app_get_download_local_file(id);
+  cmd = "mkdir -p " + SYS_DOWNLOAD_DIR + "; rm -rf " + download_file + "; "
+      + "wget -r -p " + app_get_download_url(id) + " -O " + download_file;
+
+  console.log(cmd);
+
+  var callback = function(data) {
+    func(data);
+  }
+
+  get_local_service(cmd, callback);
+}
+
+
+/*
  * 安装一个应用
  */
 function app_install($btn, id)
 {
   console.log("app_install: " + id);
   /* 安装状态图 */
+
+  app_download(id, function(data) {
+    // 启动定时器，监控下载过程
+    console.log("下载开始");
+  });
 }
 
 function initButton($btn, id) {
@@ -136,7 +180,6 @@ function initButton($btn, id) {
 $(document).ready(function(){
   /* 遍历#app-card-grid里面的每一个应用程序卡片 */
   $("#app-card-grid div").mouseover(function () {
-    alert("hehe");
     $(this).css("background-color", "#aaaaaa");
   });
 

@@ -11,8 +11,8 @@ function get_local_service(cmd, func)
     type: 'GET',
     async: true,
     data:{
-        cmd: cmd,
-        root: 1
+        cmd: cmd
+        //root: 1
     },
     //timeout:5000,    //超时时间
     dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text

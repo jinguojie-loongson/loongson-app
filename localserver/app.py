@@ -20,7 +20,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     target = "D:/web"
 
     def do_GET(self):
-        print self.path
+        print "do_GET: " + self.path
         if self.path == "/" or self.path == "/index":
             content = open("signin.html", "rb").read()
             self.send_head(content)
@@ -87,21 +87,22 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     # Service: 执行Shell命令
     # 输入：
     #     cmd命令
-    #     root是否需要root权限
     # 输出：返回数据JSON格式
     #     errno：命令执行的返回代码
     #     stdout：cmd在本机上执行的标准输出
     #     stderr：cmd在本机上执行的标准错误
     def do_shell(self, path):
-        # path: /shell?cmd=ls&root=1
+        # path: /shell?cmd=ls
         print "-- do_shell -- path=" + path;
         data = urllib.unquote_plus(path).decode('utf8').split('?')[-1]
         data = self.parse_data(data)   # {'cmd': 'ls', 'root': '1'}
-        return self.exec_cmd(data['cmd'], data['root'])
+        # print(data);
+        return self.exec_cmd(data['cmd'])
 
-    def exec_cmd(self, cmd, root):
-        print(cmd, root);
+    def exec_cmd(self, cmd):
+        print(cmd);
         result = commands.getstatusoutput(cmd)
+        print "exec_cmd: " + cmd + " [DONE]";
         return  json.dumps(result)
       
 if __name__ == "__main__":

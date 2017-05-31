@@ -16,6 +16,16 @@ function get_app_screen_file_by_id($id, $index)
   return $id . "_" . $index . ".png";
 }
 
+function get_app_file_by_id($id)
+{
+global $conn;
+  $version = get_app_version($id);
+
+  $sql = "select filename from app_file "
+         . "  where version='${version}' ";
+  return db_get_one_value($sql);
+}
+
 function get_app_icon_html($id)
 {
   return  "<img id='${id}' src='getAppIcon.php?id=${id}'  width='80' height='80' alt='' border='0' /> \n";

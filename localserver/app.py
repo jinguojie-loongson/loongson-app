@@ -94,10 +94,12 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     def do_shell(self, path):
         # path: /shell?cmd=ls
         print "-- do_shell -- path=" + path;
-        data = urllib.unquote_plus(path).decode('utf8').split('?')[-1]
+#        data = urllib.unquote_plus(path).decode('utf8').split('?')[-1]
+        data = path.decode('utf8').split('?')[-1]
+        print urllib.unquote_plus(path).decode('utf8')
         data = self.parse_data(data)   # {'cmd': 'ls', 'root': '1'}
         # print(data);
-        return self.exec_cmd(data['cmd'])
+        return self.exec_cmd(urllib.unquote_plus(data['cmd']))
 
     def exec_cmd(self, cmd):
         print(cmd);

@@ -40,7 +40,8 @@ create table app_file (
   id int(5) NOT NULL,
   version varchar(50),
   filename varchar(150),
-  md5 varchar(50)
+  md5 varchar(50),
+  install_script varchar(500)   # 可以使用“[FILE]”代表要安装的文件名。命令返回值0代表安装成功
 );
 
 #热门应用（首页轮播）
@@ -70,7 +71,7 @@ insert into category (name) VALUES
 ;
 
 insert into app (name, vendor, category_id, version, download_size, description, icon_file, screen_file_count, download_count) VALUES
-  ("WPS Office", "金山软件", 1, "1.0.012", "13.8M", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502),
+  ("WPS Office", "金山软件", 1, "1.0.015", "13.8M", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502),
   ("QQ", "腾讯", 2, "2.3.245.2500", "2.8M", "腾讯即时通讯软件", "2.png", 4, 235935),
   ("扫雷", "个人爱好者", 7, "2.3.245.2500", "32.8M", "简单游戏", "3.png", 5, 234),
   ("Photoshop", "Adobe Software Inc.", 5, "2.3.245.2500", "140M", "Adobe图像处理软件", "4.png", 2, 93487),
@@ -86,7 +87,8 @@ insert into hot (app_id, banner_file) VALUES
   (5, "5.png")
 ;
 
-insert into app_file (id, version, filename, md5) VALUES
-  (1, "1.0.012", "wps.1.0.012.rpm", "458f33a00909bdf99a6d69c2872a054f"),
-  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5672f920a1c7a4bfcef415343e3bee79")
+insert into app_file (id, version, filename, md5, install_script) VALUES
+  (1, "1.0.012", "wps.1.0.012.rpm", "458f33a00909bdf99a6d69c2872a054f", "cp [FILE] /opt "),
+  (1, "1.0.015", "wps.1.0.015.rpm", "d1b67a2e2fff3f45c4e3f379da1637f9", "cp [FILE] /opt "),
+  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5672f920a1c7a4bfcef415343e3bee79", "cp [FILE] /opt")
 ;

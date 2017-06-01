@@ -37,7 +37,7 @@ h3 {
 }
 
 .button {
-	width: 140px;
+	width: 180px;
 	height: 30px;
 	line-height: 30px;
 	text-align:center;
@@ -51,3 +51,4 @@ h3 {
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
+

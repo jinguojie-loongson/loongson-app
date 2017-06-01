@@ -23,9 +23,9 @@ function get_local_service(cmd, func)
     success:function(data, textStatus, jqXHR){
         console.log('Success:')
         console.log(data)
-        console.log(textStatus)
+        console.log("textStatus: " + textStatus)
         console.log(jqXHR)
-        func(data[1]);
+        func(data[1], data[0]);
     },
     error:function(xhr,textStatus){
         console.log('错误')

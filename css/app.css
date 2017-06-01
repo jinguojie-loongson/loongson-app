@@ -191,10 +191,42 @@
 	cursor: pointer;
 }
 
+.downloading {
+	border: 1px solid red;
+	background-color: white;
+	color: red;
+
+	cursor: dafault;
+}
+
+.checking-download-file {
+	border: 1px solid red;
+	background-color: white;
+	color: red;
+
+	cursor: dafault;
+}
+
+.checking-download-file-error {
+	border: 1px solid red;
+	background-color: white;
+	color: red;
+
+	cursor: dafault;
+}
+
 .installing {
 	border: 1px solid green;
 	background-color: white;
 	color: green;
+
+	cursor: dafault;
+}
+
+.install-error {
+	border: 1px solid red;
+	background-color: white;
+	color: red;
 
 	cursor: dafault;
 }

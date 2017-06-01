@@ -15,9 +15,9 @@ $file = $HOT_DIR . get_app_screen_file_by_id($id, $index);
 if(!file_exist($file))
   $file = black_filename();
 
-readfile($file);
 header("Content-type: octet/stream");
 header("Content-disposition:attachment;filename=".basename($file));
 header("Content-Length:".filesize($file));
+readfile($file);
 exit;
 ?>

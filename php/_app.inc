@@ -22,7 +22,28 @@ global $conn;
   $version = get_app_version($id);
 
   $sql = "select filename from app_file "
-         . "  where version='${version}' ";
+         . "  where id=${id} and version='${version}' ";
+  return db_get_one_value($sql);
+}
+
+function get_app_md5_by_id($id)
+{
+global $conn;
+  $version = get_app_version($id);
+
+  $sql = "select md5 from app_file "
+         . "  where id=${id} and version='${version}' ";
+  return db_get_one_value($sql);
+}
+
+
+function get_app_install_script_by_id($id)
+{
+global $conn;
+  $version = get_app_version($id);
+
+  $sql = "select install_script from app_file "
+         . "  where id=${id} and version='${version}' ";
   return db_get_one_value($sql);
 }
 

@@ -20,9 +20,13 @@
   <table class="app-header" border="0">
     <tr>
       <td class="td-img" rowspan="6">
-        <?= get_app_icon_html($_GET['id']); ?> 
-        <div class="button" id="installApp">安 装 / 升 级</div>
-        <input type="hidden" id="app_id" value="<?= $_GET['id'] ?>">
+        <?= get_app_icon_html($app_id); ?> 
+        <div class="button installed" id="installApp">获取应用状态...</div>
+        <input type="hidden" id="app_id" value="<?= $app_id ?>">
+        <input type="hidden" id="app_version" value="<?= get_app_version($app_id) ?>">
+        <input type="hidden" id="app_filename" value="<?= get_app_file_by_id($app_id) ?>">
+        <input type="hidden" id="app_md5" value="<?= get_app_md5_by_id($app_id) ?>">
+        <input type="hidden" id="app_install_script" value="<?= get_app_install_script_by_id($app_id) ?>">
       </td>
       <td colspan="2" class="title"> <?= get_app_name($app_id) ?> </td>
     </tr>

@@ -4,9 +4,23 @@
 var SYS_DATA_DIR = "/etc/app/";
 var SYS_DOWNLOAD_DIR = "/var/lib/app/";
 
-/* 系统目录下，每一个已安装应用的文件名：“ID：版本号” */
-
 /* ---------------------------------------------------- */
+
+/* 系统目录下，每一个已安装应用的文件名：“ID：版本号”
+ * 例如：
+ *
+ *  1:1.0.015
+ *  2:2.3.245.2500
+ */
+
+function get_local_app_list(func)
+{
+  console.log("get_local_app_list: ");
+  cmd = " cd " + SYS_DATA_DIR + "; ls *:* ";
+
+  get_local_service(cmd, func);
+}
+
 function app_is_downloading(id)
 {
   // TODO:
@@ -26,7 +40,6 @@ function app_is_installing(id, version)
  */
 function app_version_compare(local_version, server_version)
 {
-  // TODO:
   console.log(local_version, server_version);
   var lv = local_version.split(".");
   var sv = server_version.split(".");
@@ -336,24 +349,27 @@ function initButton($btn, id) {
 
 $(document).ready(function(){
   /* 遍历#app-card-grid里面的每一个应用程序卡片 */
-  $("#app-card-grid div").mouseover(function () {
+  $("#app-card-grid").on('mouseover', 'div', function () {
     $(this).css("background-color", "#aaaaaa");
   });
 
-  $("#app-card-grid div").mouseout(function () {
+  $("#app-card-grid").on('mouseout', 'div', function () {
     $(this).css("background-color", "#eeeeee");
   });
 
-  $("#app-card-grid div").click(function () {
+  $("#app-card-grid").on('click', 'div', function () {
     window.location.href = "app.php?id=" + $(this).attr("id");
   });
 
 
-  /* 返回按钮 */
-  $("#app-back").click(function () {
-    window.history.back();
-  });
+  if (window.location.href.indexOf("app.php") != -1)
+  {
+    /* 返回按钮 */
+    $("#app-back").click(function () {
+      window.history.back();
+    });
 
-  /* 安装按钮 */
-  initButton($("#installApp"), $("#app_id").attr("value"));
+    /* 安装按钮 */
+    initButton($("#installApp"), $("#app_id").attr("value"));
+  }
 });

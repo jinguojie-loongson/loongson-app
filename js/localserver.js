@@ -16,15 +16,11 @@ function get_local_service(cmd, func)
     },
     //timeout:5000,    //超时时间
     dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-    beforeSend:function(xhr){
-        console.log(xhr)
-        console.log('发送前')
-    },
     success:function(data, textStatus, jqXHR){
         console.log('Success:')
         console.log(data)
-        console.log("textStatus: " + textStatus)
-        console.log(jqXHR)
+        //console.log("textStatus: " + textStatus)
+        //console.log(jqXHR)
         func(data[1], data[0]);
     },
     error:function(xhr,textStatus){
@@ -32,9 +28,6 @@ function get_local_service(cmd, func)
         console.log(xhr)
         console.log(textStatus)
     },
-    complete:function(){
-        console.log('结束')
-    }
   })
 }
 

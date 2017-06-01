@@ -12,11 +12,13 @@
 <link rel="stylesheet" type="text/css" href="../css/top.css" />
 <link type="text/css" rel="Stylesheet" href="../css/app.css" />
 <link type="text/css" rel="Stylesheet" href="../css/category.css" />
+<link type="text/css" rel="Stylesheet" href="../css/my.css" />
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/localserver.js"></script>
 <script type="text/javascript" src="../js/app.js"></script>
+<script type="text/javascript" src="../js/my.js"></script>
 
 </head>
 

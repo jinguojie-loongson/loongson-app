@@ -359,14 +359,13 @@ $(document).ready(function(){
     window.location.href = "app.php?id=" + $(this).attr("id");
   });
 
+  /* 返回按钮 */
+  $("#app-back").click(function () {
+    window.history.back();
+  });
 
   if (window.location.href.indexOf("app.php") != -1)
   {
-    /* 返回按钮 */
-    $("#app-back").click(function () {
-      window.history.back();
-    });
-
     /* 安装按钮 */
     initButton($("#installApp"), $("#app_id").attr("value"));
   }

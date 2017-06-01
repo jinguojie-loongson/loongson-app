@@ -7,7 +7,7 @@
   <!-- 隐藏一个刷新按钮 --!>
   <input type="button" class="invisible-button" onclick="javascript: window.location.reload();" value="">
 
-  <input id="searchText" class="input-thin" name="searchText" type="text" value="搜索应用..." />
+  <input id="searchText" class="input-thin" type="text" value="搜索应用..." />
 </div>
 
 <br/>

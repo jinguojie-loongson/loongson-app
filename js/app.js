@@ -101,8 +101,6 @@ function app_get_status(id, func) {
     if (data.indexOf(SYS_DATA_DIR + id + ":") == 0)
       found_version = data.split(":")[1];
 
-console.log("found_version: " + found_version);
-
     if (app_is_downloading(id))
       data = "downloading";
     else if (app_is_installing(id))

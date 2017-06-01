@@ -51,6 +51,8 @@
 
 #app-card-grid div {
         float: left; 
+        position: relative;
+
         width: 300px; 		/* 重要：此处定义每一个应用卡片的大小 */
         height: 160px; 
         padding: 5px; 
@@ -229,4 +231,26 @@
 	color: red;
 
 	cursor: dafault;
+}
+
+/*
+ * 升级图标：小红点
+ */
+.update-icon {
+	border: none;
+	background-color: red;
+	width: 16px;
+	height: 16px;
+
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	display: none;
+
+	-webkit-box-shadow:0 0 2px #800;  
+	-moz-box-shadow:0 0 2px #800;  
+	box-shadow:0 0 2px #800;  
 }

@@ -26,6 +26,10 @@ foreach ($ss as $a)
   $version = $p[1];
 
   $html = $html . get_app_card_html($app_id);
+
+  /* 如果有升级，则需要显示一个额外的红点 */
+  if (app_version_compare($version, get_app_version($app_id)) < 0)
+    $html = $html . get_app_update_icon_html($app_id);
 }
 
 echo $html;

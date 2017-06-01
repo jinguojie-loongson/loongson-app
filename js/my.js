@@ -31,6 +31,18 @@ function on_receive_app_html(html)
 {
   console.log("on_receive_app_html: " + html);
   $("#app-card-grid").html(html);
+
+  n = 0;
+  $(".update-icon").each( function() {
+    $div = $(this).prev("div");
+
+    $div.append($(this));
+    $(this).show();
+
+    n ++;
+  });
+
+  $("#my-title").append("<div class='gray small'>共有" + n + "个应用需要升级</div>");
 }
 
 function get_my_app_html(app_list_data, func)

@@ -3,6 +3,29 @@
 include_once('_db.inc');
 include_once('_util.inc');
 
+function app_version_compare($local_version, $server_version)
+{
+  $lv = explode(".", $local_version);
+  $sv = explode(".", $server_version);
+
+  $i = 0;
+  while ($i < count($lv) && $i < count($sv))
+  {
+    if (intval($lv[$i]) < intval($sv[$i]))
+      return -1;
+    if (intval($lv[$i]) > intval($sv[$i]))
+      return 1;
+    $i++;
+  }
+
+  if ($i < count($lv))
+    return 1;
+  if ($i < count($sv))
+    return -1;
+
+  return 0;
+}
+
 function get_app_icon_file_by_id($id)
 {
 global $conn;
@@ -161,5 +184,13 @@ function get_app_screen_file_html($id)
     $html = $html . $img;
   }
   return $html;
+}
+
+/*
+ * 需要升级：在卡片上显示红点
+ */
+function get_app_update_icon_html($id)
+{
+  return "<span class='update-icon' id='${id}'></span>";
 }
 ?>

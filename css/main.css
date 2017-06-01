@@ -28,6 +28,10 @@ h3 {
 	padding: 50px;
 }
 
+.small {
+	font-size: 14pt;
+}
+
 .gray {
 	color: #222222;
 }

@@ -34,6 +34,7 @@ function notify() {
 }
 
 
+/*
 function installApp() {
   var btn = document.getElementById('installApp');
   btn.innerHTML = "Installing App...";
@@ -46,3 +47,4 @@ function installApp() {
 
 var btn = document.getElementById('installApp');
 btn.onclick= function() {installApp();}
+*/

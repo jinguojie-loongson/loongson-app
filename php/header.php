@@ -8,6 +8,9 @@
 
 <title>龙芯应用公社</title>
 
+<link rel="shortcut icon" href="../images/favicon.png"/>
+<link rel="bookmark" href="../images/favicon.png"/>
+
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/top.css" />
 <link type="text/css" rel="Stylesheet" href="../css/app.css" />

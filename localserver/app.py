@@ -9,8 +9,22 @@ import sys
 import urllib
 import commands
 import json
-from BaseHTTPServer import HTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+
+
+try:
+    # Python 2.x
+    from SocketServer import ThreadingMixIn
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
+    from BaseHTTPServer import HTTPServer
+except ImportError:
+    # Python 3.x
+    from socketserver import ThreadingMixIn
+    from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+
+class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
+    pass
+
 
 class MyRequestHandler(SimpleHTTPRequestHandler):
     web_port = 8765;
@@ -112,7 +126,7 @@ if __name__ == "__main__":
         #set the target where to mkdir, and default "D:/web"
         MyRequestHandler.target = sys.argv[1]
     try:
-        server = HTTPServer(("", MyRequestHandler.web_port), MyRequestHandler)
+        server = ThreadingSimpleServer(('', MyRequestHandler.web_port), MyRequestHandler)
         print "pythonic-simple-http-server started, serving at http://localhost:" + str(MyRequestHandler.web_port);
         server.serve_forever()
     except KeyboardInterrupt:

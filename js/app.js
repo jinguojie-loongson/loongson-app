@@ -352,7 +352,7 @@ $(document).ready(function(){
 
   /* 遍历#app-card-grid里面的每一个应用程序卡片 */
   $("#app-card-grid").on('mouseover', 'div', function () {
-    $(this).css("background-color", "#aaaaaa");
+    $(this).css("background-color", "#cccccc");
   });
 
   $("#app-card-grid").on('mouseout', 'div', function () {

@@ -346,6 +346,10 @@ function initButton($btn, id) {
 }
 
 $(document).ready(function(){
+
+  /* 2017/6/6 使用chrome.exe -app方式运行时，禁用右键菜单 */
+  document.oncontextmenu=function(e){return false;}  
+
   /* 遍历#app-card-grid里面的每一个应用程序卡片 */
   $("#app-card-grid").on('mouseover', 'div', function () {
     $(this).css("background-color", "#aaaaaa");

@@ -37,7 +37,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         print "do_GET: " + self.path
         if self.path == "/" or self.path == "/index":
-            content = open("signin.html", "rb").read()
+            content = "index.html"
             self.send_head(content)
         elif self.path.startswith("/shell"):
             content = self.do_shell(self.path)
@@ -49,7 +49,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                 content = open(path, "rb").read()
                 self.send_head(content, type=self.extensions_map[extn])
             else:
-                content = open("404.html", "rb").read()
+                content = "404.html"
                 self.send_head(content, code=404)
         self.send_content(content)
             

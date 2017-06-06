@@ -1,8 +1,8 @@
 /* 处理应用卡片的鼠标事件 */
 /* 2017/5/26 首次改写成jquery版本 */
 
-var SYS_DATA_DIR = "/etc/app/";
-var SYS_DOWNLOAD_DIR = "/var/lib/app/";
+var SYS_DATA_DIR = "/opt/app/db/";
+var SYS_DOWNLOAD_DIR = "/opt/app/cache/";
 
 /* ---------------------------------------------------- */
 

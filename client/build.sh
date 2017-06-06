@@ -1,4 +1,4 @@
-VERSION=`ls etc/app/999999:* | cut -d: -f2`
+VERSION=`ls opt/app/db/999999:* | cut -d: -f2`
 O=app-client-${VERSION}.sh
 
 echo "Buidling $O..."

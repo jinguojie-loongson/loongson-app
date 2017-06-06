@@ -42,7 +42,8 @@ function on_receive_app_html(html)
     n ++;
   });
 
-  $("#my-title").append("<div class='gray small'>共有" + n + "个应用需要升级</div>");
+  if (n > 0)
+    $("#my-title").append("<div class='gray small'>共有" + n + "个应用需要升级</div>");
 }
 
 function get_my_app_html(app_list_data, func)

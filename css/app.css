@@ -7,8 +7,10 @@
 /* CSS实现3D阴影背景
  * http://www.iinterest.net/2011/04/21/css3-box-shadow/
  */
+
+
 #app-card-grid {
-	font-size: 14pt;
+	font-size: 12pt;
 	display:inline-block;
 	position:relative;
 	margin:50px;
@@ -19,7 +21,7 @@
 	border-radius:4px;
 	color:rgba(0,0,0, 0.8);
 
-	min-width: 80%;
+	min-width: 70%;
 	min-height: 200px;
 }
 
@@ -49,27 +51,27 @@
 	transform: rotate(3deg);
 }
 
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */ 
 #app-card-grid div {
-        float: left; 
-        position: relative;
+        display: inline-block; 
 
         width: 300px; 		/* 重要：此处定义每一个应用卡片的大小 */
-        height: 160px; 
+        height: 150px; 
         padding: 5px; 
         margin: 20px; 
         background-color: #eeeeee;
 
-        border-radius: 9px;
-        -moz-border-radius: 9px;
-        -webkit-border-radius: 9px;
-        -khtml-border-radius: 9px;
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -khtml-border-radius: 6px;
 
-	box-shadow: 0px 0px 8px #aaaaaa;
+	box-shadow: 0px 0px 8px #cccccc;
 }
 
 #app-card-grid img {
         float: left; 
-	margin: 5px;
+	margin: 10px;
 }
 
 #app-card-grid .app-text {
@@ -79,7 +81,7 @@
 }
 
 #app-card-grid .app-title {
-	font-size: 16pt;
+	font-size: 14pt;
 	font-weight: bold;
 }
 

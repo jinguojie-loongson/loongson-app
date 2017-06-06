@@ -72,7 +72,7 @@ global $conn;
 
 function get_app_icon_html($id)
 {
-  return  "<img id='${id}' src='getAppIcon.php?id=${id}'  width='80' height='80' alt='' border='0' /> \n";
+  return  "<img id='${id}' src='getAppIcon.php?id=${id}'  width='64' height='64' alt='' border='0' /> \n";
 }
 
 function get_app_name($id)

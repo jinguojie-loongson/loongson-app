@@ -11,7 +11,7 @@ function ImageFlow() {
 	    imageCursor: 'pointer',      /* Cursor type for all images - default is 'default' */
 	    ImageFlowID: 'imageflow',    /* Default id of the ImageFlow container */
 	    imageFocusM: 1.0,            /* Multiplicator for the focussed image size in percent */
-	    imageFocusMax: 3,              /* 左右二侧图片数量 */
+	    imageFocusMax: 2,              /* 左右二侧图片数量 */
 	    imagePath: '',             /* Path to the images relative to the reflect_.php script */
 	    imageScaling: true,           /* Toggle image scaling */
 	    imagesHeight: 0.65,           /* 高宽比例 */

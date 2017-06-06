@@ -7,6 +7,8 @@
 	padding: 15px 0px 0px 150px;
 
 	position: fixed; width: 100%; z-index: 2;
+	min-width: 1024px;
+	overflow: hidden;
 }
 
 .topbar-button {
@@ -58,7 +60,7 @@
 /* 隐藏的Refresh按钮 */
 
 .invisible-button {
-	width: 300px;
+	width: 200px;
 	height: 30px;
 	color: gray;
 	border: none;

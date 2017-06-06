@@ -2,7 +2,7 @@
 Type=Application
 Name=APP Local Server Autostart
 Name[zh_CN]=应用公社后台服务
-Exec=/opt/app/localserver/app.py 2&>/var/log/app.log
+Exec=/opt/app/localserver/app.py 2&>/opt/app/log/app.log
 NoDisplay=true
 X-GNOME-AutoStart=true
 X-GNOME-Autostart-Phase=Initialization

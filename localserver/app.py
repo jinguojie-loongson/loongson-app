@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #-*- coding:utf-8 -*-
 # http://www.cnblogs.com/lichmama/p/4928617.html
 #author: lichmama

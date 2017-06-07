@@ -1,13 +1,17 @@
 Loongson Application Community
 
-Beginning Date:
+* Beginning Date:
+
   2017.5.15
 
-Author: 
+* Author: 
+
   jinguojie@loongson.cn
 
-Programming tools:
+* Programming tools:
+
   Web server: PHP, Mysql, jquery
+
   Client: Python, Chrome APP
 
 

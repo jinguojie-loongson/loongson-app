@@ -1,7 +1,8 @@
 VERSION=`cat ../VERSION`
 
-rm -f opt/app/db/999999:*
-date > opt/app/db/999999:${VERSION}
+STATUS_FILE=opt/app/db/999999
+rm -f $STATUS_FILE
+echo "999999:${VERSION}:installed:`date`" > $STATUS_FILE
 
 O=app-client-${VERSION}.sh
 

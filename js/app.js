@@ -3,6 +3,7 @@
 
 var SYS_DATA_DIR = "/opt/app/db/";
 var SYS_DOWNLOAD_DIR = "/opt/app/cache/";
+var INSTALL_SCRIPT = "/opt/app/localserver/install.sh";
 
 /* ---------------------------------------------------- */
 
@@ -16,7 +17,7 @@ var SYS_DOWNLOAD_DIR = "/opt/app/cache/";
 function get_local_app_list(func)
 {
   console.log("get_local_app_list: ");
-  cmd = " cd " + SYS_DATA_DIR + "; ls *:* ";
+  cmd = " cd " + SYS_DATA_DIR + "; cat * ";
 
   get_local_service(cmd, func);
 }
@@ -67,22 +68,18 @@ function app_get_server_version(id)
   return $("#app_version").attr("value");
 }
 
-function app_register_installed(id, version)
+function app_get_md5(id)
 {
-  console.log("app_register_installed: " + id + ", " + version);
-  reg_file = SYS_DATA_DIR + id + ":" + version;
-  cmd = " rm -rf " + SYS_DATA_DIR + id + ":*; date >  " + reg_file;
+  return $("#app_md5").attr("value");
+}
 
-  var callback = function(data, errno) {
-    if (errno != 0)
-      console.log("安装记录创建不成功");
-  }
-
-  get_local_service(cmd, callback);
+function app_get_install_script(id)
+{
+  return $("#app_install_script").attr("value");
 }
 
 /*   get_app_status(id)
- * 返回4种状态：
+ * 返回8种状态：
  *   "not-installed" - 未安装，
  *   "installed" 已安装，且最新
  *   "need-updated": 已安装，有升级版本
@@ -94,29 +91,24 @@ function app_register_installed(id, version)
  */
 function app_get_status(id, func) {
   console.log("check app: " + id);
-  cmd = " mkdir -p " + SYS_DATA_DIR + "; ls " + SYS_DATA_DIR + id + ":*";
+  cmd = " mkdir -p " + SYS_DATA_DIR + "; cat " + SYS_DATA_DIR + id;
 
-  var callback = function(data) {
+  var callback = function(data, errno) {
     var found_version = "";
-    if (data.indexOf(SYS_DATA_DIR + id + ":") == 0)
+    if (errno != 0)
+      status = "not-installed";
+    else
+    {
       found_version = data.split(":")[1];
+      status = data.split(":")[2];
 
-    if (app_is_downloading(id))
-      data = "downloading";
-    else if (app_is_installing(id))
-      data = "installing";
-    else if (found_version == "")
-    {
-      data = "not-installed";
+      if (status == "installed")
+      {
+        if (app_version_compare(found_version, app_get_server_version(id)) < 0)
+          status = "need-updated";
+      }
     }
-    else if (found_version != "")
-    {
-      if (app_version_compare(found_version, app_get_server_version(id)) < 0)
-        data = "need-updated";
-      else
-        data = "installed";
-    }
-    func(data);
+    func(status);
   }
 
   get_local_service(cmd, callback);
@@ -177,6 +169,9 @@ function app_button_change_status($btn, id, status)
   $btn.addClass("button " + app_get_button_class(status));
 
   $btn.text(app_get_button_text(status));
+
+  $btn.css("disabled", 
+     (status == "not-installed" || status == "need-updated") ? "true" : "false");
 
   $btn.click(function () {
      if (status == "not-installed")
@@ -310,23 +305,43 @@ function app_exec_install_script($btn, id, func)
  */
 function app_install($btn, id)
 {
+  $btn.css("disabled", "true");
   console.log("app_install: " + id);
 
-  /* 安装状态图 */
-  app_download($btn, id, function(data) {
-    // 启动定时器，监控下载过程
-    console.log("下载结束");
+  app_button_change_status($btn, id, "installing");
+  $btn.click(function () {});
 
-    app_check_download_file($btn, id, function(data) {
-      console.log("下载文件正常");
-      app_exec_install_script($btn, id, function(data) {
-        console.log("安装成功");
-        app_button_change_status($btn, id, "installed");
+  var version= app_get_server_version(id);
+  var download_url = app_get_download_url(id);
+  var download_file = app_get_download_local_file(id);
+  var md5 = app_get_md5(id);
 
-        app_register_installed(id, app_get_server_version());
-      });
-    });
-  });
+  /* 处理“[FILE]”通配符 */
+  var install_script = app_get_install_script(id)
+              .replace("[FILE]", download_file);
+
+  cmd = INSTALL_SCRIPT + " "
+             + id + " "
+             + version + " "
+             + download_url + " "
+             + download_file + " "
+             + md5
+             + " '" + install_script + "' ";
+  console.log(cmd);
+
+  var callback = function(data, errno) {
+    if (errno != 0)
+    {
+      // 弹出错误提示，自动消失
+      console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
+    }
+  }
+
+  console.log("开始安装");
+  get_local_service(cmd, callback);
+
+  /* 轮询更新按钮状态 */
+  poll_status($btn, id);
 }
 
 /*
@@ -337,11 +352,36 @@ function app_update($btn, id)
   app_install($btn, id);
 }
 
+
+function poll_status($btn, id)
+{
+  /* 定时监测应用状态 */
+  setTimeout(function() {
+    refresh_app_status($btn, id);
+  }, 1000);
+}
+
 function initButton($btn, id) {
   console.log("check app: " + id);
 
+  refresh_app_status($btn, id);
+}
+
+function refresh_app_status($btn, id) {
+  console.log("refresh_app_status " + id);
+
   app_get_status(id, function(status) {
     app_button_change_status($btn, id, status);
+
+    /* 2017/6/7 重点：有以前遗留的任务，需要监控状态变化 */
+    if (status == "downloading"
+          || status == "checking-download-file"
+          || status == "installing")
+    {
+      setTimeout(function() {
+        refresh_app_status($btn, id);
+      }, 1000);
+    }
   });
 }
 
@@ -370,7 +410,10 @@ $(document).ready(function(){
 
   if (window.location.href.indexOf("app.php") != -1)
   {
+    var $btn = $("#installApp");
+    var id = $("#app_id").attr("value");
+
     /* 安装按钮 */
-    initButton($("#installApp"), $("#app_id").attr("value"));
+    initButton($btn, id);
   }
 });

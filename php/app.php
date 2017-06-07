@@ -22,6 +22,7 @@
       <td class="td-img" rowspan="6">
         <?= get_app_icon_html($app_id); ?> 
         <div class="button installed" id="installApp">获取应用状态...</div>
+        <div id="error">error</div>
         <input type="hidden" id="app_id" value="<?= $app_id ?>">
         <input type="hidden" id="app_version" value="<?= get_app_version($app_id) ?>">
         <input type="hidden" id="app_filename" value="<?= get_app_file_by_id($app_id) ?>">

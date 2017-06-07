@@ -151,6 +151,17 @@ function app_get_button_class(status)
   return status;
 }
 
+function error_show(status)
+{
+console.log(status);
+  $("#error").text(app_get_button_text(status) + "，点击按钮重试").show();
+}
+
+function error_hide()
+{
+  $("#error").text(status).hide();
+}
+
 function app_button_change_status($btn, id, status)
 {
   $btn.removeClass($btn.attr("class"))
@@ -179,6 +190,14 @@ function app_button_change_status($btn, id, status)
      else if (status == "install-error")
        /* 不可操作 */;
    });
+
+   if (status.indexOf("error") != -1)
+   {
+     app_button_change_status($btn, id, "not-installed");
+     error_show(status);
+   }
+   else
+     error_hide();
 }
 
 /*

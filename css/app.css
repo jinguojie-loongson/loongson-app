@@ -136,6 +136,15 @@
 	font-size: 12pt;
 }
 
+.app-header #error {
+	margin-top: 15px;
+	color: red;
+
+	padding: 5px;
+	display: none;
+	//background-color: #eeeeee;
+}
+
 .title {
 	font-size: 16pt;
 	font-weight: bold;	
@@ -182,7 +191,7 @@
 .installed {
 	border: 1px solid gray;
 	background-color: white;
-	color: gray;
+	color: green;
 
 	cursor: dafault;
 }

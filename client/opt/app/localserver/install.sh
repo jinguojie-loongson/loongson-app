@@ -28,6 +28,10 @@ download()
 {
     log_status "downloading"
 
+    if [ -d $2 ]; then
+      return 1
+    fi
+
     rm -rf $2
     wget -r -p $1  -O $2
     return $?
@@ -38,6 +42,11 @@ check()
     log_status "checking-download-file"
 
     m=` md5sum $1 `
+
+    if [ $? -ne 0 ]; then
+      log_status "checking-download-file-error"
+      return 1
+    fi
 
     if [[ "$m" =~ "$2" ]]; then
         # 子串

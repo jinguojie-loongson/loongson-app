@@ -28,7 +28,7 @@ function get_hot_banner_html()
 {
   $html = "";
   foreach(get_all_hot_id() as $id) {
-    $html = $html . "<img id='${id}' src='getHotBanner.php?id=${id}' longdesc='app.php?id=${id}' width='280' height='300' alt='Picture' /> \n";
+    $html = $html . "<img src='getHotBanner.php?id=${id}' alt='app.php?id=${id}' width='960' height='400' /> \n";
   }
   return $html;
 }

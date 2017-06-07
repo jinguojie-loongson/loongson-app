@@ -5,26 +5,26 @@
   include('_rank.inc');
 ?>
 
-
-<link type="text/css" rel="Stylesheet" href="../css/imageflow.css" />
-
-<script type="text/javascript" src="../js/imageflow.js"></script>
+<h3>&nbsp;</h3>
 
 <!-- 主界面：广告轮播 -->
+<link rel="stylesheet" href="../css/slides.css">
+<script src="../js/slides.min.js"></script>
 
-<div id="LoopDiv">
-	<input id="S_Num" type="hidden" value="8" />
-	<div id="starsIF" class="imageflow"> 
-<!-- 
-		<img id="1" src="../images/1.png" longdesc="#" width="280" height="300" alt="Picture" /> 
+  <div class="container">
+    <div id="slides">
+<!--
+      <img src="img/example-slide-1.jpg" alt="Photo by: Missy S Link: http://www.flickr.com/photos/listenmissy/5087404401/">
+      <img src="img/example-slide-2.jpg" alt="Photo by: Daniel Parks Link: http://www.flickr.com/photos/parksdh/5227623068/">
+      <img src="img/example-slide-3.jpg" alt="Photo by: Mike Ranweiler Link: http://www.flickr.com/photos/27874907@N04/4833059991/">
+      <img src="img/example-slide-4.jpg" alt="Photo by: Stuart SeegerLink: http://www.flickr.com/photos/stuseeger/97577796/">
 -->
                 <?= get_hot_banner_html(); ?>
-	</div>
-</div>
-
-<h3>热门下载软件</h3>
+    </div>
+  </div>
 
 <div id="app-card-grid">
+<h3 class="gray">精品推荐</h3>
         <?= get_most_rank_app_html(); ?>
 </div>
 

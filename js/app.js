@@ -7,11 +7,11 @@ var INSTALL_SCRIPT = "/opt/app/localserver/install.sh";
 
 /* ---------------------------------------------------- */
 
-/* 系统目录下，每一个已安装应用的文件名：“ID：版本号”
+/* 系统目录下，每一个已安装应用的文件名：“ID”
  * 例如：
  *
- *  1:1.0.015
- *  2:2.3.245.2500
+ *  1:1.0.015:installed:日期
+ *  2:2.3.245.2500:installed:日期
  */
 
 function get_local_app_list(func)
@@ -20,18 +20,6 @@ function get_local_app_list(func)
   cmd = " cd " + SYS_DATA_DIR + "; cat * ";
 
   get_local_service(cmd, func);
-}
-
-function app_is_downloading(id)
-{
-  // TODO:
-  return false;
-}
-
-function app_is_installing(id, version)
-{
-  // TODO:
-  return false;
 }
 
 /* 版本号格式：
@@ -211,95 +199,6 @@ function app_get_download_local_file(id)
   return SYS_DOWNLOAD_DIR + $("#app_filename").attr("value");
 }
 
-function app_download($btn, id, func) {
-  console.log("download app: " + id);
-
-  app_button_change_status($btn, id, "downloading");
-
-  $btn.click(function () {});
-
-  /* 开始下载，以后台方式调用wget */
-  /* 先删除文件 */
-  download_file = app_get_download_local_file(id);
-  cmd = "mkdir -p " + SYS_DOWNLOAD_DIR + "; rm -rf " + download_file + "; "
-      + "wget -r -p " + app_get_download_url(id) + " -O " + download_file;
-
-  console.log(cmd);
-
-  var callback = function(data) {
-    func(data);
-  }
-
-  console.log("下载开始");
-  get_local_service(cmd, callback);
-}
-
-
-function app_check_download_file($btn, id, func) {
-  console.log("check download app: " + id);
-
-  app_button_change_status($btn, id, "checking-download-file");
-
-  $btn.click(function () {});
-
-  /* md5sum */
-  download_file = app_get_download_local_file(id);
-  cmd = "md5sum " + download_file;
-
-  console.log(cmd);
-
-  var callback = function(data) {
-    console.log("下载文件MD5: " + data);
-    console.log (data.indexOf($("#app_md5").attr("value")) );
-    if (data.indexOf($("#app_md5").attr("value")) != 0)
-    {
-      // 弹出错误提示，自动消失
-      console.log("下载文件MD5不正常！");
-      app_button_change_status($btn, id, "checking-download-file-error");
-
-      setTimeout(function() {
-        initButton($btn, id);
-      }, 3000);
-    }
-    else
-      func(data);
-  }
-
-  console.log("开始检查md5");
-  get_local_service(cmd, callback);
-}
-
-function app_exec_install_script($btn, id, func)
-{
-  console.log("app_exec_install_script: " + id);
-
-  app_button_change_status($btn, id, "installing");
-  $btn.click(function () {});
-
-  /* 处理“[FILE]”通配符 */
-  cmd = $("#app_install_script").attr("value").
-              replace("[FILE]", app_get_download_local_file(id));
-  console.log(cmd);
-
-  var callback = function(data, errno) {
-    if (errno != 0)
-    {
-      // 弹出错误提示，自动消失
-      console.log("安装脚本执行不正常（返回值为" + data[0] + "）！");
-      app_button_change_status($btn, id, "install-error");
-
-      setTimeout(function() {
-        initButton($btn, id);
-      }, 3000);
-    }
-    else
-      func(data);
-  }
-
-  console.log("开始安装");
-  get_local_service(cmd, callback);
-}
-
 /*
  * 安装一个应用
  */
@@ -386,7 +285,6 @@ function refresh_app_status($btn, id) {
 }
 
 $(document).ready(function(){
-
   /* 2017/6/6 使用chrome.exe -app方式运行时，禁用右键菜单 */
   document.oncontextmenu=function(e){return false;}  
 

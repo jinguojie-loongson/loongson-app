@@ -1519,7 +1519,7 @@ input[type="submit"].btn.btn-mini {
       width: 13px;
       height: 0;
       padding-top: 13px;
-      background-image: url(../images/pagination.png);
+      background-image: url(../images/slides-pagination.png);
       background-position: 0 0;
       float: left;
       overflow: hidden;

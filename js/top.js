@@ -19,6 +19,44 @@ console.log(text);
   window.location.href = url.substr(0, n) + "/search.php?search=" + encodeURI(text);
 }
 
+/* "我的": 显示升级应用的数量 */
+function on_receive_update_number(number)
+{
+  console.log("on_receive_update_number: " + number);
+
+  if (number > 99)
+    number = 99;
+
+  if (number > 0)
+  {
+    $(".update-circle").text(number);
+    $(".update-circle").fadeIn(1000);
+  }
+  else
+    $(".update-circle").fadeOut(1000);
+}
+
+function get_update_number(app_list_data, func)
+{
+  url = window.location.href;
+  n = url.lastIndexOf("/");
+  url = url.substr(0, n) + "/getUpdateNumber.php";
+  
+  get_server_service(url, app_list_data, func);
+}
+
+function init_my_update_number()
+{
+  get_local_app_list(function(app_list_data, errno) {
+    if (errno == 0)
+    {
+      get_update_number(app_list_data, on_receive_update_number);
+    }
+  });
+
+  setTimeout(init_my_update_number, 1000);  
+}
+
 $(document).ready(function(){
   for (p in pages) {
     var $btn = $("#" + p);
@@ -62,4 +100,7 @@ $(document).ready(function(){
       do_search($search.val());
     }
   });
+
+  /* “我的”显示升级数量 */
+  init_my_update_number();
 });

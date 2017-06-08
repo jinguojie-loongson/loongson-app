@@ -51,6 +51,11 @@ function app_version_compare(local_version, server_version)
   return 0;
 }
 
+function app_get_name(id)
+{
+  return $("#app_name").attr("value");
+}
+
 function app_get_server_version(id)
 {
   return $("#app_version").attr("value");
@@ -151,16 +156,13 @@ function app_get_button_class(status)
   return status;
 }
 
-function error_show(status)
+function error_show(text)
 {
-console.log(status);
-  $("#error").text(app_get_button_text(status) + "，点击按钮重试").show();
+  prompt(text,
+      "alert-warning",
+      1800);
 }
 
-function error_hide()
-{
-  $("#error").text(status).hide();
-}
 
 function app_button_change_status($btn, id, status)
 {
@@ -194,10 +196,10 @@ function app_button_change_status($btn, id, status)
    if (status.indexOf("error") != -1)
    {
      app_button_change_status($btn, id, "not-installed");
-     error_show(status);
+     error_show(app_get_name(id) + app_get_button_text(status));
+
+     app_clear_status(id);
    }
-   else
-     error_hide();
 }
 
 /*
@@ -283,6 +285,18 @@ function initButton($btn, id) {
   console.log("check app: " + id);
 
   refresh_app_status($btn, id);
+}
+
+function app_clear_status(id)
+{
+  console.log("clear app: " + id);
+  cmd = " rm -f " + SYS_DATA_DIR + id;
+
+  var callback = function(data, errno) {
+    ;
+  }
+
+  get_local_service(cmd, callback);
 }
 
 function refresh_app_status($btn, id) {

@@ -1,0 +1,44 @@
+@import url('http://cdn.gbtags.com/font-awesome/4.1.0/css/font-awesome.min.css');
+
+.alert {
+    position: fixed;
+
+    width: 500px;
+    height: 90px;
+    line-height: 100px;
+
+    top: -110px;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 99999;
+
+    border-radius: 10px;
+
+    box-shadow: 5px 5px 15px #666666;
+
+    font-size: 14pt;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-warning {
+    color: white;
+    background-color: rgba(213, 26, 33, 0.9);
+    border: none;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}

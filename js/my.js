@@ -19,12 +19,14 @@ function init_my_app_list()
 {
   get_local_app_list(function(app_list_data, errno) {
     if (errno == 0)
+    {
       get_my_app_html(app_list_data, on_receive_app_html);
+    }
     else
       $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");
   });
 
-  setTimeout(init_local_app_list, 1000);  
+  setTimeout(init_my_app_list, 1000);  
 }
 
 

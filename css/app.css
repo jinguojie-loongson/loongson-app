@@ -181,6 +181,10 @@
 }
 
 /* 应用程序：按钮 */
+.not-defined {
+	display: none;
+}
+
 .not-installed {
 	border: 1px solid red;
 	background-color: red;
@@ -260,7 +264,6 @@
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	display: none; 
 
 	padding: 2px 2px 2px 2px;
 

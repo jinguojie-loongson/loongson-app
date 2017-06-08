@@ -363,13 +363,14 @@ function refresh_app_card_status()
         $status = get_app_status_in_local_list(id, version, app_list_data);
 
         $status_icon = $(this).find("#app-icon")
-        $status_icon.removeClass($status_icon.attr("class")).addClass($status);
-        $status_icon.text(app_get_status_short_text($status));
-
         if ($status == "not-installed")
           $status_icon.fadeOut(1000);
         else
+        {
+          $status_icon.removeClass($status_icon.attr("class")).addClass($status);
+          $status_icon.text(app_get_status_short_text($status));
           $status_icon.fadeIn(1000);
+        }
       });
     }
     else
@@ -396,7 +397,10 @@ $(document).ready(function(){
     window.location.href = "app.php?id=" + $(this).attr("id");
   });
 
-  refresh_app_card_status();
+  if (window.location.href.indexOf("my.php") == -1)
+  {
+    refresh_app_card_status();
+  }
 
   /* 返回按钮 */
   $("#app-back").click(function () {

@@ -148,7 +148,7 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_card_html($id, $status = "")
+function get_app_card_html($id, $status = "not-defined")
 {
   $name = get_app_name($id);
   $version = get_app_version($id);

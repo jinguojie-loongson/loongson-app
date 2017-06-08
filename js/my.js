@@ -14,8 +14,8 @@ function get_my_app_html(app_list_data, func)
   get_server_service(url, app_list_data, func);
 }
 
-/* Chrome APP不支持async:false */
-function init_local_app_list()
+/* 只用于“我的”页面 */
+function init_my_app_list()
 {
   get_local_app_list(function(app_list_data, errno) {
     if (errno == 0)
@@ -27,9 +27,11 @@ function init_local_app_list()
   setTimeout(init_local_app_list, 1000);  
 }
 
+
 if (window.location.href.indexOf("my.php") != -1)
 {
+console.log("My.php");
   $(document).ready(function(){
-    init_local_app_list();
+    init_my_app_list();
   });
 }

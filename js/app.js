@@ -134,6 +134,21 @@ function app_get_status_text(status)
   return "错误状态";
 }
 
+function app_get_status_short_text(status)
+{
+  switch(status)
+  {
+    case "not-installed": return "未安装";
+    case "installed": return "已安装";
+    case "need-updated": return "有升级";
+    case "downloading": return "下载中";
+    case "checking-download-file": return "检查中";
+    case "checking-download-file-error": return "文件错误";
+    case "installing": return "安装中";
+    case "install-error": return "安装错误";
+  }
+  return "错误状态";
+}
 
 function app_get_button_text(status)
 {
@@ -221,7 +236,6 @@ function app_install($btn, id)
   console.log("app_install: " + id);
 
   app_button_change_status($btn, id, "installing");
-  //$btn.off('click');
 
   var version= app_get_server_version(id);
   var download_url = app_get_download_url(id);
@@ -313,6 +327,58 @@ function refresh_app_status($btn, id) {
   });
 }
 
+function get_app_status_in_local_list(id, server_version, app_list_data)
+{
+  var apps = app_list_data.split("\n");
+
+  i = 0;
+  while(i < apps.length)
+  {
+    app = apps[i];
+    var data = app.split(":");
+    app_id = data[0];
+    local_version = data[1];
+    status = data[2];
+
+    if (id == app_id)
+    {
+      if (status == "installed" && app_version_compare(local_version, server_version) < 0)
+        return "need-updated";
+      else
+        return status;
+    }
+    i++;
+  }
+  return "not-installed";
+}
+
+function refresh_app_card_status()
+{
+  get_local_app_list(function(app_list_data, errno) {
+    if (errno == 0)
+    {
+      $("#app-card-grid div").each(function() {
+        id = $(this).attr("id");
+        version = $(this).find("#app_version").attr("value");
+        $status = get_app_status_in_local_list(id, version, app_list_data);
+
+        $status_icon = $(this).find("#app-icon")
+        $status_icon.removeClass($status_icon.attr("class")).addClass($status);
+        $status_icon.text(app_get_status_short_text($status));
+
+        if ($status == "not-installed")
+          $status_icon.fadeOut(1000);
+        else
+          $status_icon.fadeIn(1000);
+      });
+    }
+    else
+      $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");
+  });
+
+  setTimeout(refresh_app_card_status, 1000);  
+}
+
 $(document).ready(function(){
   /* 2017/6/6 使用chrome.exe -app方式运行时，禁用右键菜单 */
   document.oncontextmenu=function(e){return false;}  
@@ -329,6 +395,8 @@ $(document).ready(function(){
   $("#app-card-grid").on('click', 'div', function () {
     window.location.href = "app.php?id=" + $(this).attr("id");
   });
+
+  refresh_app_card_status();
 
   /* 返回按钮 */
   $("#app-back").click(function () {

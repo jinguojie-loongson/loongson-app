@@ -151,6 +151,7 @@ global $conn;
 function get_app_card_html($id, $status = "")
 {
   $name = get_app_name($id);
+  $version = get_app_version($id);
   $vendor = get_app_vendor($id);
   $download_size = get_app_download_size($id);
   $download_count = get_app_download_count($id);
@@ -158,14 +159,14 @@ function get_app_card_html($id, $status = "")
   $icon_img = get_app_icon_html($id);
   $status_html = "";
 
-  if (!is_empty($status))
-    $status_html = get_app_status_icon_html($id, $status);
+  $status_html = get_app_status_icon_html($id, $status);
 
   $html = "<span class='app-text'> \n"
         . "<p class='app-title'> ${name} </p> \n"
         . "<p class='app-info'> ${vendor} </p> \n"
         . "<p class='app-info'>${download_size} | ${download_count}下载</p> \n"
-        . "</span>\n";
+        . "</span>\n"
+        . "<input type='hidden' id='app_version' value='${version}'> \n";
   $desc = "<span class='app-desc'> ${description} </span> \n";
   return "<div id='${id}'> ${icon_img} ${html} ${desc} ${status_html} </div> \n";
 }

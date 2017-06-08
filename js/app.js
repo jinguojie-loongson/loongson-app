@@ -174,7 +174,7 @@ function app_button_change_status($btn, id, status)
   $btn.css("disabled", 
      (status == "not-installed" || status == "need-updated") ? "true" : "false");
 
-  $btn.click(function () {
+  $btn.off('click').click(function () {
      if (status == "not-installed")
        app_install($btn, id);
      else if (status == "installed")
@@ -229,7 +229,7 @@ function app_install($btn, id)
   console.log("app_install: " + id);
 
   app_button_change_status($btn, id, "installing");
-  $btn.click(function () {});
+  //$btn.off('click');
 
   var version= app_get_server_version(id);
   var download_url = app_get_download_url(id);

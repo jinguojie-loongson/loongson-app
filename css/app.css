@@ -174,9 +174,9 @@
 	margin-left: 20px;
 	margin-right: 20px;
 
-	-webkit-box-shadow:0 0 20px #888;  
-	-moz-box-shadow:0 0 20px #888;  
-	box-shadow:0 0 20px #888;  
+	#-webkit-box-shadow:0 0 20px #888;  
+	#-moz-box-shadow:0 0 20px #888;  
+	#box-shadow:0 0 20px #888;  
 }
 
 /* 应用程序：按钮 */
@@ -190,8 +190,8 @@
 
 .installed {
 	border: 1px solid green;
-	background-color: white;
-	color: green;
+	background-color: green;
+	color: white;
 
 	cursor: dafault;
 }
@@ -205,17 +205,17 @@
 }
 
 .downloading {
-	border: 1px solid red;
-	background-color: white;
-	color: red;
+	border: 1px solid #e63f00;
+	background-color: #e63f00;
+	color: white;
 
 	cursor: dafault;
 }
 
 .checking-download-file {
-	border: 1px solid red;
-	background-color: white;
-	color: red;
+	border: 1px solid #e63f00;
+	background-color: #e63f00;
+	color: white;
 
 	cursor: dafault;
 }
@@ -229,9 +229,9 @@
 }
 
 .installing {
-	border: 1px solid green;
-	background-color: white;
-	color: green;
+	border: 1px solid #e63f00;
+	background-color: #e63f00;
+	color: white;
 
 	cursor: dafault;
 }
@@ -245,23 +245,26 @@
 }
 
 /*
- * 升级图标：小红点
+ * 状态图标
  */
-.update-icon {
+#app-icon {
 	border: none;
-	background-color: red;
-	width: 16px;
-	height: 16px;
 
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 11pt;
+	font-color: black;
 
-	position: absolute;
-	right: -8px;
-	top: -8px;
-	display: none;
+	position: relative;
+	right: 10px;
+	top: -3px;
+	display: inline-block;
 
-	-webkit-box-shadow:0 0 2px #800;  
-	-moz-box-shadow:0 0 2px #800;  
-	box-shadow:0 0 2px #800;  
+	//-webkit-box-shadow:0 0 2px gray;
+	//-moz-box-shadow:0 0 2px gray;
+	//box-shadow:0 0 2px gray;
+
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }

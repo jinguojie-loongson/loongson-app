@@ -148,7 +148,7 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_card_html($id)
+function get_app_card_html($id, $status = "")
 {
   $name = get_app_name($id);
   $vendor = get_app_vendor($id);
@@ -156,6 +156,10 @@ function get_app_card_html($id)
   $download_count = get_app_download_count($id);
   $description = get_app_description($id);
   $icon_img = get_app_icon_html($id);
+  $status_html = "";
+
+  if (!is_empty($status))
+    $status_html = get_app_status_icon_html($id, $status);
 
   $html = "<span class='app-text'> \n"
         . "<p class='app-title'> ${name} </p> \n"
@@ -163,7 +167,7 @@ function get_app_card_html($id)
         . "<p class='app-info'>${download_size} | ${download_count}下载</p> \n"
         . "</span>\n";
   $desc = "<span class='app-desc'> ${description} </span> \n";
-  return "<div id='${id}'> ${icon_img} ${html} ${desc} </div> \n";
+  return "<div id='${id}'> ${icon_img} ${html} ${desc} ${status_html} </div> \n";
 }
 
 /*
@@ -189,8 +193,40 @@ function get_app_screen_file_html($id)
 /*
  * 需要升级：在卡片上显示红点
  */
-function get_app_update_icon_html($id)
+
+/* 
+ * 在应用卡片的右上角显示状态图标
+ * 8种状态：
+ *   "not-installed" - 未安装，
+ *   "installed" 已安装，且最新
+ *   "need-updated": 已安装，有升级版本
+ *   "downloading": 下载中
+ *   "checking-download-file": 检查下载文件
+ *   "checking-download-file-error": 检查下载文件错误
+ *   "installing": 安装中
+ *   "install-error": 安装错误
+ */
+
+function app_get_status_short_text($status)
 {
-  return "<span class='update-icon' id='${id}'></span>";
+  switch($status)
+  {
+    case "not-installed": return "未安装";
+    case "installed": return "已安装";
+    case "need-updated": return "有升级";
+    case "downloading": return "下载中";
+    case "checking-download-file": return "检查中";
+    case "checking-download-file-error": return "下载错误";
+    case "installing": return "安装中";
+    case "install-error": return "安装错误";
+  }
+  return "错误状态";
+}
+
+function get_app_status_icon_html($id, $status)
+{
+  $text = app_get_status_short_text($status);
+
+  return "<span id='app-icon' class='${status}'>${text}</span>";
 }
 ?>

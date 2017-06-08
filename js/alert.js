@@ -1,5 +1,5 @@
 /**
- * 弹出式提示框，默认1.2秒自动消失
+ * 弹出式提示框，默认1.8秒自动消失
  * @param message 提示信息
  * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
  * @param time 消失时间
@@ -7,7 +7,7 @@
 var prompt = function (message, style, time)
 {
     style = (style === undefined) ? 'alert-success' : style;
-    time = (time === undefined) ? 1200 : time;
+    time = (time === undefined) ? 1800 : time;
     $('<div>')
         .html("<i class='fa fa-info-circle'></i>  &nbsp; " + message)
         .addClass('alert ' + style)
@@ -18,25 +18,25 @@ var prompt = function (message, style, time)
 };
 
 // 成功提示
-var success_prompt = function(message, time)
+var success_message = function(message, time)
 {
     prompt(message, 'alert-success', time);
 };
 
 // 失败提示
-var fail_prompt = function(message, time)
+var fail_message = function(message, time)
 {
     prompt(message, 'alert-danger', time);
 };
 
 // 提醒
-var warning_prompt = function(message, time)
+var warning_message = function(message, time)
 {
     prompt(message, 'alert-warning', time);
 };
 
 // 信息提示
-var info_prompt = function(message, time)
+var info_message = function(message, time)
 {
     prompt(message, 'alert-info', time);
 };

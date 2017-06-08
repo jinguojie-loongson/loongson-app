@@ -156,14 +156,6 @@ function app_get_button_class(status)
   return status;
 }
 
-function error_show(text)
-{
-  prompt(text,
-      "alert-warning",
-      1800);
-}
-
-
 function app_button_change_status($btn, id, status)
 {
   $btn.removeClass($btn.attr("class"))
@@ -196,7 +188,7 @@ function app_button_change_status($btn, id, status)
    if (status.indexOf("error") != -1)
    {
      app_button_change_status($btn, id, "not-installed");
-     error_show(app_get_name(id) + app_get_button_text(status));
+     warning_message(app_get_name(id) + app_get_button_text(status));
 
      app_clear_status(id);
    }
@@ -246,7 +238,7 @@ function app_install($btn, id)
              + download_url + " "
              + download_file + " "
              + md5
-             + " '" + install_script + "' ";
+             + " \"" + install_script + "\" ";
   console.log(cmd);
 
   var callback = function(data, errno) {
@@ -254,6 +246,10 @@ function app_install($btn, id)
     {
       // 弹出错误提示，自动消失
       console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
+    }
+    else
+    {
+      success_message(app_get_name(id) + "安装成功");
     }
   }
 

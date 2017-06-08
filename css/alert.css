@@ -20,9 +20,9 @@
 }
 
 .alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+    color: white;
+    background-color: rgba(00, 130, 00, 0.9);
+    border: none;
 }
 
 .alert-info {

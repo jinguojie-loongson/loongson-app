@@ -62,7 +62,7 @@ install()
 {
     log_status "installing"
 
-    `$1`
+    sh -c "$1"
     if [ $? -ne 0 ]; then
         log_status "installing-error"
         return 1

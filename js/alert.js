@@ -8,10 +8,10 @@ var prompt = function (message, style, time)
 {
     style = (style === undefined) ? 'alert-success' : style;
     time = (time === undefined) ? 1800 : time;
-    $('<div>')
+    $("#alert")
         .html("<i class='fa fa-info-circle'></i>  &nbsp; " + message)
+        .removeClass($("#alert").attr("class"))
         .addClass('alert ' + style)
-        .appendTo(document.body)
         .animate({'top':-10})
         .delay(time)
         .animate({'top':-110});

@@ -10,3 +10,28 @@
 	margin-right: 50px;
 	padding: 30px;
 }
+
+.uninstall-button {
+	border: 3px solid white;
+
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14pt;
+	font-color: black;
+
+	position: absolute;
+	right: 0px;
+	top: 110px;
+
+	padding: 2px 2px 2px 2px;
+
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+
+	background-color: rgba(80, 80, 80, 0.9);
+	color: white;
+	cursor: pointer;
+
+	display: none;
+}

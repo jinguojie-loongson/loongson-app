@@ -63,6 +63,14 @@ global $conn;
   return $a;
 }
 
+function db_exec($sql)
+{
+global $conn;
+
+  $result = mysql_query($sql, $conn);
+
+  return 0;
+}
 /*
  * 入口
  */

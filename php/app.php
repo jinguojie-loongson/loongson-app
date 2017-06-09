@@ -41,7 +41,7 @@
     </tr>
     <tr>
       <td> 下载大小：</td>
-      <td class="gray"> <?= get_app_download_size($app_id) ?>  </td>
+      <td class="gray"> <?= get_app_download_size($app_id, get_app_version($app_id)) ?>  </td>
     </tr>
     <tr>
       <td> 下载次数：</td>

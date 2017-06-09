@@ -4,6 +4,7 @@
 var SYS_DATA_DIR = "/opt/app/db/";
 var SYS_DOWNLOAD_DIR = "/opt/app/cache/";
 var INSTALL_SCRIPT = "/opt/app/localserver/install.sh";
+var UNINSTALL_SCRIPT = "/opt/app/localserver/uninstall.sh";
 
 /* ---------------------------------------------------- */
 
@@ -81,6 +82,8 @@ function app_get_install_script(id)
  *   "checking-download-file-error": 检查下载文件错误
  *   "installing": 安装中
  *   "install-error": 安装错误
+ *   "uninstalling": 卸载中
+ *   "uninstalling-error": 卸载错误
  */
 function app_get_status(id, func) {
   console.log("check app: " + id);
@@ -130,6 +133,8 @@ function app_get_status_text(status)
     case "checking-download-file-error": return "下载文件错误";
     case "installing": return "正在安装";
     case "install-error": return "安装错误";
+    case "uninstalling": return "卸载中";
+    case "uninstalling-error": return "卸载错误";
   }
   return "错误状态";
 }
@@ -146,6 +151,8 @@ function app_get_status_short_text(status)
     case "checking-download-file-error": return "文件错误";
     case "installing": return "安装中";
     case "install-error": return "安装错误";
+    case "uninstalling": return "卸载中";
+    case "uninstalling-error": return "卸载错误";
   }
   return "错误状态";
 }
@@ -162,6 +169,8 @@ function app_get_button_text(status)
     case "checking-download-file-error": return "下载文件错误";
     case "installing": return "正在安装...";
     case "install-error": return "安装错误";
+    case "uninstalling": return "正在卸载...";
+    case "uninstalling-error": return "卸载错误";
   }
   return "错误状态";
 }
@@ -198,6 +207,10 @@ function app_button_change_status($btn, id, status)
        /* 不可操作 */;
      else if (status == "install-error")
        /* 不可操作 */;
+     else if (status == "uninstalling")
+       /* 不可操作 */;
+     else if (status == "uninstall-error")
+       /* 不可操作 */;
    });
 
    if (status.indexOf("error") != -1)
@@ -225,6 +238,16 @@ function app_get_download_url(id)
 function app_get_download_local_file(id)
 {
   return SYS_DOWNLOAD_DIR + $("#app_filename").attr("value");
+}
+
+function app_inc_download_count(id)
+{
+  url = window.location.href;
+  n = url.lastIndexOf("/");
+  url = url.substr(0, n) + "/incAppDownloadCount.php?" + "id=" + id;
+  
+console.log(url);
+  get_server_service(url, "", function() {});
 }
 
 /*
@@ -264,6 +287,7 @@ function app_install($btn, id)
     else
     {
       success_message(app_get_name(id) + "安装成功");
+      app_inc_download_count(id);
     }
   }
 
@@ -280,6 +304,38 @@ function app_install($btn, id)
 function app_update($btn, id)
 {
   app_install($btn, id);
+}
+
+/*
+ * 删除一个应用
+ */
+function app_uninstall(app_id, uninstall_script)
+{
+  if (app_id == "999999")
+  {
+    info_message("应用公社是预装应用，无法删除");  
+    return;
+  }
+
+  console.log("uninstall: " + app_id, ", " + uninstall_script);
+
+  cmd = UNINSTALL_SCRIPT + " "
+             + app_id + " "
+             + " \"" + uninstall_script + "\" ";
+  var callback = function(data, errno) {
+    if (errno != 0)
+    {
+      // 弹出错误提示，自动消失
+      console.log("卸载应用程序不正常（返回值为" + data[0] + "）！");
+    }
+    else
+    {
+      success_message("卸载成功");
+    }
+  }
+
+  console.log("开始卸载");
+  get_local_service(cmd, callback);
 }
 
 
@@ -315,7 +371,7 @@ function refresh_app_status($btn, id) {
   app_get_status(id, function(status) {
     app_button_change_status($btn, id, status);
 
-    /* 2017/6/7 重点：有以前遗留的任务，需要监控状态变化 */
+    /* 2017/6/7 重点：有以前遗留的任务，需要继续监控状态变化 */
     if (status == "downloading"
           || status == "checking-download-file"
           || status == "installing")
@@ -397,7 +453,8 @@ $(document).ready(function(){
     window.location.href = "app.php?id=" + $(this).attr("id");
   });
 
-  if (window.location.href.indexOf("my.php") == -1)
+  if (window.location.href.indexOf("my.php") == -1
+      && window.location.href.indexOf("app.php") == -1)
   {
     refresh_app_card_status();
   }

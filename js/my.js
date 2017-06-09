@@ -26,9 +26,41 @@ function init_my_app_list()
       $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");
   });
 
+  init_uninstall_button();
   setTimeout(init_my_app_list, 1000);  
 }
 
+
+/*
+ * “我的”页面：删除应用
+ */
+function show_uninstall_button($div)
+{
+  $div.find(".uninstall-button").show();
+}
+
+function hide_uninstall_button($div)
+{
+  $div.find(".uninstall-button").hide();
+}
+
+function init_uninstall_button()
+{
+  $("#app-card-grid").on('mouseover', 'div', function () {
+    show_uninstall_button($(this));
+  });
+
+  $("#app-card-grid").on('mouseout', 'div', function () {
+    hide_uninstall_button($(this));
+  });
+
+  $("#app-card-grid").on('click', '.uninstall-button', function (event) {
+    event.stopPropagation();
+
+    app_uninstall($(this).attr("id"),
+         $(this).parent().find("#app_uninstall_script").attr("value"));
+  });
+}
 
 if (window.location.href.indexOf("my.php") != -1)
 {

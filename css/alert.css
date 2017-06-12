@@ -1,4 +1,4 @@
-@import url('http://cdn.gbtags.com/font-awesome/4.1.0/css/font-awesome.min.css');
+@import url('../css/font-awesome.min.css');
 
 .alert {
     position: fixed;

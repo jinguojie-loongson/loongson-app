@@ -1,8 +1,24 @@
 /* 我的应用 */
+
+/* 避免做不必要的div刷新 */
+var last_html = "";
+
 function on_receive_app_html(html)
 {
   console.log("on_receive_app_html: " + html);
-  $("#app-card-grid").html(html);
+  if(last_html != html)
+  {
+    $("#app-card-grid").html(html);
+    console.log("========= 不相同 =========" + html.length + ", " + last_html.length);
+    console.log(last_html);
+    last_html = html;
+  }
+  else
+  {
+    console.log("========= 相同 =========");
+  }
+
+  init_uninstall_button();
 }
 
 function get_my_app_html(app_list_data, func)
@@ -26,7 +42,6 @@ function init_my_app_list()
       $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");
   });
 
-  init_uninstall_button();
   setTimeout(init_my_app_list, 1000);  
 }
 
@@ -54,7 +69,7 @@ function init_uninstall_button()
     hide_uninstall_button($(this));
   });
 
-  $("#app-card-grid").on('click', '.uninstall-button', function (event) {
+  $(".uninstall-button").off('click').on('click', function (event) {
     event.stopPropagation();
 
     app_uninstall($(this).attr("id"),

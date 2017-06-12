@@ -9,7 +9,7 @@ O=app-client-${VERSION}.sh
 echo "Buidling $O..."
 
 # data
-FILES="opt etc HOME install.sh"
+FILES="opt usr HOME install.sh"
 tar zcfh /tmp/INSTALL.tgz ${FILES}
 
 # header

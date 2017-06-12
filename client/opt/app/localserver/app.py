@@ -127,6 +127,13 @@ if __name__ == "__main__":
         #set the target where to mkdir, and default "D:/web"
         MyRequestHandler.target = sys.argv[1]
     try:
+        # daemonize：http://www.jb51.net/article/104971.htm
+        # 从父进程fork一个子进程出来
+        pid = os.fork()
+        if pid:
+            # 退出父进程，sys.exit()方法比os._exit()方法会多执行一些刷新缓冲工作
+            sys.exit(0)
+
         server = ThreadingSimpleServer(('', MyRequestHandler.web_port), MyRequestHandler)
         print "pythonic-simple-http-server started, serving at http://localhost:" + str(MyRequestHandler.web_port);
         server.serve_forever()

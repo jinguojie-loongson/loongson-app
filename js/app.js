@@ -309,11 +309,11 @@ function app_update($btn, id)
 /*
  * 删除一个应用
  */
-function app_uninstall(app_id, uninstall_script)
+function app_uninstall(app_id, app_name, uninstall_script)
 {
   if (app_id == "999999")
   {
-    info_message("应用公社是预装应用，无法删除");  
+    info_message(app_name + "是预装应用，无法删除");  
     return;
   }
 
@@ -330,7 +330,7 @@ function app_uninstall(app_id, uninstall_script)
     }
     else
     {
-      success_message("卸载成功");
+      success_message(app_name + "卸载成功");
     }
   }
 

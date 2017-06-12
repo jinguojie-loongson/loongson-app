@@ -58,6 +58,7 @@ function init_uninstall_button()
     event.stopPropagation();
 
     app_uninstall($(this).attr("id"),
+         $(this).parent().find("#app_name").attr("value"),
          $(this).parent().find("#app_uninstall_script").attr("value"));
   });
 }

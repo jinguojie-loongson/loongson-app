@@ -192,6 +192,7 @@ function get_app_card_html($id, $status = "not-defined")
         . "<p class='app-info'> ${vendor} </p> \n"
         . "<p class='app-info'>${download_size} | ${download_count}下载</p> \n"
         . "</span>\n"
+        . "<input type='hidden' id='app_name' value='${name}'> \n"
         . "<input type='hidden' id='app_version' value='${version}'> \n"
         ." <input type='hidden' id='app_uninstall_script' value='${uninstall_script}'> \n";
   $desc = "<span class='app-desc'> ${description} </span> \n";

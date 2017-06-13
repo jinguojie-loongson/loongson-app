@@ -92,3 +92,31 @@
 	#font-weight: bold;
 	color: white;
 }
+
+
+/* 客户端工具安装提示 */
+#client-prompt {
+    position: fixed;
+
+    width: 600px;
+    height: 90px;
+    line-height: 100px;
+
+    top: -20px;
+    left: 50%;
+    margin-left: -300px;
+    z-index: 99999;
+
+    border-radius: 10px;
+
+    box-shadow: 5px 5px 15px #666666;
+
+    font-size: 14pt;
+
+    color: red;
+    background-color: #ffcc66;
+    border: none;
+
+    display: none;
+}
+

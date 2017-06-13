@@ -56,3 +56,20 @@ h3 {
 	border-radius: 4px;
 }
 
+/* 链接 */
+a:link{
+    color:red;
+    text-decoration : none;
+}
+a:visited{
+    color:red;
+    text-decoration : none;
+}
+a:hover{
+    color:white;
+    text-decoration : none;
+}
+a:active{
+    color:black;
+    text-decoration : none;
+}

@@ -462,7 +462,8 @@ $(document).ready(function(){
   });
 
   if (window.location.href.indexOf("my.php") == -1
-      && window.location.href.indexOf("app.php") == -1)
+      && window.location.href.indexOf("app.php") == -1
+      && window.location.href.indexOf("client.php") == -1)
   {
     refresh_app_card_status();
   }

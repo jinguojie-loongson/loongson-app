@@ -14,9 +14,11 @@
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/alert.css" />
 <link rel="stylesheet" type="text/css" href="../css/top.css" />
+<link rel="stylesheet" type="text/css" href="../css/footer.css" />
 <link type="text/css" rel="Stylesheet" href="../css/app.css" />
 <link type="text/css" rel="Stylesheet" href="../css/category.css" />
 <link type="text/css" rel="Stylesheet" href="../css/my.css" />
+<link type="text/css" rel="Stylesheet" href="../css/client.css" />
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
@@ -24,6 +26,7 @@
 <script type="text/javascript" src="../js/localserver.js"></script>
 <script type="text/javascript" src="../js/app.js"></script>
 <script type="text/javascript" src="../js/my.js"></script>
+<script type="text/javascript" src="../js/client.js"></script>
 
 </head>
 

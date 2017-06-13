@@ -1,3 +1,7 @@
+<div id="client-prompt">
+<i class='fa fa-info-circle'></i>  &nbsp; <a href="client.php">安装客户端工具</a>
+</div>
+
 <div class="topbar">
   <div class="topbar-button" id="top-home">首页</div>
   <div class="topbar-button" id="top-rank">榜单</div>

@@ -54,7 +54,17 @@ function init_my_update_number()
     }
   });
 
-//  setTimeout(init_my_update_number, 1000);  
+  setTimeout(init_my_update_number, 1000);  
+}
+
+function init_client_prompt()
+{
+  get_local_app_list(function(data) {},
+    /* error */
+    function(txt) {
+      $("#client-prompt").fadeIn(200);
+    }
+  );
 }
 
 $(document).ready(function(){
@@ -103,4 +113,8 @@ $(document).ready(function(){
 
   /* “我的”显示升级数量 */
   init_my_update_number();
+
+  /* 安装客户端工具的提示框 */
+  if (window.location.href.indexOf("client.php") == -1)
+    init_client_prompt();
 });

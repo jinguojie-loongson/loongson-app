@@ -32,6 +32,20 @@ function UrlGetQueryString(name)
      if(r!=null)return  unescape(r[2]); return null;
 }
 
+/*
+ * 使用JS下载文件
+ * http://www.cnblogs.com/qq78292959/p/3890899.html
+ */
+function downloadFile(url) {
+    try{
+        var elemIF = document.createElement("iframe");
+        elemIF.src = url;
+        elemIF.style.display = "none";
+        document.body.appendChild(elemIF);
+    } catch(e) {
+    } 
+}
+
 
 $(document).ready(function() {
 

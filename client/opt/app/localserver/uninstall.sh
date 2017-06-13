@@ -42,7 +42,7 @@ unregister_installed()
 #### Begin ###
 
 log_status "uninstalling"
-uninstall "${INSTALL_SCRIPT}"
+uninstall "${UNINSTALL_SCRIPT}"
 
 if [ $? -ne 0 ]; then
     exit 1

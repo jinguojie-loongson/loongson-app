@@ -234,6 +234,8 @@ function get_app_screen_file_html($id)
  *   "checking-download-file-error": 检查下载文件错误
  *   "installing": 安装中
  *   "install-error": 安装错误
+ *   "uninstalling": 卸载中
+ *   "uninstalling-error": 卸载错误
  */
 
 function app_get_status_short_text($status)
@@ -248,6 +250,8 @@ function app_get_status_short_text($status)
     case "checking-download-file-error": return "下载错误";
     case "installing": return "安装中";
     case "install-error": return "安装错误";
+    case "uninstalling": return "卸载中";
+    case "uninstalling-error": return "卸载错误";
   }
   return "错误状态";
 }

@@ -249,6 +249,22 @@
 	cursor: dafault;
 }
 
+.uninstalling {
+	border: 1px solid #ff6633;
+	background-color: #ff6633;
+	color: white;
+
+	cursor: dafault;
+}
+
+.uninstall-error {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+
+	cursor: dafault;
+}
+
 /*
  * 状态图标
  */

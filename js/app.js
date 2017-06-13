@@ -92,7 +92,9 @@ function app_get_status(id, func) {
   var callback = function(data, errno) {
     var found_version = "";
     if (errno != 0)
+    {
       status = "not-installed";
+    }
     else
     {
       found_version = data.split(":")[1];
@@ -107,7 +109,13 @@ function app_get_status(id, func) {
     func(status);
   }
 
-  get_local_service(cmd, callback);
+  var error_func = function(txt) {
+    console.log("获取本地服务失败>>> " + txt);
+    status = "not-defined";
+    func(status);
+  }
+
+  get_local_service(cmd, callback, error_func);
 }
 
 var app_status = [

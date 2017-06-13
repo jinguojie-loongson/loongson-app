@@ -54,7 +54,7 @@ function init_my_update_number()
     }
   });
 
-  setTimeout(init_my_update_number, 1000);  
+//  setTimeout(init_my_update_number, 1000);  
 }
 
 $(document).ready(function(){

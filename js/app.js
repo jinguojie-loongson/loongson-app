@@ -15,12 +15,12 @@ var UNINSTALL_SCRIPT = "/opt/app/localserver/uninstall.sh";
  *  2:2.3.245.2500:installed:日期
  */
 
-function get_local_app_list(func)
+function get_local_app_list(func, error_func)
 {
   console.log("get_local_app_list: ");
   cmd = " cd " + SYS_DATA_DIR + "; cat * ";
 
-  get_local_service(cmd, func);
+  get_local_service(cmd, func, error_func);
 }
 
 /* 版本号格式：

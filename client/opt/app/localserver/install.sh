@@ -32,7 +32,17 @@ download()
       return 1
     fi
 
-    rm -rf $2
+    if [ -f $2 ]; then
+      m=` md5sum $2 `
+
+      if [[ "$m" =~ "$3" ]]; then
+        echo "File $2 exists, md5 match"
+        return 0
+      else
+        rm -rf $2
+      fi
+    fi
+
     wget -r -p $1  -O $2
     return $?
 }
@@ -78,7 +88,7 @@ register_installed()
 
 #### Begin ###
 
-download $DOWNLOAD_URL $DOWNLOAD_FILE
+download $DOWNLOAD_URL $DOWNLOAD_FILE $MD5
 
 check $DOWNLOAD_FILE $MD5
 

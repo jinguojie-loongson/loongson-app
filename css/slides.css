@@ -110,6 +110,19 @@ sub {
 
   cursor: pointer;
 }
+
+.container .loading-prompt {
+  color: #CCCCCC;
+  font-size: 50pt;
+  font-weight: bold;
+
+  position: absolute;
+  top: 120px;
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+}
+
 #map_canvas img,
 .google-maps img {
   max-width: none;
@@ -156,6 +169,7 @@ sub {
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
   width: 940px;
+  position: relative;
 }
 .span12 {
   width: 940px;

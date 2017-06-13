@@ -21,6 +21,7 @@
 -->
                 <?= get_hot_banner_html(); ?>
     </div>
+    <div class="loading-prompt">Loading ...</div>
   </div>
 
 <div id="app-card-grid">

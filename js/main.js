@@ -53,6 +53,8 @@ if (window.location.href.indexOf("index.php") != -1)
 
     /* 2017/6/7 首页广告轮播 */
     $(function() {
+      $(".container .loading-prompt").fadeOut(1800);
+
       $('#slides').slidesjs({
         width: 920,
         height: 400,

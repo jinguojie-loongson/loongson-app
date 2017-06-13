@@ -47,7 +47,9 @@ function downloadFile(url) {
 }
 
 
-$(document).ready(function() {
+if (window.location.href.indexOf("index.php") != -1)
+{
+  $(document).ready(function() {
 
     /* 2017/6/7 首页广告轮播 */
     $(function() {
@@ -67,7 +69,7 @@ $(document).ready(function() {
         },
         preload: true,
         preloadImage: '../images/nopic.png',
-        generateNextPrev: true,
+        generateNextPrev: false,
         generatePagination: true
       });
     });
@@ -75,4 +77,5 @@ $(document).ready(function() {
     $('#slides img').click(function() {
       window.location.href = $(this).attr("alt");
     });
-});
+  });
+}

@@ -52,6 +52,16 @@ create table hot (
   banner_file varchar(500)   #图片文件，位于data/hot目录下
 );
 
+#应用评论
+create table comment (
+  id int(5) NOT NULL auto_increment key,
+  app_id int(5) NOT NULL,
+  comment varchar(1000),
+  date_time DATETIME,       # 评论时间
+  ip int(10),        # 记录客户端IP地址
+  audit int(5)              # 后台审核是否通过
+);
+
 #示例数据
 insert into os (name, description) VALUES
   ("中标桌面32位", "中标桌面操作系统（32位版本）"),
@@ -95,4 +105,10 @@ insert into app_file (id, version, filename, download_size, md5, install_script,
   (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm"),
   (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm"),
   (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm")
+;
+
+insert into comment (app_id, comment, date_time, ip, audit) VALUES
+  (1, '国人开发的最好软件！', now(), '192.168.45.22', 1),
+  (1, '楼上说的完全没错！', now(), '192.177.45.23', 1),
+  (2, 'QQ我从小就用，没毛病！', now(), '10.50.45.88', 1)
 ;

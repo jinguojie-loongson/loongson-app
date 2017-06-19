@@ -3,6 +3,7 @@
   include_once('top.php');
   include_once('_rank.inc');
   include_once('_app.inc');
+  include_once('_comment.inc');
 ?>
 
 <!-- 
@@ -91,17 +92,29 @@
   </div>
 
   <div class="gray-box">
+    <h3 class="gray">用户评论</h3>
+    <div class="app-comment-div">
+      <div class="input-thin app-comment-input" contenteditable="true" placeholder="请填写评论，限制500字以内"></div>
+      <a class="button installed app-comment-submit">提交评论</a>
+    </div>
+
+<!--
+    <div class="comment">
+      <img src='../images/user.png'/>
+      <span id="comment_text">${comment}</span>
+      <span id="comment_date">${date_time}</span>
+    </div>
+-->
+    <div class="app-comment-list"><?= get_app_all_comment_html($app_id) ?></div>
+  </div>
+
+  <div class="gray-box">
     <div> 推荐同类应用</div>
     <div id="app-card-grid">
         <?= get_most_rank_app_html_by_category(get_app_category_id($app_id), 20, $app_id); ?>
     </div>
   </div>
 
-<!--
-  <div class="gray-box">
-  TODO: 评论
-  </div>
--->
 </div>
 
 <?php

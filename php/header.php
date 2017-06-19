@@ -19,6 +19,7 @@
 <link type="text/css" rel="Stylesheet" href="../css/category.css" />
 <link type="text/css" rel="Stylesheet" href="../css/my.css" />
 <link type="text/css" rel="Stylesheet" href="../css/client.css" />
+<link type="text/css" rel="Stylesheet" href="../css/comment.css" />
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
@@ -27,6 +28,7 @@
 <script type="text/javascript" src="../js/app.js"></script>
 <script type="text/javascript" src="../js/my.js"></script>
 <script type="text/javascript" src="../js/client.js"></script>
+<script type="text/javascript" src="../js/comment.js"></script>
 
 </head>
 

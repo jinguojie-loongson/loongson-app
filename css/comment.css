@@ -17,6 +17,7 @@
 	border-radius: 5px;
 	float: none;
 	height: auto;
+	min-height: 30px;
 }
 
 .app-comment-input:empty:before {

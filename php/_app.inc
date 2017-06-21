@@ -96,8 +96,8 @@ global $conn;
 function get_app_vendor($id)
 {
 global $conn;
-  $sql = "select vendor from app "
-         . "  where id=${id}";
+  $sql = "select vendor_name from app, vendor "
+         . "  where app.vendor_id=vendor.id and vendor.id=${id} ";
   return db_get_one_value($sql);
 }
 

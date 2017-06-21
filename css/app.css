@@ -175,9 +175,9 @@
 	margin-left: 20px;
 	margin-right: 20px;
 
-	#-webkit-box-shadow:0 0 20px #888;  
-	#-moz-box-shadow:0 0 20px #888;  
-	#box-shadow:0 0 20px #888;  
+	-webkit-box-shadow:0 0 20px #888;  
+	-moz-box-shadow:0 0 20px #888;  
+	box-shadow:0 0 20px #888;  
 }
 
 /* 应用程序：按钮 */

@@ -9,7 +9,7 @@
   $search = ($_GET['search']);
 ?>
 
-<div id="app-back"> &lt; </div>
+<div id="app-back"> <i class='fa fa-chevron-left'></i> </div>
 
 <h3>搜索“ <?= $search ?> ”的结果：</h3>
 

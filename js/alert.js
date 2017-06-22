@@ -8,6 +8,12 @@ var prompt = function (message, style, time)
 {
     style = (style === undefined) ? 'alert-success' : style;
     time = (time === undefined) ? 1800 : time;
+
+    if ($("#alert").length <= 0)
+    {
+      $("body").append($("<div id='alert' class='alert alert-success'></div>"));
+    }
+
     $("#alert")
         .html("<i class='fa fa-info-circle'></i>  &nbsp; " + message)
         .removeClass($("#alert").attr("class"))

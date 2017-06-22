@@ -12,8 +12,6 @@
   <input type="button" class="invisible-button" onclick="javascript: window.location.reload();" value="">
 
   <input id="searchText" class="input-thin" type="text" value="搜索应用..." />
-
-  <div id="alert" class="alert alert-success"></div>
 </div>
 
 <br/>

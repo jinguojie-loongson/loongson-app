@@ -16,7 +16,7 @@
 ?>
 
 <div class="app-form">
-  <div id="app-back"> &lt; </div>
+  <div id="app-back"> <i class='fa fa-chevron-left'></i> </div>
 
   <table class="app-header" border="0">
     <tr>

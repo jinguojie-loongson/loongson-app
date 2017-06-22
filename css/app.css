@@ -117,7 +117,6 @@
 #app-back {
 	width: 40px;
 	height: 40px;
-	line-height: 40px;
 	background-color: #dddddd;
 	color: #888888;
 	margin-left: 20px;
@@ -128,6 +127,10 @@
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	float: left;
+}
+
+#app-back i {
+	line-height: 40px;
 }
 
 .app-form img {

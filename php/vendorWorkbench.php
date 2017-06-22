@@ -14,5 +14,5 @@ include_once('vendor_top.php');
 </div>
 
 <div id="app-card-grid"> 
-  <?= get_vendor_all_app_html($_SESSION['vendor_id']) ?>
+  <?= get_vendor_all_app_html(get_current_vendor()) ?>
 </div>

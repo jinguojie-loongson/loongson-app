@@ -6,11 +6,14 @@
  */
 function get_search_app($search)
 {
-  $sql = "select id from app where ";
+  $sql = "select app.id from app, vendor, category "
+       . "   where app.category_id = category.id "
+       . "     and app.vendor_id = vendor.id "
+       . "     and ( ";
   $condition = "";
 
   $keywords = explode(" ", $search); /* 关键字列表 */
-  $search_fields = ["name", "vendor", "category_id", "description", "longdesc"];
+  $search_fields = ["app.name", "vendor.vendor_name", "vendor.description", "category.name", "app.description", "app.longdesc"];
 
   foreach ($keywords as $key)
   {
@@ -23,6 +26,7 @@ function get_search_app($search)
   }
 
   $sql = $sql . $condition
+         . " ) "
          . " order by download_count desc ";
   return db_get_one_column($sql);
 }
@@ -36,6 +40,6 @@ function get_search_app_html($search)
     $html = $html . get_app_card_html($id);
   }
 
-  return $html;
+  return is_empty($html) ? "没有找到符合的应用。" : $html;
 }
 ?>

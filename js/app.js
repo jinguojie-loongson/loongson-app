@@ -465,7 +465,8 @@ $(document).ready(function(){
       && window.location.href.indexOf("app.php") == -1
       && window.location.href.indexOf("client.php") == -1
       && window.location.href.indexOf("vendor_login.php") == -1
-      && window.location.href.indexOf("vendor_logout.php") == -1)
+      && window.location.href.indexOf("vendor_logout.php") == -1
+      && window.location.href.indexOf("vendor_register.php") == -1)
   {
     refresh_app_card_status();
   }

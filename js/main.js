@@ -46,6 +46,12 @@ function downloadFile(url) {
     } 
 }
 
+function is_email(txt) {
+  var preg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/; //匹配Email
+  if(!preg.test(txt))
+    return false;
+  return true;
+}
 
 if (window.location.href.indexOf("index.php") != -1)
 {

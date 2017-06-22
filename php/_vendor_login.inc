@@ -19,27 +19,27 @@ global $conn;
 /*
  * 注册时验证用户名或名称在数据库中是否存在
  */
-function doesVendorExistByfieldname($field_name,$fieldcontent){
-	  global $conn;
-	 $nowtime = time();
+function doesVendorExistByfieldname($field_name, $fieldcontent){
+global $conn;
+	$nowtime = time();
 	
 	$sql ="select id from vendor  "
-		."  where ${field_name}='${fieldcontent}'  and status='1'  or (status='0' and  {$nowtime}<token_exptime  and  ${field_name}='${fieldcontent}' )";
+		."  where ${field_name}='${fieldcontent}'  "
+		."    and (isActive=1 or (isActive=0 and  {$nowtime} < token_exptime) )";
 	return db_get_one_value($sql);
 }
- /*
-*注册
-*/
-function register_vendor($login_name,$password,$vendor_name,$email,$token, $token_exptime,$status,$regtime,$description){
+
+/*
+ *注册
+ */
+function register_vendor($login_name, $password, $vendor_name, $email, $token, $token_exptime, $isActive, $regtime, $description){
 	global $conn;
 	
-	$sql ="insert into  vendor(login_name,password,vendor_name,email,token,token_exptime,status,regtime,description)"
-		."  VALUES ('${login_name}','${password}','${vendor_name}','${email}','$token','$token_exptime','$status','$regtime','${description}')";
+	$sql ="insert into  vendor(login_name, password, vendor_name, email, token, token_exptime, isActive, regtime, description)"
+		."  VALUES ('${login_name}', '${password}', '${vendor_name}', '${email}', '$token', '$token_exptime', $isActive, '$regtime', '${description}')";
 
-
-
-	 return db_exec($sql);
-
+echo $sql;
+	return db_exec($sql);
 }
 
 

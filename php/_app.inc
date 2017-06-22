@@ -196,7 +196,7 @@ function get_app_card_html($id, $status = "not-defined")
         . "<input type='hidden' id='app_version' value='${version}'> \n"
         ." <input type='hidden' id='app_uninstall_script' value='${uninstall_script}'> \n";
   $desc = "<span class='app-desc'> ${description} </span> \n";
-  return "<div id='${id}'> ${icon_img} ${html} ${desc} ${status_html} ${uninstall_html} </div> \n";
+  return "<div id='${id}' class='app-card'> ${icon_img} ${html} ${desc} ${status_html} ${uninstall_html} </div> \n";
 }
 
 /*

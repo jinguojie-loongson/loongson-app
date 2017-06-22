@@ -4,11 +4,10 @@
 	background-color: #eaeaea;
 	border: 1px solid #aeaeae;
 	border-width: 0px 0px 1px 0px;
-	padding: 15px 0px 0px 150px;
+	padding: 15px 0px 0px 120px;
 
 	position: fixed; width: 100%; z-index: 2222;
 	min-width: 1024px;
-	overflow: hidden;
 }
 
 .topbar-button {

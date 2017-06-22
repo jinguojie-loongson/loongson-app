@@ -1,0 +1,70 @@
+.topbar #vendor-logo {
+  float: left;
+  margin-left: 0px;
+}
+
+#vendor-menu {
+  display: inline-block;
+  float: right;
+  margin-right: 200px;
+
+  cursor: pointer;
+  font-size: 12pt;
+}
+
+.dropdown {
+  margin-top: 5px;
+
+  #border: 3px solid #888888;
+  #background-color: white;
+  background-color: rgba(50, 50, 50, 0.9);
+  color: white;
+
+  font-size: 10pt;
+
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  list-style-type: none;
+
+  -webkit-box-shadow:0 0 10px #888;  
+  -moz-box-shadow:0 0 10px #888;  
+  box-shadow:0 0 10px #888;  
+}
+
+.dropdown li {
+  padding: 5px;
+}
+
+#nav {
+  text-align: right;
+  margin: 20px;
+}
+
+#newApp {
+  display: inline-block;
+}
+
+
+/*
+ * 重新设计应用卡片
+ */
+
+.vendor-app-card {
+  width: 80%;
+}
+
+.vendor-app-card .app-title {
+  display: inline-block;
+  margin: 5px;
+}
+
+.vendor-app-card img {
+  width: 128px;
+  height: 128px;
+}
+
+.vendor-app-card i {
+  font-size: 10px;
+  margin-left: 20px;
+}

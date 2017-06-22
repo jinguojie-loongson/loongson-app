@@ -12,7 +12,7 @@
 
 .topbar-button {
 	float: left;
-	margin-right: 30px;
+	margin-right: 40px;
 
 	border: none;
 	cursor: pointer;
@@ -25,7 +25,7 @@
 	margin-right: 30px;
 
 	border: 2px red solid;	
-	border-width: 0px 0px 4px 0px;
+	border-width: 0px 0px 0px 0px;
 	color: red;
 }
 

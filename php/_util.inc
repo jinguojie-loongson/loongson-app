@@ -60,4 +60,10 @@ global $_SERVER;
   return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 
+
+function request_forward($url)
+{
+  header("Location: ${url} "); 
+}
+
 ?>

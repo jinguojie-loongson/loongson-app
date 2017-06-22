@@ -1,5 +1,7 @@
 <?php
   include_once('global.inc');
+
+  session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,6 +23,7 @@
 <link type="text/css" rel="Stylesheet" href="../css/client.css" />
 <link type="text/css" rel="Stylesheet" href="../css/comment.css" />
 <link type="text/css" rel="Stylesheet" href="../css/vendor.css" />
+<link type="text/css" rel="Stylesheet" href="../css/vendor_login.css" />
 
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
@@ -31,6 +34,7 @@
 <script type="text/javascript" src="../js/client.js"></script>
 <script type="text/javascript" src="../js/comment.js"></script>
 <script type="text/javascript" src="../js/vendor.js"></script>
+<script type="text/javascript" src="../js/vendor_login.js"></script>
 
 </head>
 

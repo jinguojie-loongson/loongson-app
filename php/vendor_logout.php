@@ -19,3 +19,7 @@
   </div>
 
 </div>
+
+<?php
+  include_once('vendor_footer.php');
+?>

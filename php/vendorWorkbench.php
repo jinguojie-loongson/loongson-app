@@ -16,3 +16,7 @@ include_once('vendor_top.php');
 <div id="app-card-grid"> 
   <?= get_vendor_all_app_html(get_current_vendor()) ?>
 </div>
+
+<?php
+  include_once('vendor_footer.php');
+?>

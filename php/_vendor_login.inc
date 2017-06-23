@@ -30,6 +30,21 @@ global $conn;
 }
 
 /*
+*
+*/
+
+function doesVendorExistNotEqualVendorid($field_name, $fieldcontent,$vendor_id){
+global $conn;
+        $nowtime = time();
+
+        $sql ="select id from vendor  "
+                ."  where ${field_name}='${fieldcontent}'  "
+                ."    and isActive=1 and id!=${vendor_id}  ";
+        return db_get_one_value($sql);
+	
+}
+
+/*
  *注册
  */
 function register_vendor($login_name, $password, $vendor_name, $email, $token, $token_exptime, $isActive, $regtime, $description){
@@ -40,6 +55,41 @@ function register_vendor($login_name, $password, $vendor_name, $email, $token, $
 
 echo $sql;
 	return db_exec($sql);
+}
+
+function get_vendor_loginname_by_id($id){
+global $conn;
+  $sql = "select login_name  from vendor "
+         . "  where id=${id}";
+  return db_get_one_value($sql);	
+}
+
+function get_vendor_vendorname_by_id($id){
+global $conn;
+  $sql = "select vendor_name  from vendor "
+         . "  where id=${id}";
+  return db_get_one_value($sql);
+}
+
+function get_vendor_password_by_id($id){
+global $conn;
+  $sql = "select password  from vendor "
+         . "  where id=${id}";
+  return db_get_one_value($sql);
+}
+
+function get_vendor_email_by_id($id){
+global $conn;
+  $sql = "select email  from vendor "
+         . "  where id=${id}";
+  return db_get_one_value($sql);
+}
+
+function get_vendor_description_by_id($id){
+global $conn;
+  $sql = "select login_name  from vendor "
+         . "  where id=${id}";
+  return db_get_one_value($sql);
 }
 
 

@@ -1,34 +1,16 @@
 .login-form {
-  text-align: center;
+  width: 500px;
+  //display: inline-block;
 
-  padding: 50px 0 20px 0;
-}
-
-.login-form .rounded-rect {
-  width: 400px;
-  display: inline-block;
+  margin: 150px auto 0 auto;
 
   text-align: left;
-  padding: 30px;
+
+  line-height: 50px;
 }
 
-.login-form .input-thin {
-  display: inline-block;
-  float: none;
-  margin: 10px 0 20px 0;
-
-  width: 100%;
-}
-
-.rounded-rect .button {
-  width: 100%;
-  height: 40px;
-
-  margin: 10px 0 40px 0;
-}
-
-.rounded-rect a:link {
-  font-size: 12pt;
+#register-form {
+  margin: 20px auto 0 auto;
 }
 
 .error_msg {

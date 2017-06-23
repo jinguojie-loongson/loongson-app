@@ -64,6 +64,7 @@ global $_SERVER;
 function request_forward($url)
 {
   header("Location: ${url} "); 
+  die();
 }
 
 ?>

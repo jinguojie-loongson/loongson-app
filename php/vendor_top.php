@@ -16,7 +16,7 @@ if (is_empty(get_current_vendor()))
       <i class='fa fa-caret-down'></i>
     </span>
     <ul class="dropdown">
-      <li>设置</li>
+      <li><a href="vendor_updateInfo.php">设置</a></li>
       <li><a href="vendor_logout.php">退出</a></li>
     </ul>
   </div>

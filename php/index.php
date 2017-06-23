@@ -8,8 +8,8 @@
 <h3>&nbsp;</h3>
 
 <!-- 主界面：广告轮播 -->
-<link rel="stylesheet" href="../css/slides.css">
-<script src="../js/slides.min.js"></script>
+<link rel="stylesheet" href="../lib/slides.css">
+<script src="../lib/slides.min.js"></script>
 
   <div class="container">
     <div id="slides">

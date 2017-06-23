@@ -13,6 +13,7 @@
 <link rel="shortcut icon" href="../images/favicon.png"/>
 <link rel="bookmark" href="../images/favicon.png"/>
 
+<link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.js" />
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <link rel="stylesheet" type="text/css" href="../css/alert.css" />
 <link rel="stylesheet" type="text/css" href="../css/top.css" />
@@ -25,7 +26,8 @@
 <link type="text/css" rel="Stylesheet" href="../css/vendor.css" />
 <link type="text/css" rel="Stylesheet" href="../css/vendor_login.css" />
 
-<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../lib/jquery.js"></script>
+<script type="text/javascript" src="../lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/alert.js"></script>
 <script type="text/javascript" src="../js/localserver.js"></script>

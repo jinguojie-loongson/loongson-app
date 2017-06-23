@@ -1,5 +1,6 @@
 <?php
-include_once('header.php');
+//include_once('header.php');
+include_once('vendor_header.php');
 include_once('_vendor.inc');
 include_once('vendor_top.php');
 ?>
@@ -9,8 +10,8 @@ include_once('vendor_top.php');
 <br>
 <br>
 
-<div id="nav">
-  <div class="button installed" id="newApp">提交新应用</div>
+<div id="workbench-tool">
+  <button class="btn btn-primary" id="newApp">提交新应用</button>
 </div>
 
 <div id="app-card-grid"> 

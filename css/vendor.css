@@ -6,68 +6,114 @@ body {
         text-align: center;
 }
 
-.topbar #vendor-logo {
-  float: left;
-  margin-left: 0px;
+#vendor-menu {
+  margin-right: 100px;
 }
 
-#vendor-menu {
-  display: inline-block;
-  float: right;
-  margin-right: 200px;
-
+#vendor-name {
+  margin: 0px;
   cursor: pointer;
-  font-size: 12pt;
 }
 
 .dropdown {
-  margin-top: 5px;
-
-  #border: 3px solid #888888;
-  #background-color: white;
-  background-color: rgba(50, 50, 50, 0.9);
-  color: white;
-
-  font-size: 10pt;
-
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-
-  list-style-type: none;
-
-  -webkit-box-shadow:0 0 10px #888;  
-  -moz-box-shadow:0 0 10px #888;  
-  box-shadow:0 0 10px #888;  
+  margin: 0px;
+  display: none;
 }
 
-.dropdown li {
-  padding: 5px;
-}
-
-#nav {
+#workbench-tool {
   text-align: right;
   margin: 20px;
 }
 
-#newApp {
-  display: inline-block;
+.footer {
+  margin-top: 120px;
 }
-
 
 /*
  * 重新设计应用卡片
  */
 
 .vendor-app-card {
-  width: 80%;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: white;
+}
+
+/* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */ 
+#app-card-grid {
+	font-size: 12pt;
+	display:inline-block;
+	position:relative;
+	margin:50px;
+	padding:20px;
+	background:#fafafa;
+	box-shadow:0 0 3px rgba(0, 0, 0, 0.2);
+	-moz-border-radius:4px;
+	border-radius:4px;
+	color:rgba(0,0,0, 0.8);
+
+	min-width: 50%;
+	min-height: 200px;
+}
+
+#app-card-grid::before, #app-card-grid::after {
+	position:absolute;
+	content:"";
+	top:10px;
+	bottom:15px;
+	left:10px;
+	width:50%;
+	box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);
+	-webkit-transform: rotate(-3deg);
+	-moz-transform:rotate(-3deg);
+	-o-transform:rotate(-3deg);
+	-ms-transform:rotate(-3deg);
+	transform:rotate(-3deg);
+	z-index:-1;
+}
+
+#app-card-grid::after {
+	right:10px;
+	left:auto;
+	-webkit-transform:rotate(3deg);
+	-moz-transform:rotate(3deg);
+	-o-transform:rotate(3deg);
+	-ms-transform:rotate(3deg);
+	transform: rotate(3deg);
+}
+
+#app-card-grid div {
+        display: inline-block; 
+
+        padding: 5px; 
+        margin: 20px; 
+        background-color: #eeeeee;
+
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -khtml-border-radius: 6px;
+
+	box-shadow: 0px 0px 8px #cccccc;
+	position: relative;
 }
 
 .vendor-app-card .app-title {
+  font-size: 14pt;
+  font-weight: bold;
+
   display: inline-block;
   margin: 5px;
 }
 
+.vendor-app-card .app-info {
+  font-size: 12pt;
+}
+
 .vendor-app-card img {
+  float: left;
   width: 128px;
   height: 128px;
 }

@@ -1,5 +1,5 @@
 <?php
-  include_once('header.php');
+  include_once('vendor_header.php');
   include_once('_vendor_login.inc');
 
 
@@ -7,18 +7,21 @@
 ?>
 
 <div class="login-form">
-  <img src="../images/favicon.png"/>
+  <div class="panel panel-primary">
+    <div class="panel-heading"> 
+      <h3>已成功注销</h3>
+    </div>
 
-  <br>
-  <div class="rounded-rect">
-    <h3 class="gray">已成功注销</h3>
-    5秒钟后自动跳转到登录页面...
-    <p>
+    <div class="panel-body">
+      5秒钟后自动跳转到登录页面...
+    </div>
 
-    <a href="vendor_login.php">重新登录</a>
+    <div class="panel-footer">
+      <a href="vendor_login.php">重新登录</a>
+    </div>
   </div>
-
 </div>
+
 
 <?php
   include_once('vendor_footer.php');

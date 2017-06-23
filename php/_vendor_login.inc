@@ -53,7 +53,6 @@ function register_vendor($login_name, $password, $vendor_name, $email, $token, $
 	$sql ="insert into  vendor(login_name, password, vendor_name, email, token, token_exptime, isActive, regtime, description)"
 		."  VALUES ('${login_name}', '${password}', '${vendor_name}', '${email}', '$token', '$token_exptime', $isActive, '$regtime', '${description}')";
 
-echo $sql;
 	return db_exec($sql);
 }
 

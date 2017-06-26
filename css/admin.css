@@ -1,0 +1,13 @@
+#admin_hot_div {
+  margin: 20px auto 20px auto;
+  width: 600px;
+}
+
+.input-group {
+  margin: 10px;
+}
+
+#hot_img {
+  width: 90%;
+  border: none;
+}

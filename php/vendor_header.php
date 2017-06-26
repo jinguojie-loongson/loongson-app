@@ -17,12 +17,14 @@
 <link rel="stylesheet" type="text/css" href="../lib/bootstrapValidator.min.css" />
 <link type="text/css" rel="Stylesheet" href="../css/vendor.css" />
 <link type="text/css" rel="Stylesheet" href="../css/vendor_login.css" />
+<link type="text/css" rel="Stylesheet" href="../css/admin.css" />
 
 <script type="text/javascript" src="../lib/jquery.js"></script>
 <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="../lib/bootstrapValidator.min.js"></script>
 <script type="text/javascript" src="../js/vendor.js"></script>
 <script type="text/javascript" src="../js/vendor_login.js"></script>
+<script type="text/javascript" src="../js/admin.js"></script>
 
 </head>
 

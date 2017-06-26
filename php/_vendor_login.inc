@@ -109,42 +109,42 @@ function get_current_vendor()
 {
 global $_SESSION;
 
-  return $_SESSION[“vendor_id”];
+  return @$_SESSION[“vendor_id”];
 }
 
 function set_current_vendor($vendor_id)
 {
 global $_SESSION;
 
-  $_SESSION[“vendor_id”] = $vendor_id;
+  @$_SESSION[“vendor_id”] = $vendor_id;
 }
 
 function clear_current_vendor()
 {
 global $_SESSION;
 
-  $_SESSION[“vendor_id”] = "";
+  @$_SESSION[“vendor_id”] = "";
 }
 
 function get_login_message()
 {
 global $_SESSION;
 
-  return $_SESSION[“login_message”];
+  return @$_SESSION[“login_message”];
 }
 
 function set_login_message($msg)
 {
 global $_SESSION;
 
-  $_SESSION[“login_message”] = $msg;
+  @$_SESSION[“login_message”] = $msg;
 }
 
 function clear_login_message()
 {
 global $_SESSION;
 
-  $_SESSION[“login_message”] = "";
+  @$_SESSION[“login_message”] = "";
 }
 
  ?>

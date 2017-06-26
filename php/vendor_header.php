@@ -22,6 +22,8 @@
 <script type="text/javascript" src="../lib/jquery.js"></script>
 <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="../lib/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../lib/bootstrap-paginator.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/vendor.js"></script>
 <script type="text/javascript" src="../js/vendor_login.js"></script>
 <script type="text/javascript" src="../js/admin.js"></script>

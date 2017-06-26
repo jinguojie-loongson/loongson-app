@@ -38,6 +38,19 @@ global $conn;
 }
 
 /*
+ * 根据 评论id 查询出 应用ID
+ */
+
+function get_app_id_by_comment_id($comment_id)
+{
+global $conn;
+
+  $sql = "select app_id from comment "
+         . "  where id=${comment_id}";
+  return db_get_one_value($sql);
+}
+
+/*
  * 根据 评论id 查询出 评论内容
  */
 
@@ -60,6 +73,50 @@ global $conn;
   $sql = "select DATE_FORMAT(date_time,'%Y-%m-%d %H:%i') from comment "
          . "  where id=${comment_id}";
   return db_get_one_value($sql);
+}
+
+
+/*
+ * 根据 评论id 查询出 审核状态
+ */
+function get_app_comment_audit($comment_id)
+{
+global $conn;
+
+  $sql = "select audit from comment "
+         . "  where id=${comment_id}";
+  return db_get_one_value($sql);
+}
+
+/*
+ * 查询所有的评论id
+ */
+function get_all_comment_id()
+{
+global $conn;
+
+  $sql = "select id from comment "
+       . "   order by date_time desc";
+  return db_get_one_column($sql);
+}
+
+function audit_comment($id, $audit)
+{
+global $conn;
+
+  $sql = "update comment "
+       . "   set audit=$audit "
+       . "   where id=$id ";
+  return db_exec($sql);
+}
+
+function audit_comment_del($id)
+{
+global $conn;
+
+  $sql = "delete from comment "
+       . "   where id=$id ";
+  return db_exec($sql);
 }
 
 /*

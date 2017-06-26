@@ -113,6 +113,7 @@ insert into category (name) VALUES
   ("游戏"),
   ("编程"),
   ("系统"),
+  ("设备驱动"),
   ("其它")
 ;
 

@@ -30,7 +30,6 @@ function set_hot_app_id($index, $hot_id)
 global $conn;
   $sql = "update hot set app_id=${hot_id} "
          . "  where id=${index}";
-echo $sql . "<br>";
   return db_exec($sql);
 }
 
@@ -39,7 +38,6 @@ function set_hot_banner_file_by_id($id, $name)
 global $conn;
   $sql = "update hot set banner_file='${name}' "
          . "  where id=${id}";
-echo $sql . "<br>";
   return db_exec($sql);
 }
 
@@ -54,8 +52,6 @@ function get_hot_banner_html()
 
 function upload_hot_app_banner($index, $hot_id)
 {
-  echo "upload_hot_app_banner($index)" . "<br>";
-  
   $file_size = $_FILES["hot_img"]['size'][$index];
   $file_name = $_FILES["hot_img"]['name'][$index];
   $tmp_file  = $_FILES["hot_img"]['tmp_name'][$index];

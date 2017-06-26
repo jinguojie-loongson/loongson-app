@@ -23,7 +23,6 @@ include_once('_util.inc');
 
 foreach ($_POST["hot_id"] as $index => $hot_id)
 {
-  echo $hot_id . "<br>";
   set_hot_app_id($index, $hot_id);
 
   $img = $_FILES["hot_img"]["name"][$index];

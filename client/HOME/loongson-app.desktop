@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=Loongson Application Community
 Comment[zh_CN]=龙芯应用公社
-Exec=chromium-browser -app=http://app.loongnix.org/app
+Exec=/opt/app/find-chrome.sh -app=http://app.loongnix.org/app
 Name=Application Community
 Name[zh_CN]=应用公社
 Type=Application

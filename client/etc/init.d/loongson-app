@@ -1,0 +1,36 @@
+prog=loongson-app
+
+start() {
+        echo -n $"Starting $prog: "
+	/opt/app/localserver/app.py &
+        echo
+	RETVAL=0
+        return 0
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+	kill -9 `ps ax  | grep app.py | grep -v grep | cut -b-5`
+	RETVAL=$?
+	echo
+	return 0
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart}"
+	RETVAL=3
+esac
+
+exit $RETVAL

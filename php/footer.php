@@ -44,6 +44,8 @@
     - <a href="client.php">客户端工具</a>
     - <a href="vendor_login.php">开发者入口</a>
     - <a href="admin_login.php">管理员入口</a>
+    <br>
+    龙芯中科技术有限公司版权所有 2017
     </div>
   </body>
 </html>

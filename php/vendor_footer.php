@@ -38,6 +38,8 @@
 
     <div class="footer">
       <a href="index.php">应用公社首页</a> 
+      <br>
+      龙芯中科技术有限公司版权所有 2017
     </div>
   </body>
 </html>

@@ -67,6 +67,6 @@ include_once('_util.inc');
 		set_current_admin($admin_id);
 		clear_admin_login_message();
 
- 		request_forward("admin_hot.php");
+ 		request_forward("admin_comment.php");
 	}
 ?>

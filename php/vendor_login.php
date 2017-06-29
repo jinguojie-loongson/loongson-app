@@ -67,7 +67,7 @@
     </div>
 
     <div class="panel-footer">
-    <a href="http://www.w3school.com.cn">忘记密码</a>
+    <a href="vendor_forgetpassword.php">忘记密码</a>
     &nbsp; &nbsp;
     <a href="vendor_register.php">注册新开发者</a>
     </div>

@@ -35,27 +35,30 @@
  *
  */
 
-	include_once('_db.inc');
+	include_once('vendor_header.php');
+	include_once('_vendor_login.inc');
+	include_once('_util.inc');
 	$verify = stripslashes(trim($_GET['verify']));
 	$nowtime = time();
-	$query = mysql_query("select id,token_exptime from  vendor  where status='0' and token='${verify}'");
-	$row =db_get_two_columns($query);
-	if($row){
-	if($nowtime>$row['token_exptime']){ //30min
-	$msg = '您的激活有效期已过，请登录您的帐号重新发送激活邮件.';
+	//$row_vendor = get_vendor_by_token($verify);
+	$tokenexptime = getvendor_tokenexptime_by_token($verify);
+	$vendorId  = getvendorId_by_token($verify);
+        echo "<div class='login-form' id='register-form'>  <div class='panel panel-primary'>";
+        echo "<div class='panel-heading'> <h3>账户激活</h3>   </div>";
+        echo "<div class='panel-body'>";
+	if($nowtime > $tokenexptime){ //$row_vendor[0][1]  
+	 echo "<div class='form-group'><label>您的激活有效期已过，请登录您的帐号重新发送激活邮件。</label></div> ";
+	 echo "</div>";
+	 echo "<div class='panel-footer'><a href='vendor_login.php'>返回登录</a></div>";
+         exit();	
 	}else{
-	mysql_query("update vendor  set status=1 where id=".$row['id']);
-	//if(mysql_affected_rows($link)!=1) die(0);
+	 update_isActive_by_id($vendorId);//$row_vendor[0][0]
+	 echo "<div class='form-group'><label>用户激活成功！</label></div>";
+         echo "</div>";
+	 echo "<div class='panel-footer'><a href='vendor_login.php'>返回登录</a></div>";
+	 echo "</div>";
+	 echo "</div>";
+	}
 
-	$msg = '激活成功！';
-
-	//}
-
-	//}else{
-
-	//$msg = 'error.';
-
-	//}
-
-echo $msg;
 ?>
+<?php include_once('vendor_footer.php');?>

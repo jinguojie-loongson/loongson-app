@@ -135,12 +135,12 @@ insert into hot (id, app_id, banner_file) VALUES
   (4, 5, "5.png")
 ;
 
-insert into app_file (id, version, filename, download_size, md5, install_script, uninstall_script) VALUES
-  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm"),
-  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm"),
-  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm"),
-  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm"),
-  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm")
+insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script) VALUES
+  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm"),
+  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm"),
+  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm"),
+  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm"),
+  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm")
 ;
 
 insert into comment (app_id, comment, date_time, ip, audit) VALUES

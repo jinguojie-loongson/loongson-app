@@ -37,28 +37,30 @@
 include_once('_vendor_login.inc');
 include_once('_util.inc');
 include_once('class.smt.php');
-	 $password_revise_old = md5(trim($_POST['password_revise_old']));
-        $vendor_name_revise_old = $_POST['vendor_name_revise_old'];
-        $email_revise_old  = $_POST['email_revise_old'];
-        $description_revise_old = $_POST['description_revise_old'];
-	
+session_start();
+	 $password_revise_old = trim($_POST['password_revise_old']);
+      	$vendor_id_revise = trim($_POST['vendor_id_update']);
+	$password_update = trim($_POST['password_update']);
+	$vendor_name_revise_old = trim($_POST['vendor_name_revise_old']);
+	$email_revise_old = trim($_POST['email_revise_old']);
+	$description_revise_old = trim($_POST['$description_revise_old']);
 
-	$vendor_id_revise =  $_POST['vendor_id_revise'];
-	$password_revise = md5(trim($_POST['password_revise']));
-	$vendor_name_revise = $_POST['vendor_name_revise'];
-	$email_revise  = $_POST['email_revise'];
-	$description_revise = $_POST['description_revise'];
-
-	$fieldArray =array();	
-	 array_push($fieldArray, 'password');
-	if($password_revise_old ==  $vendor_id_revise){	
-		array_push($fieldArray, 'password');
+	$vendor_name_update = trim($_POST['vendor_name']);
+	$email_update  = trim($_POST['email']);
+	$description_update = trim($_POST['description_update']);
+	if($password_update != null || $password_update != ""){
+		$md5pwd = md5($password_update);
+        	update_passoord_vendor_byId($md5pwd,$vendor_id_revise);
 	}
-	if(){
-	}
-
-        $result = register_vendor($login_name, $password, $vendor_name, $email, $stoken, $token_exptime, $isActive, $regtime, $description);   	
-	echo $result;
-
-
+	if($vendor_name_revise_old != $vendor_name_update){
+	        update_vendorname_vendor_byId($vendor_name_update,$vendor_id_revise);
+        }
+	 if($email_revise_old != $email_update){
+		update_email_vendor_byId($email_update,$vendor_id_revise);
+        }
+	if($description_revise_old != $description_update){
+              update_description_vendor_byId($description_update,$vendor_id_revise);
+        }
+         set_login_message("修改成功!");
+         request_forward("vendor_updateInfo.php");  
 ?>

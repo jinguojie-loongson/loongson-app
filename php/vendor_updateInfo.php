@@ -48,10 +48,11 @@
     </div>
 
     <div class="panel-body">
-      <form id="update_form" name="update_form" method="post" action="vendorUpdate.php"  >
+	<p class="text-warning"> <?= get_login_message() ?> </p>
+      <form id="update_vendor_form" name="update_vendor_form" method="post" action="updateVendor.php"  >
         <input type="password" style="position: fixed; top: -999px "/>
 
-	<input type="hidden" id="vendor_id_revise" name ="vendor_id_revise" value="<?= $vendor_id ?>">
+	<input id="vendor_id_update" name ="vendor_id_update" type="hidden" value="<?= $vendor_id ?>">
 	<input id="password_revise_old" name="password_revise_old" class="input-thin" type="hidden" value="<?= get_vendor_password_by_id($vendor_id) ?>" />
 	<input id="vendor_name_revise_old" name="vendor_name_revise_old" class="input-thin" type="hidden" value="<?= get_vendor_vendorname_by_id($vendor_id) ?>" />
 	<input id="email_revise_old" name="email_revise_old" class="input-thin" type="hidden" value="<?= get_vendor_email_by_id($vendor_id) ?>"/> 
@@ -64,12 +65,12 @@
 
         <div class="form-group">
           <label>个人/机构名称</label> 
-          <input id="vendor_name_update" name="vendor_name_update" type="text" class="form-control" autocomplete="off" value="<?= get_vendor_vendorname_by_id($vendor_id) ?>" />
+          <input id="vendor_name" name="vendor_name" type="text" class="form-control" autocomplete="off" value="<?= get_vendor_vendorname_by_id($vendor_id) ?>" />
         </div>
 
         <div class="form-group">
           <label>电子邮件</label> 
-          <input id="email_update" name="email_update" type="text" class="form-control" autocomplete="off" value="<?= get_vendor_email_by_id($vendor_id) ?>"  />
+          <input id="email" name="email" type="text" class="form-control" autocomplete="off" value="<?= get_vendor_email_by_id($vendor_id) ?>"  />
         </div>
 
         <div class="form-group">
@@ -87,4 +88,10 @@
   </div>
 
 </div>
+<?php
+  clear_login_message();
+?>
 
+<?php
+  include_once('vendor_footer.php');
+?>

@@ -5,8 +5,8 @@
 include_once('vendor_header.php');
 include_once('_util.inc');
 include_once('_uploadVendorApp.inc');
+include_once('_vendor_login.inc');
 
-$_SESSION['vendor_id'] = 1;
 $appIconName = $_POST['appIconName'];
 $app_name = $_POST['app_name'];
 $category_id = $_POST['category_id'];
@@ -23,7 +23,7 @@ $version = $_POST['version'];
 $install_script = $_POST['install_script'];
 $uninstall_script = $_POST['uninstall_script'];
 
-insert_vendor_app($_SESSION['vendor_id'], $appIconName, $app_name, $category_id, $description, $longdesc,
+insert_vendor_app(get_current_vendor(), $appIconName, $app_name, $category_id, $description, $longdesc,
         $appScreenName1, $appScreenName2, $appScreenName3, $appScreenName4, $appScreenName5,
         $file_name, $file_size, $version, $install_script, $uninstall_script);
 ?>

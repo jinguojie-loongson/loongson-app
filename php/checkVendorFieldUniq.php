@@ -49,20 +49,18 @@ foreach ($_POST as $key => $value)
   $fieldcontent = $value;
 }
 
-$mylog = $mylog . "${key} => ${value}";
+//$mylog = $mylog . "${key} => ${value}";
 
 $ishave = doesVendorExistByfieldname($field_name, $fieldcontent);
 
 
 if (is_empty($ishave)) {
-  //echo 0;//数据库内没有数据
-  echo '{"valid":true}';
+  echo '{"valid":true}';//数据库内没有数据
 } else {
-  //echo 1;  //数据库内有数据
-  echo '{"valid":false}';
+  echo '{"valid":false}';//数据库内有数据
 }
 
-file_put_contents("/new.txt", $mylog);
+//file_put_contents("/new.txt", $mylog);查看测试数据
 
 exit;
 ?>

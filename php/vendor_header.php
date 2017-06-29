@@ -56,6 +56,7 @@
 <link type="text/css" rel="Stylesheet" href="../css/admin.css" />
 
 <script type="text/javascript" src="../lib/jquery.js"></script>
+<script type="text/javascript" src="../lib/jquery.wallform.js"></script>
 <script type="text/javascript" src="../lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="../lib/bootstrapValidator.min.js"></script>
 <script type="text/javascript" src="../lib/bootstrap-paginator.min.js"></script>

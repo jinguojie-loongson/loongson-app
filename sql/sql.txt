@@ -87,7 +87,7 @@ create table review (
   operator int(10),
   status varchar(50),
   comment  varchar(500),
-  date_time     date
+  date_time     DATETIME
 );
 
 #管理员表

@@ -47,7 +47,7 @@ include_once('vendor_top.php');
 <br>
 
 <div id="workbench-tool">
-  <button class="btn btn-primary" id="newApp">提交新应用</button>
+  <a class="btn btn-primary" id="newApp" href="vendorUploadApp.php">提交新应用</a>
 </div>
 
 <div id="app-card-grid"> 

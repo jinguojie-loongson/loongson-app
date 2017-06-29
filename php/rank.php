@@ -39,7 +39,8 @@
   include('_rank.inc');
 ?>
 
-<h3>应用排名</h3>（下载量最多的100个应用）
+<h3>应用排名</h3>
+<p>（下载量最多的100个应用）</p>
 
 <div id="app-card-grid">
         <?= get_most_rank_app_html(); ?>

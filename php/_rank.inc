@@ -15,7 +15,7 @@ function get_most_rank_app($category_id, $limit, $status, $except = "")
   if (!is_empty($category_id))
     $sql = $sql . " and category_id = ". $category_id;
   if (!is_empty($except))
-    $sql = $sql . " and id <> ". $except;
+    $sql = $sql . " and app.id <> ". $except;
 
   $sql = $sql
          . " order by download_count desc "

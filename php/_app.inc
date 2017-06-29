@@ -153,6 +153,38 @@ global $conn;
   return db_get_one_value($sql);
 }
 
+function get_app_status($id, $version = "")
+{
+global $conn;
+  if (is_empty($version))
+    $version = get_app_version($id);
+
+  $sql = "select status from app_file "
+         . "  where id=${id} and version='${version}' ";
+  return db_get_one_value($sql);
+}
+
+function set_app_status($id, $status, $version = "")
+{
+global $conn;
+  if (is_empty($version))
+    $version = get_app_version($id);
+
+  $sql = "update app_file set status='${status}' "
+         . "  where id=${id} and version='${version}' ";
+  return db_exec($sql);
+}
+
+function get_app_status_text($status)
+{
+  switch($status)
+  {
+    case "new": return "待审核";
+    case "published": return "通过审核";
+  }
+  return "错误状态";
+}
+
 function app_inc_download_count($id)
 {
 global $conn;

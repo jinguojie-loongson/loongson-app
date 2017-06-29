@@ -34,69 +34,17 @@
  * files in the program, then also delete it here.
  *
  */
-//include_once('header.php');
-include_once('vendor_header.php');
-include_once('_admin.inc');
-include_once('admin_top.php');
+/*
+ * 审核应用
+ */
+include_once('_util.inc');
 include_once('_app.inc');
-include_once('_rank.inc');
-include_once('_comment.inc');
-?>
 
+print_r($_GET);
+$id = is_empty($_GET['id']) ? $_POST['data'] : $_GET['id'];
 
-<br>
-<br>
-<br>
+set_app_status($id, "published");
 
-
-<div class="nav nav-tabs">
-      <li><a href="admin_comment.php">评论管理</a></li>
-      <li><a href="admin_hot.php">热门编辑</a></li>
-      <li class="active"><a href="admin_app.php">应用审核</a></li>
-</div>
-
-<table class="table table-striped table-bordered table-hover table-condensed">
-  <tr>
-    <td>应用Id</td>
-    <td>应用名称</td>
-    <td>开发者</td>
-    <td>分类</td>
-    <td>版本</td>
-    <td>状态</td>
-    <td>&nbsp;</td>
-  </tr>
-
-<?php
-  $apps = get_most_rank_app("", 99999999, "");
-
-  foreach ($apps as $id) {
-    $name = get_app_name($id);
-    $vendor = get_app_vendor($id);
-    $version = get_app_version($id);
-    $category= get_category_name(get_app_category_id($id));
-    $status = get_app_status_text(get_app_status($id));
-?>
-  <tr>
-    <td> <?= @$id ?> </td>
-    <td> <?= @$name ?> </td>
-    <td> <?= @$vendor ?> </td>
-    <td> <?= @$category ?> </td>
-    <td> <?= @$version ?> </td>
-    <td id="app_status"> <?= @$status ?> </td>
-    <td>
-      <input id="app_id" type="hidden" value="<?= @${id} ?>">
-      <button type="button" class="btn btn-default Audit_app">
-        <div class="glyphicon glyphicon-eye-open"></div> 通过审核
-      </button>
-    </td>
-  </tr>
-
-<?php
-  }
-?>
-
-</table>
-
-<?php
-  include_once('vendor_footer.php');
+echo $id;
+exit;
 ?>

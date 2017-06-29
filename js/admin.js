@@ -29,6 +29,17 @@ console.log(url);
   });
 }
 
+function audit_app($btn, $id)
+{
+  console.log("no: " + $id);
+  url = "auditApp.php?id=" + $id;
+console.log(url);
+
+  get_server_service(url, "", function() {
+    $btn.closest("tr").find("#app_status").text("通过审核");
+  });
+}
+
 $(document).ready(function(){
   console.log($(".Audit_yes").length);
   $(".Audit_yes").click(function() {
@@ -38,5 +49,13 @@ $(document).ready(function(){
 
   $(".Audit_del").click(function() {
     audit_del($(this), $(this).parent().find("#comment_id").val());
+  });
+
+  $(".Audit_app").click(function() {
+    audit_app($(this), $(this).parent().find("#app_id").val());
+  });
+
+  $(".Audit_app_del").click(function() {
+    audit_app_del($(this), $(this).parent().find("#comment_id").val());
   });
 });

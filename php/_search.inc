@@ -13,7 +13,7 @@ function get_search_app($search)
   $condition = "";
 
   $keywords = explode(" ", $search); /* 关键字列表 */
-  $search_fields = ["app.name", "vendor.vendor_name", "vendor.description", "category.name", "app.description", "app.longdesc"];
+  $search_fields = array("app.name", "vendor.vendor_name", "vendor.description", "category.name", "app.description", "app.longdesc");
 
   foreach ($keywords as $key)
   {

@@ -78,7 +78,7 @@ $(document).ready(function(){
       $("#stateDomain").html("版本号不能连续出现多个“.”!");
     }
 
-    if(version.split(".").length > 5){
+    if(version.split(".").length > 4){
       state = "false";
       $("#stateDomain").html("版本号最多4段数字!");
     }

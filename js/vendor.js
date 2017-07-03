@@ -159,6 +159,7 @@ $(document).ready(function(){
         }
       }).submit();
     } else if (file_type == "file") {
+      $(".app-file-attribute").empty();
       $("#imageform").ajaxForm({
         target: '.app-file-attribute',
         success:function(){

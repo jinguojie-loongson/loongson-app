@@ -9,7 +9,6 @@
 $TEMPORAY_FILE_URL = "../data/tmp/";
 
 $imgArr = array("jpg", "png", "gif");
-$fileArr = array("rpm");
 
 if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") 
 {
@@ -21,10 +20,10 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
   $file_type = $_POST['file_type'];
   $screen_number = $_POST['screen_number'];
   $file_name = $_FILES['photoimg']['name'];
-  $file_size = $_FILES['photoimg']['size'];
+  $file_size = round($_FILES['photoimg']['size'] / 1000,1);
   
   $suffix = interception_suffix($file_name);
-  conditions_judge($file_name, $file_size, $imgArr, $fileArr, $file_type, $suffix);
+  conditions_judge($file_name, $file_size, $imgArr, $file_type, $suffix);
   
   $new_file_url = new_file_name($file_name, $suffix, $TEMPORAY_FILE_URL, $file_type);
   $tmp = $_FILES['photoimg']['tmp_name'];
@@ -52,7 +51,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 		. "<input type='hidden'id='file_name' name='file_name' value='${file_name}'>"
 		. "<input type='hidden'id='file_size' name='file_size' value='${file_size}'>"
 		. "<div style='float:left;clear:both;'><span>文件名称：</span><span>${file_name}</span></div>"
-		. "<div style='float:left;clear:both;'><span>文件大小：</span><span>${file_size}</span></div>";
+		. "<div style='float:left;clear:both;'><span>文件大小：</span><span>${file_size} KB</span></div>";
     } else {
       echo "上传出错了！";
     }
@@ -66,7 +65,7 @@ function interception_suffix($file_name)
   return pathinfo($file_name, PATHINFO_EXTENSION);
 }
 
-function conditions_judge($file_name, $file_size, $imgArr, $fileArr, $file_type, $suffix)
+function conditions_judge($file_name, $file_size, $imgArr, $file_type, $suffix)
 {
  if ($file_type == "icon" || $file_type == "screen") {
    if (empty($file_name)) {
@@ -77,17 +76,13 @@ function conditions_judge($file_name, $file_size, $imgArr, $fileArr, $file_type,
      echo '图片格式错误！';
      exit;
    }
-   if ($file_size>(100*1024*20)) {
+   if ($file_size>(1024*2)) {
      echo '图片大小不能超过2M';
      exit;
    }
  } else if ($file_type == "file") {
    if (empty($file_name)) {
      echo '请选择要上传的文件';
-     exit;
-   }
-   if (!in_array($suffix, $fileArr)) {
-     echo '文件格式错误！';
      exit;
    }
  } else {

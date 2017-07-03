@@ -125,18 +125,6 @@ body {
   margin-left: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*
  * 上传app
  */
@@ -167,7 +155,7 @@ body {
   #border: 2px solid #c00;
   background-color: #286090;
   color: white;
-  padding: 6px 6px 6px 6px;
+  padding: 7px 6px 7px 6px;
   cursor:pointer;
 }
 
@@ -178,7 +166,7 @@ body {
 }
 
 .category-list {
-  width: 500px;
+  width: 547px;
   height: 35px;
   float: right;
   line-height: 35px;
@@ -248,4 +236,17 @@ body {
 
 .app-comment-input:focus:before{
 	content:none;
+}
+
+.loader-img {
+  width: 145px;
+  height: 20px;
+}
+#stateDomain {
+  font-size: 9pt;
+  color: red;
+}
+.app-file-attribute {
+  float: left;
+  margin-top: 25px;
 }

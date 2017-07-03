@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var state = "true";
   $("#vendor-name").mouseover(function(){
     $(".dropdown").slideDown(100);
   });
@@ -52,6 +53,50 @@ $(document).ready(function(){
   });
   $("#version").focus(function(){
     $("#version").css("border","");
+    $("#stateDomain").html("");
+  });
+
+  /*
+   * 判断版本号是否合法
+   */
+  $("#version").blur(function(){
+    var version = $("#version").val();
+
+    var check = /[^\d.]/g;
+    var check1 = /^\./g;
+    var check2 = /\.{2,}/g;
+    if (check.test(version)){
+      state = "false";
+      $("#stateDomain").html("版本号只能输入数字和“.”!");
+    }
+    if (check1.test(version)) {
+      state = "false";
+      $("#stateDomain").html("版本号第一个字符必须是数字!");
+    }
+    if (check2.test(version)) {
+      state = "false";
+      $("#stateDomain").html("版本号不能连续出现多个“.”!");
+    }
+
+    if(version.split(".").length > 5){
+      state = "false";
+      $("#stateDomain").html("版本号最多4段数字!");
+    }
+    var lv = version.split(".");
+    for(var i=0; i<lv.length; i++){
+      if(parseInt(lv[i]) > 65535){
+        state = "false";
+        $("#stateDomain").html("版本号范围不能超过65535!");
+      }
+    }
+    var last_str = version.substr(version.length-1,1);
+    if(last_str == "."){
+      state = "false";
+      $("#stateDomain").html("版本号最后一位只能是数字!");
+    }
+    if(version.indexOf(".") == -1){
+      $("#stateDomain").html("版本号必须包含“.”!");
+    }
   });
 
   /*
@@ -245,7 +290,6 @@ $(document).ready(function(){
     var install_script = $("#install_script").val();
     var uninstall_script = $("#uninstall_script").val();
     
-    var state = "true";    
  
     if(appIconName == null || appIconName == ""){
       $(".app-icon").css("border","1px dashed red");

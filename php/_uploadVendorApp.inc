@@ -74,22 +74,22 @@ function icon_screen_cp_rename($app_id, $screen_file_1, $screen_file_2, $screen_
     $screen_sum ++;
   }
   if (!is_empty($screen_file_2)) {
-    copy($screen_file_2, $screen_target_url . $app_id . "_0.png");
+    copy($screen_file_2, $screen_target_url . $app_id . "_1.png");
    // unlink($current_url . substr($screen_file_2, 2));
     $screen_sum ++;
   }
   if (!is_empty($screen_file_3)) {
-    copy($screen_file_3, $screen_target_url . $app_id . "_0.png");
+    copy($screen_file_3, $screen_target_url . $app_id . "_2.png");
    // unlink($current_url . substr($screen_file_3, 2));
     $screen_sum ++;
   }
   if (!is_empty($screen_file_4)) {
-    copy($screen_file_4, $screen_target_url . $app_id . "_0.png");
+    copy($screen_file_4, $screen_target_url . $app_id . "_3.png");
    // unlink($current_url . substr($screen_file_4, 2));
     $screen_sum ++;
   }
   if (!is_empty($screen_file_5)) {
-    copy($screen_file_2, $screen_target_url . $app_id . "_0.png");
+    copy($screen_file_2, $screen_target_url . $app_id . "_4.png");
    // unlink($current_url . substr($screen_file_5, 2));
     $screen_sum ++;
   }
@@ -128,7 +128,6 @@ function insert_app_file($app_id, $version, $file_name, $file_size, $status, $in
 {
 global $conn;
   $file_target_url = "../data/app/";
-  //$file_name_md5 = md5($file_name);
   $file_name_md5 = system("md5sum ${file_target_url}/${file_name} | cut -b-32");
   $download_size = round($file_size/1024, 1) . "M";
   $sql = "insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script) "

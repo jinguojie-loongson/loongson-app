@@ -100,11 +100,21 @@ global $smtppass;
 
 function make_uri($_server, $last_part)
 {
+        /*
+         * 2017/7/5 Jin: $_server['REQUEST_SCHEME'] is not safe in PHP
+         *  https://stackoverflow.com/questions/18008135/is-serverrequest-scheme-reliable
+         */
+        if (is_empty($_SERVER['HTTPS'])) {
+            $server_request_scheme = 'http';
+        } else {
+            $server_request_scheme = 'https';
+        }
+
         $uri = $_server['REQUEST_URI'];
 
         $last = strrpos($uri, "/");
        
-	$url = $_server['REQUEST_SCHEME']
+	$url = $server_request_scheme
              . "://"
              . $_server['SERVER_NAME']
              . ":"
@@ -114,7 +124,6 @@ function make_uri($_server, $last_part)
              . $last_part;
 
 	return $url;
-return "heeh";
 }
 
 ?>

@@ -104,7 +104,7 @@ function make_uri($_server, $last_part)
          * 2017/7/5 Jin: $_server['REQUEST_SCHEME'] is not safe in PHP
          *  https://stackoverflow.com/questions/18008135/is-serverrequest-scheme-reliable
          */
-        if (is_empty($_SERVER['HTTPS'])) {
+        if (is_empty(@$_SERVER['HTTPS'])) {
             $server_request_scheme = 'http';
         } else {
             $server_request_scheme = 'https';

@@ -166,7 +166,7 @@ body {
 }
 
 .category-list {
-  width: 547px;
+  width: 540px;
   height: 35px;
   float: right;
   line-height: 35px;
@@ -235,18 +235,87 @@ body {
 }	
 
 .app-comment-input:focus:before{
-	content:none;
+	content: none;
 }
 
 .loader-img {
   width: 145px;
   height: 20px;
 }
+
 #stateDomain {
   font-size: 9pt;
   color: red;
 }
+
 .app-file-attribute {
   float: left;
   margin-top: 25px;
+}
+
+.app-icon {
+  width: 150px;
+  height: 150px;
+  #border: 1px dashed #000;
+  margin-bottom: 50px;
+
+
+  background-color: #efefef;
+  -webkit-box-shadow:0 0 10px #bbb;
+  -moz-box-shadow:0 0 10px #bbb;
+  box-shadow:0 0 10px #bbb;
+}
+
+.vendor-app-attribute {
+  display: inline-block;
+  width: 80px;
+}
+
+.longdesc-div {
+  width: 100%;
+  text-align: left;
+}
+
+.app-screen {
+  width: 150px;
+  height: 150px;
+  margin: 0 8px;
+  float: left;
+
+  background-color: #efefef;
+  -webkit-box-shadow:0 0 10px #bbb; 
+  -moz-box-shadow:0 0 10px #bbb; 
+  box-shadow:0 0 10px #bbb; 
+}
+
+.vendor-app-file-div {
+  width: 100%;
+  margin-top: 50px;
+  background-color: #efefef;
+  padding: 10px;
+}
+
+.vendor-app-file-upload {
+  width: 94px;
+  height: 25px;
+  float: left;
+  border-radius: 4px;
+  margin: 30px;
+}
+
+.vendor-app-file-attribute {
+  clear:both;
+  text-align: left;
+  margin: 10px 0;
+}
+
+.version {
+  display: inline-block;
+  width: 149px;
+}
+
+.perform {
+  clear: both;
+  display: block;
+  text-align: right;
 }

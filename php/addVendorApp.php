@@ -4,7 +4,7 @@
  */
 include_once('vendor_header.php');
 include_once('_util.inc');
-include_once('_uploadVendorApp.inc');
+include_once('_uploadModifyVendorApp.inc');
 include_once('_vendor_login.inc');
 
 $appIconName = $_POST['appIconName'];

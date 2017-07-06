@@ -13,7 +13,7 @@ include_once('_category.inc');
 </form>
 <div id="vendor-upload-app-card-grid">
   <form id="uploadForm" method="post" action="addVendorApp.php">
-    <div class="app-icon" style="width:150px; height:150px; border:1px dashed #000; margin-bottom: 50px;">
+    <div class="app-icon">
       <div id="app-icon-status" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-icon-button pointer">上传应用图标</span>
       <div class="app-icon-edit" style="display:none;" >
@@ -22,10 +22,10 @@ include_once('_category.inc');
       </div>
     </div>
     <div class="vendor-card-div">
-      <span>名称：</span><input class="vendor-card-input" type="text" id="app_name" name="app_name"/>
+      <span class="vendor-app-attribute">名称：</span><input class="vendor-card-input" type="text" id="app_name" name="app_name"/>
     </div>
     <div class="vendor-card-div"> 
-      <span>类别：</span>
+      <span class="vendor-app-attribute">类别：</span>
       <!--根据数据库中类别的数量，category-list div 的大小固定了，如果数据库的类别数量变化了，需要调整大小，后面在优化。 -->
       <div class="category-list">
 
@@ -46,14 +46,14 @@ include_once('_category.inc');
     <div class="vendor-card-div">
       <span>精简描述：</span><input class="vendor-card-input" type="text" class="input-thin" id="description" name="description">
     </div>
-    <div class="vendor-card-div" style="width:100%; text-align: left;">
+    <div class="vendor-card-div longdesc-div">
       完整描述:
       <br>
       <div class="input-thin app-comment-input" contenteditable="true" placeholder="请填写应用详细描述评论，限制500字以内"></div>
       <input type="hidden" id="longdesc" name="longdesc">
     </div>
 
-    <div class="app-screen-1" style="width:150px; height:150px; border:1px dashed #000; float:left;">
+    <div class="app-screen-1 app-screen">
       <input type="hidden" id="appScreenName1" name="appScreenName1">
       <div id="app-screen-status-1" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-screen-button-1 pointer">上传截图</span>
@@ -62,7 +62,7 @@ include_once('_category.inc');
       </div>
     </div>
     
-    <div class="app-screen-2" style="width:150px; height:150px; border:1px dashed #000; float:left;">
+    <div class="app-screen-2 app-screen">
       <input type="hidden" id="appScreenName2" name="appScreenName2">
       <div id="app-screen-status-2" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-screen-button-2 pointer">上传截图</span>
@@ -71,7 +71,7 @@ include_once('_category.inc');
       </div>
     </div>
 
-    <div class="app-screen-3" style="width:150px; height:150px; border:1px dashed #000; float:left;">
+    <div class="app-screen-3 app-screen">
       <input type="hidden" id="appScreenName3" name="appScreenName3">
       <div id="app-screen-status-3" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-screen-button-3 pointer">上传截图</span>
@@ -80,7 +80,7 @@ include_once('_category.inc');
       </div>
     </div>
 
-    <div class="app-screen-4" style="width:150px; height:150px; border:1px dashed #000; float:left;">
+    <div class="app-screen-4 app-screen">
       <input type="hidden" id="appScreenName4" name="appScreenName4">
       <div id="app-screen-status-4" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-screen-button-4 pointer">上传截图</span>
@@ -89,7 +89,7 @@ include_once('_category.inc');
       </div>
     </div>
 
-    <div class="app-screen-5" style="width:150px; height:150px; border:1px dashed #000; float:left;">
+    <div class="app-screen-5  app-screen">
       <input type="hidden" id="appScreenName5" name="appScreenName5">
       <div id="app-screen-status-5" style="display:none"><img class="loader-img" src="../images/loader.gif" alt="uploading"/></div>
       <span class="app-screen-button-5 pointer">上传截图</span>
@@ -98,25 +98,27 @@ include_once('_category.inc');
       </div>
     </div>
     
-    <div class="vendor-card-div" style="width:100%; margin-top: 50px;">
-      <div style="border:1px solid #000; clear:both; padding: 10px;">
-	<div style="width:94px; height:25px; float:left; border-radius:4px; margin: 30px; ">
-          <button class="btn btn-primary app-file-button pointer" type="button" style="clear: both; display: block;">上传安装文件</button>
+      <div class="vendor-card-div vendor-app-file-div">
+	<div class="vendor-app-file-upload">
+          <button class="btn btn-primary app-file-button pointer" type="button">上传安装文件</button>
           <!-- <span class="app-file-button pointer">上传安装文件</span> -->
         </div>
         <div class="app-file-attribute"></div>
-	<div style="clear:both; text-align:left; margin: 10px 0;">
-          <span style="display: inline-block;width: 149px;">版本号：</span>
+	<div class="vendor-app-file-attribute">
+          <span class="version">版本号：</span>
 	  <input class="vendor-card-input" type="text" id="version" name="version" placeholder="最多4段数字，以“.”分隔，范围0～65535"><span id="stateDomain"></span>
         </div>
-	<div style="clear:both; text-align:left; margin: 10px 0;">
+	<div class="vendor-app-file-attribute">
           <span>安装脚本(shell命令)：</span><input class="vendor-card-input" type="text" id="install_script" name="install_script">
         </div>
-        <div style="clear:both; text-align:left; margin: 10px 0;">
+        <div class="vendor-app-file-attribute">
           <span>卸载脚本(shell命令)：</span><input class="vendor-card-input" type="text" id="uninstall_script" name="uninstall_script">
         </div>
       </div>
+
+    <div class="perform">
+      <button class="btn btn-primary" type="button" id="appSubmit">提交应用</button>
+      <button class="btn btn-warning cancel" type="button"> 取 消 </button>
     </div>
-    <button class="btn btn-primary" type="button" style="clear: both; display: block;" id="appSubmit">提交应用</button>
   </form>
 </div>

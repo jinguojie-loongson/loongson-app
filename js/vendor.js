@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  var state = "true";
   $("#vendor-name").mouseover(function(){
     $(".dropdown").slideDown(100);
   });
@@ -49,10 +48,15 @@ $(document).ready(function(){
    * 点击版本号输入框，消失红色边框
    */
   $("#version").click(function(){
-    $("#version").css("border","");
+    $("#stateDomain").html("");
   });
   $("#version").focus(function(){
-    $("#version").css("border","");
+    $("#stateDomain").html("");
+  });
+  $("#local_version").click(function(){
+    $("#stateDomain").html("");
+  });
+  $("#local_version").focus(function(){
     $("#stateDomain").html("");
   });
 
@@ -60,43 +64,17 @@ $(document).ready(function(){
    * 判断版本号是否合法
    */
   $("#version").blur(function(){
-    var version = $("#version").val();
+    versionCheck($("#version").val());
+  });
+  $("#local_version").blur(function(){
+    var local_version = $("#local_version").val();
+    var his_version = $("#his_version").val();
+    var his_status = $("#his_status").val();
 
-    var check = /[^\d.]/g;
-    var check1 = /^\./g;
-    var check2 = /\.{2,}/g;
-    if (check.test(version)){
-      state = "false";
-      $("#stateDomain").html("版本号只能输入数字和“.”!");
-    }
-    if (check1.test(version)) {
-      state = "false";
-      $("#stateDomain").html("版本号第一个字符必须是数字!");
-    }
-    if (check2.test(version)) {
-      state = "false";
-      $("#stateDomain").html("版本号不能连续出现多个“.”!");
-    }
-
-    if(version.split(".").length > 4){
-      state = "false";
-      $("#stateDomain").html("版本号最多4段数字!");
-    }
-    var lv = version.split(".");
-    for(var i=0; i<lv.length; i++){
-      if(parseInt(lv[i]) > 65535){
-        state = "false";
-        $("#stateDomain").html("版本号范围不能超过65535!");
-      }
-    }
-    var last_str = version.substr(version.length-1,1);
-    if(last_str == "."){
-      state = "false";
-      $("#stateDomain").html("版本号最后一位只能是数字!");
-    }
-    if(version.indexOf(".") == -1){
-      $("#stateDomain").html("版本号必须包含“.”!");
-    }
+    var state = versionCheck(local_version);
+    if (state == "true") {
+      status_check_version(state, his_status, local_version, his_version);
+    } 
   });
 
   /*
@@ -172,7 +150,7 @@ $(document).ready(function(){
    */
   $(".app-icon-button").click( function () {
     $("#file_type").val("icon");
-    $(".app-icon").css("border","1px dashed #000");
+    $(".app-icon").css("border","");
     $("#photoimg").trigger("click");
   });
   /*
@@ -198,31 +176,31 @@ $(document).ready(function(){
   $(".app-screen-button-1").click(function (){
     $("#file_type").val("screen");
     $("#screen_number").val("1");
-    $(".app-screen-1").css("border","1px dashed #000");
+    $(".app-screen-1").css("border","");
     $("#photoimg").trigger("click");
   });
   $(".app-screen-button-2").click(function (){
     $("#file_type").val("screen");
     $("#screen_number").val("2");
-    $(".app-screen-1").css("border","1px dashed #000");
+    $(".app-screen-1").css("border","");
     $("#photoimg").trigger("click");
   });
   $(".app-screen-button-3").click(function (){
     $("#file_type").val("screen");
     $("#screen_number").val("3");
-    $(".app-screen-1").css("border","1px dashed #000");
+    $(".app-screen-1").css("border","");
     $("#photoimg").trigger("click");
   });
   $(".app-screen-button-4").click(function (){
     $("#file_type").val("screen");
     $("#screen_number").val("4");
-    $(".app-screen-1").css("border","1px dashed #000");
+    $(".app-screen-1").css("border","");
     $("#photoimg").trigger("click");
   });
   $(".app-screen-button-5").click(function (){
     $("#file_type").val("screen");
     $("#screen_number").val("5");
-    $(".app-screen-1").css("border","1px dashed #000");
+    $(".app-screen-1").css("border","");
     $("#photoimg").trigger("click");
   });  
 
@@ -270,11 +248,22 @@ $(document).ready(function(){
     $(".app-file-button").css("border","");
     $("#photoimg").trigger("click");
   });
+  $("#app_file_button").click(function(){
+    var his_status = $("#his_status").val();
+    if (his_status == "under_review") {
+      $("#stateDomain").html("当前状态未：未审核。不能上传新版本！");
+    } else {
+      $("#file_type").val("file");
+      $("#app_file_button").css("border","");
+      $("#photoimg").trigger("click");
+    }
+  });
   
   /*
    * 提交
    */
   $("#appSubmit").on("click",function(){
+    var state = "true";
     var appIconName = $("#appIconName").val();
     var app_name = $("#app_name").val();
     var category_id = $("#category_id").val();
@@ -287,7 +276,6 @@ $(document).ready(function(){
     var appScreenName5 = $("#appScreenName5").val();
     var file_name = $("#file_name").val();
     var file_size = $("#file_size").val();
-    var version = $("#version").val();
     var install_script = $("#install_script").val();
     var uninstall_script = $("#uninstall_script").val();
     
@@ -327,10 +315,7 @@ $(document).ready(function(){
       $(".app-file-button").css("border","1px solid red");
       state = "false";
     }
-    if(version == null || version == ""){
-      $("#version").css("border","1px solid red");
-      state = "false";
-    }
+    var version_state = versionCheck($("#version").val());
     if(install_script == null || install_script == ""){
       $("#install_script").css("border","1px solid red");
       state = "false";
@@ -339,14 +324,109 @@ $(document).ready(function(){
       $("#uninstall_script").css("border","1px solid red");
       state = "false";
     }
-    if(state == "true"){
+    if(state == "true" && version_state == "true"){
       $("#longdesc").val(longdesc);
       $("#uploadForm").submit();
-      //$("#uploadForm").ajaxSubmit(function(message) { 
-         //alert(message);
-      //});
     }
 
+  });
+
+  /*
+   * 上传新版本、修改信息 提交
+   */
+  $("#uploadOrModify").on("click",function(){
+    var state = "true";
+    
+    var url_state = $("#state").val();
+
+    if (url_state == "0") {
+      var file_name = $("#file_name").val();
+      var file_size = $("#file_size").val();
+      var install_script = $("#install_script").val();
+      var uninstall_script = $("#uninstall_script").val();
+
+      var local_version = $("#local_version").val();
+      var his_version = $("#his_version").val();
+      var his_status = $("#his_status").val();
+
+      if ((file_name == null || file_name == "") &&
+        (file_size == null || file_size == ""))
+      {
+        $("#app_file_button").css("border","1px solid red");
+        state = "false";
+      }
+      if (install_script == null || install_script == "") {
+        $("#install_script").css("border","1px solid red");
+        state = "false";
+      }
+      if (uninstall_script == null || uninstall_script == "") {
+        $("#uninstall_script").css("border","1px solid red");
+        state = "false";
+      }
+      var version_state = versionCheck(local_version);
+      if (version_state == "true") {
+        version_state = status_check_version(version_state, his_status, local_version, his_version);
+      }
+
+      if (state == "true" && version_state == "true") {
+       $("#uploadModifyForm").submit(); 
+      }
+    } else if (url_state == "1") {
+      var appIconName = $("#appIconName").val();
+      var app_name = $("#app_name").val();
+      var category_id = $("#category_id").val();
+      var description = $("#description").val();
+      var longdesc = $(".app-comment-input").text();
+      var appScreenName1 = $("#appScreenName1").val();
+      var appScreenName2 = $("#appScreenName2").val();
+      var appScreenName3 = $("#appScreenName3").val();
+      var appScreenName4 = $("#appScreenName4").val();
+      var appScreenName5 = $("#appScreenName5").val();
+      
+      if (appIconName == null || appIconName == "") {
+        $(".app-icon").css("border","1px dashed red");
+        state = "false";
+      }
+      if (app_name == null || app_name == "") {
+        $("#app_name").css("border","1px solid red");
+        state = "false";
+      }
+      if (category_id == null || category_id == "") {
+        $(".category-list").css("border","1px solid red");
+        state = "false";
+      }
+      if (description == null || description == "") {
+        $("#description").css("border","1px solid red");
+        state = "false";
+      }
+      if (longdesc == 0) {
+        $(".app-comment-input").css("border","1px solid red");
+        state = "false";
+      }
+      if ((appScreenName1 == null || appScreenName1 == "") &&
+        (appScreenName2 == null || appScreenName2 == "") &&
+        (appScreenName3 == null || appScreenName3 == "") &&
+        (appScreenName4 == null || appScreenName4 == "") &&
+        (appScreenName5 == null || appScreenName5 == ""))
+      {
+        $(".app-screen-1").css("border","1px dashed red");
+        state = "false";
+      }
+      
+      if (state == "true") {
+        $("#longdesc").val(longdesc);
+        $("#uploadModifyForm").submit();
+      }
+    } else {
+      
+    }
+  });
+ 
+  /*
+   * 取消
+   */
+  $(".cancel").on("click",function(){
+     window.location.href = "vendorWorkbench.php";
   });
 
 });
@@ -360,7 +440,6 @@ var obj={
 function change(span)
 {
   $('span[name="'+$(span).attr('name')+'"]').each(function(){
-    if(this.checked&&this!=span)
     {
       this.className="unchecked";
       this.checked=false;
@@ -370,5 +449,91 @@ function change(span)
   span.className="checked";
   span.checked=true;
   $("#category_id").val($(span).attr("value"));
+}
+
+function versionCheck($version) {
+    var state = "true";
+    var version = $version;
+    var check = /[^\d.]/g;
+    var check1 = /^\./g;
+    var check2 = /\.{2,}/g;
+
+    $("#stateDomain").html();
+    if (check.test(version)){
+      state = "false";
+      $("#stateDomain").html("版本号只能输入数字和“.”!");
+    }
+    if (check1.test(version)) {
+      state = "false";
+      $("#stateDomain").html("版本号第一个字符必须是数字!");
+    }
+    if (check2.test(version)) {
+      state = "false";
+      $("#stateDomain").html("版本号不能连续出现多个“.”!");
+    }
+
+    if(version.split(".").length > 4){
+      state = "false";
+      $("#stateDomain").html("版本号最多4段数字!");
+    }
+    var lv = version.split(".");
+    for(var i=0; i<lv.length; i++){
+      if(parseInt(lv[i]) > 65535){
+        state = "false";
+        $("#stateDomain").html("版本号范围不能超过65535!");
+      }
+    }
+    var last_str = version.substr(version.length-1,1);
+    if(last_str == "."){
+      state = "false";
+      $("#stateDomain").html("版本号最后一位只能是数字!");
+    }
+    if(version.indexOf(".") == -1){
+      state = "false";
+      $("#stateDomain").html("版本号必须包含“.”!");
+    }
+    return state;
+}
+
+function app_version_compare(local_version, server_version)
+{
+  var lv = local_version.split(".");
+  var sv = server_version.split(".");
+  i = 0;
+  while (i < lv.length && i < sv.length)
+  {
+    if (parseInt(lv[i]) < parseInt(sv[i]))
+      return -1;
+    if (parseInt(lv[i]) > parseInt(sv[i]))
+      return 1;
+    i++;
+  }
+  if (i < lv.length)
+    return 1;
+  if (i < sv.length)
+    return -1;
+
+  return 0;
+}
+
+/*
+ * 根据应用的状态 判断版本号是否合法
+ */
+function status_check_version(state, his_status, local_version, his_version)
+{
+  if (his_status == "published" || his_status == "off_the_shelf" || his_status == "rejected") {
+    var version_contrast = app_version_compare(local_version, his_version);
+    if (version_contrast != 1) {
+      $("#stateDomain").html("当前版本号，不能小于当前版本的版本号！");
+      state = "false";
+    }
+  } else if (his_status == "under_review") {
+      $("#stateDomain").html("当前状态未：未审核。不能上传新版本！");
+      state = "false";
+  } else {
+      $("#stateDomain").html("当前状态无效！");
+      state = "false";
+  }
+  return state;
 }
 

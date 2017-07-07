@@ -182,23 +182,43 @@ function upload_modify_vendor_app($state, $app_id, $vendor_id, $icon_file, $name
 function get_vendor_app_upload_or_modify_html($app_id, $state)
 {
   $html = "";
-  if ($state == 0) {
-    $html = get_vendor_app_file($app_id);
-    return $html;
-  } else if ($state == 1) {
-    icon_cp_tmp($app_id);
-    screen_cp_tmp($app_id);
-    $html = get_vendor_app_icon($app_id);
-    $html = $html . get_vendor_app_name($app_id);
-    $html = $html . get_vendor_app_category($app_id);
-    $html = $html . get_vendor_app_description($app_id);
-    $html = $html . get_vendor_app_longdesc($app_id);
-    $html = $html . get_vendor_app_screen($app_id);
-
+  
+  $count = get_app_count($app_id);
+  if($count == 0){
+    $html = get_error_html("不存在该应用！");
     return $html;
   } else {
+    if ($state == 0) {
+      $html = get_vendor_app_file($app_id);
+      return $html;
+    } else if ($state == 1) {
+      icon_cp_tmp($app_id);
+      screen_cp_tmp($app_id);
+      $html = get_vendor_app_icon($app_id);
+      $html = $html . get_vendor_app_name($app_id);
+      $html = $html . get_vendor_app_category($app_id);
+      $html = $html . get_vendor_app_description($app_id);
+      $html = $html . get_vendor_app_longdesc($app_id);
+      $html = $html . get_vendor_app_screen($app_id);
 
+      return $html;
+    } else {
+      $html = get_error_html("参数错误！");
+      return $html;
+    }
   }
+}
+
+/*
+ * 组装错误提示 html
+ */
+function get_error_html($name)
+{
+  $html = "<div class='vendor-card-div vendor-app-file-div'> \n"
+	. "<input type='hidden' id='error' name='error' value='error'> \n"
+	. "<h4>ERROR：${name} </h4> \n"
+	. "</div>";
+  return $html;
 }
 
 /*

@@ -432,6 +432,15 @@ $(document).ready(function(){
      window.location.href = "vendorWorkbench.php";
   });
 
+  /*
+   * 当参数错误或者不存在该应用的时候，页面需要隐藏一些标签
+   */
+  var error = $("#error").val();
+  if(error == "error"){
+    $("#title").hide();
+    $("#version_title").hide();
+    $(".btn-primary").hide();
+  }
 });
 
 /*

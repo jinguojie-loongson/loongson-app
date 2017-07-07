@@ -2,6 +2,7 @@
 
 include_once('_db.inc');
 include_once('_util.inc');
+include_once('_vendor_login.inc');
 
 function app_version_compare($local_version, $server_version)
 {
@@ -161,6 +162,15 @@ global $conn;
 
   $sql = "select status from app_file "
          . "  where id=${id} and version='${version}' ";
+  return db_get_one_value($sql);
+}
+
+function get_app_count($id)
+{
+global $conn;
+  $vendor_id = get_current_vendor();
+  $sql = "select count(1) from app "
+	. "where id=${id} and vendor_id=${vendor_id}";
   return db_get_one_value($sql);
 }
 

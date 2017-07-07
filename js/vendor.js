@@ -326,6 +326,7 @@ $(document).ready(function(){
     }
     if(state == "true" && version_state == "true"){
       $("#longdesc").val(longdesc);
+      $("#appSubmit").attr("disabled","disabled");
       $("#uploadForm").submit();
     }
 
@@ -369,7 +370,8 @@ $(document).ready(function(){
       }
 
       if (state == "true" && version_state == "true") {
-       $("#uploadModifyForm").submit(); 
+        $("#uploadOrModify").attr("disabled","disabled");
+        $("#uploadModifyForm").submit(); 
       }
     } else if (url_state == "1") {
       var appIconName = $("#appIconName").val();
@@ -415,10 +417,11 @@ $(document).ready(function(){
       
       if (state == "true") {
         $("#longdesc").val(longdesc);
+        $("#uploadOrModify").attr("disabled","disabled");
         $("#uploadModifyForm").submit();
       }
     } else {
-      
+      alert("参数错误！"); 
     }
   });
  

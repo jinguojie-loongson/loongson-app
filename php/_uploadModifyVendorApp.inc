@@ -135,7 +135,7 @@ function insert_app_file($app_id, $version, $file_name, $file_size, $status, $in
 {
 global $conn;
   $file_target_url = "../data/app/";
-  $file_name_md5 = system("md5sum ${file_target_url}/${file_name} | cut -b-32");
+  $file_name_md5 = system("md5sum '${file_target_url}/${file_name}' | cut -b-32");
   $download_size = round($file_size/1024, 1) . "M";
   $sql = "insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script) "
 	. " values (${app_id}, '${version}', '${file_name}', '${download_size}', '${file_name_md5}', '${status}', '${install_script}', '${uninstall_script}')";

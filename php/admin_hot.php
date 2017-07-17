@@ -50,6 +50,7 @@ include_once('admin_top.php');
       <li><a href="admin_comment.php">评论管理</a></li>
       <li class="active"><a href="admin_hot.php">热门编辑</a></li>
       <li><a href="admin_app.php">应用审核</a></li>
+      <li><a href="admin_vendor.php">开发者管理</a></li>
 </div>
 
 

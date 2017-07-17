@@ -3,6 +3,8 @@
 include_once('_db.inc');
 include_once('_util.inc');
 include_once('_vendor_login.inc');
+include_once('_vendor.inc');
+include_once('_admin.inc');
 
 function app_version_compare($local_version, $server_version)
 {
@@ -303,5 +305,62 @@ function get_app_status_icon_html($id, $status)
   $text = app_get_status_short_text($status);
 
   return "<span id='app-icon' class='${status}'>${text}</span>";
+}
+
+/*
+ * 获取开发者应用页面数据
+ */
+function get_vendor_list()
+{
+  $html = "";
+  
+  foreach (get_vendor_all_id() as $vendor_id)
+  {
+    $html = $html . get_vendor_one_html($vendor_id);
+  }
+  return $html;
+}
+
+/*
+ * 组装 开发者应用页面 列表 html
+ */
+function get_vendor_one_html($vendor_id)
+{
+  $login_name = get_vendor_login_name($vendor_id);
+  $vendor_name = get_vendor_name($vendor_id);
+  $email = get_vendor_email($vendor_id);
+  $time = get_vendor_regtime($vendor_id);
+  $isActive = get_vendor_isActive($vendor_id);
+  $class = "";  
+  $button_name = "";
+  if($isActive == 1){
+    $class = "btn-danger";
+    $button_name = "停用";
+  } else {
+    $class = "btn-success";
+    $button_name = "激活";
+  }
+  $html = "<tr> \n"
+	. " <td>${vendor_id}</td> \n"
+	. " <td>${login_name}</td> \n"
+	. " <td>${vendor_name}</td> \n"
+	. " <td>${email}</td> \n"
+	. " <td>${time}</td> \n"
+	. " <td id='button_$vendor_id'><button type='button' class='btn ${class}' onclick='updateVendorIsActive($vendor_id, $isActive)'>${button_name}</button></td> \n";
+  return $html;
+}
+
+/*
+ * 修改 vendor 表状态
+ */
+function modify_vendor_isActive($vendor_id, $isActive)
+{
+  $admin_id = get_current_admin();
+  if ($admin_id != "") {
+    update_vendor_isActive($vendor_id, $isActive);
+    return $isActive;
+  } else {
+    return $isActive;
+  }
 }
 ?>

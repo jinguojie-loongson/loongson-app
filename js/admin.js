@@ -59,3 +59,26 @@ $(document).ready(function(){
     audit_app_del($(this), $(this).parent().find("#comment_id").val());
   });
 });
+
+function updateVendorIsActive(vendor_id, isActive)
+{
+  url = window.location.href;
+  n = url.lastIndexOf("/");
+  url = url.substr(0, n) + "/updateVendorIsActive.php?" + "vendor_id=" + vendor_id + "&isActive=" + isActive;
+
+  var button_id = "button_" + vendor_id;
+  /*
+   * 修改状态，返回html
+   */
+  get_server_service(url, "", function(data) {
+    if (data == 1) {
+      $("#"+button_id).html("");
+      $("#"+button_id).html("<button type='button' class='btn btn-success' onclick='updateVendorIsActive(" + vendor_id + ", 0)'>激活</button>");
+      success_message("已停用！");
+    } else {
+      $("#"+button_id).html("");
+      $("#"+button_id).html("<button type='button' class='btn btn-danger' onclick='updateVendorIsActive(" + vendor_id + ", 1)'>停用</button>");
+      success_message("已激活！");
+    }
+  });
+}

@@ -3,12 +3,24 @@ include_once('_db.inc');
 include_once('_util.inc');
 include_once('_app.inc');
 
+/*
+ * 查询出所有开发者id
+ */
+function get_vendor_all_id()
+{
+global $conn;
+
+  $sql = "select id from vendor";
+  return db_get_one_column($sql);
+}
 
 /*
  * 根据vendor_id 查询vendor_name
  */
 function get_vendor_name($id)
 {
+global $conn;
+
   $sql = "select vendor_name from vendor "
 	. " where id = ${id}";
   return db_get_one_value($sql);
@@ -66,6 +78,84 @@ function get_vendor_all_app_html($vendor_id)
     $html = $html . get_vendor_one_app_html($id);
   }
   return $html;
+}
+
+/*
+ * 根据vendor_id 查询开发者名称
+ */
+function get_vendor_login_name($vendor_id)
+{
+global $conn;
+
+  $sql = "select login_name from vendor "
+	. " where id = ${vendor_id}";
+
+  return db_get_one_value($sql);
+}
+
+/*
+ * 根据vendor_id 查询开发者Email
+ */
+function get_vendor_email($vendor_id)
+{
+global $conn;
+
+  $sql = "select email from vendor "
+        . " where id = ${vendor_id}";
+
+  return db_get_one_value($sql);
+}
+
+/*
+ * 根据vendor_id 查询开发者注册时间
+ */
+function get_vendor_regtime($vendor_id)
+{
+global $conn;
+
+  $sql = "select regtime from vendor "
+        . " where id = ${vendor_id}";
+  $reg_time = db_get_one_value($sql);
+  ini_set("date.timezone","PRC");
+  
+  if ($reg_time != null && $reg_time != "") {
+    $time = date("Y-m-d H:i", $reg_time);
+  } else {
+    $time = "";
+  }
+  return $time;
+}
+
+/*
+ * 根据vendor_id 查询出开发者状态
+ */
+function get_vendor_isActive($vendor_id)
+{
+global $conn;
+
+  $sql = "select isActive from vendor "
+        . " where id = ${vendor_id}";
+
+  return db_get_one_value($sql);
+}
+
+/*
+ * 根据vendor_id 和 isActive 修改 isActive
+ */
+function update_vendor_isActive($vendor_id, $isActive)
+{
+global $conn;
+  
+  $sql = "";
+  if ($isActive == 1) {
+    $sql = "update vendor set isActive = 0 "
+	. " where id = ${vendor_id}";
+  } else {
+    $sql = "update vendor set isActive = 1 "
+        . " where id = ${vendor_id}";
+  }
+  
+  return db_exec($sql);
 }
 
 ?>

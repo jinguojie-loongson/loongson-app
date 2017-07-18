@@ -251,7 +251,7 @@ $(document).ready(function(){
   $("#app_file_button").click(function(){
     var his_status = $("#his_status").val();
     if (his_status == "under_review") {
-      $("#stateDomain").html("当前状态未：未审核。不能上传新版本！");
+      $("#stateDomain").html("当前状态为：未审核。不能上传新版本！");
     } else {
       $("#file_type").val("file");
       $("#app_file_button").css("border","");
@@ -441,6 +441,25 @@ $(document).ready(function(){
     $("#version_title").hide();
     $(".btn-primary").hide();
   }
+
+  $(".reviewmessage").on("click",function(){
+    var appid = $(this).attr('id');
+	$.ajax({
+          type: "post",
+          url: "getReviewHtml.php",
+          data: {"appid":appid},
+          async : false,
+          dataType: "text",
+        success: function (data ,textStatus, jqXHR)
+        {
+                $("#reviewdiv").html(data);
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("请求失败！"+XMLHttpRequest+"==="+textStatus+"==="+errorThrown);
+        }
+     });
+  });
+
 });
 
 /*
@@ -540,7 +559,7 @@ function status_check_version(state, his_status, local_version, his_version)
       state = "false";
     }
   } else if (his_status == "under_review") {
-      $("#stateDomain").html("当前状态未：未审核。不能上传新版本！");
+      $("#stateDomain").html("当前状态为：未审核。不能上传新版本！");
       state = "false";
   } else {
       $("#stateDomain").html("当前状态无效！");
@@ -548,4 +567,21 @@ function status_check_version(state, his_status, local_version, his_version)
   }
   return state;
 }
+ 
+function get_review_byappid(appid){
+$.ajax({
+        type: "post",
+        url: "getReviewHtml.php",
+        data: {"appid":appid},
+        async : false,
+        dataType: "text",
+        success: function (data ,textStatus, jqXHR)
+        {
+		$("#reviewdiv").html(data);	
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("请求失败！"+XMLHttpRequest+"==="+textStatus+"==="+errorThrown);
+        }
+     });
 
+}

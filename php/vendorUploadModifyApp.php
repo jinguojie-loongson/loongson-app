@@ -9,7 +9,7 @@ include_once('_app.inc');
 $app_id = $_GET['id'];
 $state = $_GET['state'];
 $app_name = get_app_name($app_id);
-$version = get_app_version($app_id);
+$version = get_app_file_version_status($app_id);
 $h_name = "";
 $button_name = "";
 if ($state == 0) {
@@ -35,7 +35,7 @@ if ($state == 0) {
 <div id="vendor-upload-app-card-grid">
   <h4 id="title" style="float:left; height:0px;"><?= $h_name ?></h4><br>
   <?php if ($state == 0) { ?> 
-  <h4 id="version_title" style="float:left; height:0px;">版本号必须大于：<?= $version ?></h4>
+  <h4 id="version_title" style="float:left; height:0px;">版本号必须大于：<?= $version[0][0] ?></h4>
   <?php } ?>
   <form id="uploadModifyForm" method="post" action="uploadModifyVendorApp.php">
     <input type="hidden" id="app_id" name="app_id" value="<?= $app_id ?>">

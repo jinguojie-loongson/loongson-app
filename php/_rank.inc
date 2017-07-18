@@ -6,8 +6,8 @@ include_once('_app.inc');
 
 function get_most_rank_app($category_id, $limit, $status, $except = "")
 {
-  /* 按download_count从大到小排序 */
-  $sql = "select DISTINCT app.id from app, app_file "
+  /* 按download_count从大到小排序DISTINCT */
+  $sql = "select DISTINCT  app.id from app, app_file "
        . "  where app.id = app_file.id ";
 
   if (!is_empty($status))

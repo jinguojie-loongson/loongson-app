@@ -39,12 +39,37 @@
  */
 include_once('_util.inc');
 include_once('_app.inc');
+include_once('_review.inc');
+include_once('_vendor_login.inc');
 
-print_r($_GET);
-$id = is_empty($_GET['id']) ? $_POST['data'] : $_GET['id'];
+$appid = is_empty($_GET['appid']) ? $_POST['data'] : $_GET['appid'];  
+$isExistAudit =  is_empty($_GET['isExistAudit']) ? $_POST['data'] : $_GET['isExistAudit'];
+$versionreview =  is_empty($_GET['versionreview']) ? $_POST['data'] : $_GET['versionreview'];
+$isappOfftheshelf =  is_empty($_GET['isappOfftheshelf']) ? $_POST['data'] : $_GET['isappOfftheshelf'];
+$comment = is_empty($_GET['comment']) ? $_POST['data'] : $_GET['comment'];
 
-set_app_status($id, "published");
+$date_time = time();
+$is_admin = 0;
 
-echo $id;
-exit;
+if($isappOfftheshelf == 0) {
+  $is_admin = 1;
+}
+$operator = 0;
+$status = "";
+
+if($isExistAudit == 1) { 
+  $status = "published";
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+}
+if($isExistAudit == 2) {
+  $status = "rejected";
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+  echo $result;
+}
+if($isExistAudit == 3) {
+  $status = "off_the_shelf";
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+  echo $result;
+}
+ 
 ?>

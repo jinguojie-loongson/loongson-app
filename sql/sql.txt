@@ -31,6 +31,7 @@ create table app (
   longdesc varchar(50000),
   icon_file varchar(500),   #图片文件，位于data/icon目录下
   screen_file_count int,   #界面文件（最多5个），位于data/screen目录下，文件名格式“<id>_<i>.png”，其中<i>从0开始
+  is_online  int,
   download_count int        #下载次数
 );
 
@@ -118,14 +119,14 @@ insert into category (name) VALUES
   ("其它")
 ;
 
-insert into app (id, name, vendor_id, category_id, version, description, icon_file, screen_file_count, download_count) VALUES
-  (1, "WPS Office", 1, 1, "1.0.016", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502),
-  (2, "QQ", 2, 2, "2.3.245.2501", "腾讯即时通讯软件", "2.png", 4, 235935),
-  (3, "扫雷", 3, 7, "2.3.245.2500", "简单游戏", "3.png", 5, 234),
-  (4, "Photoshop", 4, 5, "2.3.245.2500", "Adobe图像处理软件", "4.png", 2, 93487),
-  (5, "百度盘", 5, 10, "2.3.245.2500", "百度的个人数据同步客户端", "5.png", 1, 82344),
-  (6, "同花顺", 6, 10, "2.3.245.2500", "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 5, 23434),
-  (999999, "应用公社", 7, 9, "1.0.0", "龙芯官方的应用下载平台，鼓励开发者提交应用并获得积分奖励", "6.png", 1, 23434)
+insert into app (id, name, vendor_id, category_id, version, description, icon_file, screen_file_count, download_count,is_online) VALUES
+  (1, "WPS Office", 1, 1, "1.0.016", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502,0),
+  (2, "QQ", 2, 2, "2.3.245.2501", "腾讯即时通讯软件", "2.png", 4, 235935,0),
+  (3, "扫雷", 3, 7, "2.3.245.2500", "简单游戏", "3.png", 5, 234,0),
+  (4, "Photoshop", 4, 5, "2.3.245.2500", "Adobe图像处理软件", "4.png", 2, 93487,0),
+  (5, "百度盘", 5, 10, "2.3.245.2500", "百度的个人数据同步客户端", "5.png", 1, 82344,0),
+  (6, "同花顺", 6, 10, "2.3.245.2500", "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 5, 23434,0),
+  (999999, "应用公社", 7, 9, "1.0.0", "龙芯官方的应用下载平台，鼓励开发者提交应用并获得积分奖励", "6.png", 1, 23434,0)
 ;
 
 insert into hot (id, app_id, banner_file) VALUES

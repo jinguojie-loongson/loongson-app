@@ -386,9 +386,10 @@ function get_vendor_app_screen($app_id)
  */
 function get_vendor_app_file($app_id)
 {
-  $his_version = get_app_version($app_id);
-  $his_status = get_app_status($app_id, $his_version);
-
+  $his_version_status = get_app_file_version_status($app_id);
+  $his_version = $his_version_status[0][0];
+  $his_status = $his_version_status[0][1];
+  
   $html = "<div class='vendor-card-div vendor-app-file-div'> \n"
 	. "<input type='hidden' id='his_status' name='his_status' value='${his_status}'> \n"
 	. "<input type='hidden' id='his_version' name='his_version' value='${his_version}'> \n"

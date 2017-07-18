@@ -319,3 +319,63 @@ body {
   display: block;
   text-align: right;
 }
+
+.textleft {
+  text-align:left;
+}
+
+.spancolor {
+  color:#888888;
+  font-size:15px;
+}
+
+.app-filename-fontsize {
+  font-size:20px;
+  font-weight:bold;
+}
+
+.app-category-fontsize {
+  font-size:16px;
+  font-weight:bold;
+}
+
+.imgsize {
+  width:128px;
+  height:128px;
+}
+
+.installboder {
+  border-bottom:1px solid #000
+}
+
+.appofftheshelf {
+  width:80px;
+  font-text:center;
+}
+
+.tdwidth{
+  width:110px;
+}
+
+.tdwidthstatus{
+  width:150px;
+}
+
+.tdwidthname{
+  width:140px;
+}
+
+.tdwidthcategory{
+  width:90px;
+}
+
+.tdwidthdefult{
+  width:300px;
+}
+
+.hrstyle{
+  height:1px;
+  border:none;
+  border-top:1px solid #555555;
+}
+

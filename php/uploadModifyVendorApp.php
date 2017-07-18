@@ -15,10 +15,9 @@ $h_name = "";
 if ($state == 0) {
   $file_name = isset($_POST['file_name']) ? $_POST['file_name'] : "";
   $file_size = isset($_POST['file_size']) ? $_POST['file_size'] : "";
-  $version = isset($_POST['version']) ? $_POST['version'] : "";
+  $version = isset($_POST['local_version']) ? $_POST['local_version'] : "";
   $install_script = isset($_POST['install_script']) ? $_POST['install_script'] : "";
   $uninstall_script = isset($_POST['uninstall_script']) ? $_POST['uninstall_script'] : "";
-  
   if ($file_name == "" && $file_size == "" && $version == "" && $install_script == "" && $uninstall_script == "")
   {
     $h_name = "提交应用新版本失败，参数错误";

@@ -34,7 +34,6 @@ global $conn;
 function get_all_app_id_for_vendor($vendor_id)
 {
 global $conn;
-
   $sql = "select app.id from app, review "
 	. " where app.id = review.app_id and  vendor_id = ${vendor_id} "
 	. " order by review.date_time desc";
@@ -156,6 +155,77 @@ global $conn;
   }
   
   return db_exec($sql);
+}
+
+/*
+*获取vendorId发布的app表里的信息
+*/
+function get_all_app_by_vendorId($vendor_id) {
+global $conn;
+  $sql = "select id,name,category_id,version,description,download_count,icon_file,is_online  from app where id in "
+        ." (select app.id from app, review "
+        . " where app.id = review.app_id and  vendor_id = ${vendor_id} "
+        . " order by review.date_time desc)";
+  $result = mysql_query($sql);
+  $a = array();
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($a, array("id"=>$row[0],"name"=>$row[1],"category_id"=>$row[2],"version"=>$row[3],
+			"description"=>$row[4],"download_count"=>$row[5],"icon_file"=>$row[6],"is_online"=>$row[7]));
+  }
+  return $a;
+}
+/*
+*根据appid获取app_file表的信息
+*/
+function get_appfile_by_appid($appid) {
+global $conn;
+  $sql = "select id,version,filename,download_size,status,install_script,uninstall_script from app_file"
+	."  where id=${appid}";
+  $result = mysql_query($sql);
+  $a = array();
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($a, array("id"=>$row[0], "version"=>$row[1],"filename"=>$row[2],"download_size"=>$row[3],
+		         "status"=>$row[4],"install_script"=>$row[5],"uninstall_script"=>$row[6]));
+  }
+  return $a;
+}
+
+function get_all_app_appfile() {
+global $conn;
+  $sql = "select  app.id,app.name,app.vendor_id,app.category_id,app_file.version ,"
+	." app_file.filename,app_file.status,app_file.install_script,app_file.uninstall_script,"
+	." app.is_online from app, app_file "
+	." where app.id= app_file.id order by download_count desc limit 99999999";
+  $result = mysql_query($sql);
+  $array = array();
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($array, array("id"=>$row[0], "name"=>$row[1],"vendorid"=>$row[2],"categoryid"=>$row[3],"version"=>$row[4],
+			     "filename"=>$row[5],"status"=>$row[6],"install_script"=>$row[7],"uninstall_script"=>$row[8],"is_online"=>$row[9]));
+  }
+  return $array;
+}
+
+function get_review_by_appId($appId) {
+global $conn;
+  $sql = "select id,date_time,version,is_admin,comment,status from review  where app_id=${appId} order by date_time desc";
+  $result = mysql_query($sql);
+
+  $a = array();
+  $html="<table class ='table table-bordered' ><tr><td>时间</td><td>版本</td><td>is-admin</td><td>管理员附言</td><td>状态</td></tr>";
+
+  while ($row = mysql_fetch_row($result))
+  {
+    $statustext = get_app_status_text($row[5]);
+    $html = $html . "  <tr><td> <span class='app-info'>$row[1]</span></td>  \n"
+    . "  <td> <span class='app-info'>$row[2]</span> </td> \n"
+    . "  <td> <span class='app-info'>$row[3]</span> </td>  \n"
+    . "  <td> <span class='app-info'>$row[4]</span> </td> \n"
+    . " <td > <span class='app-info' >$statustext</span></td></tr>  \n";
+  }
+  return $html;
 }
 
 ?>

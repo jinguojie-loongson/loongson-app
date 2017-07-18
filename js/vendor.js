@@ -568,8 +568,9 @@ function status_check_version(state, his_status, local_version, his_version)
   return state;
 }
  
-function get_review_byappid(appid){
-$.ajax({
+function get_review_byappid(appid)
+{
+    $.ajax({
         type: "post",
         url: "getReviewHtml.php",
         data: {"appid":appid},
@@ -582,6 +583,5 @@ $.ajax({
         error:function (XMLHttpRequest, textStatus, errorThrown) {
             alert("请求失败！"+XMLHttpRequest+"==="+textStatus+"==="+errorThrown);
         }
-     });
-
+    });
 }

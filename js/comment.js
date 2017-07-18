@@ -24,7 +24,8 @@ function submit_comment()
                	 * 提交评论，返回提交内容html
                	 */
                	get_server_service(url, "", function(data) {
-               	        $(".app-comment-list").prepend(data);
+               	        $("#prompt").hide();
+			$(".app-comment-list").prepend(data);
                	        reset_comment_input();
 		        success_message("评论提交成功！");
                	});

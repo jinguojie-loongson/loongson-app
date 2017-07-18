@@ -145,10 +145,14 @@ function get_app_one_comment_html($id)
 function get_app_all_comment_html($app_id)
 {
   $html = "";
-
-  foreach (get_app_all_comment_id($app_id) as $id)
-  {
-    $html = $html . get_app_one_comment_html($id);
+  $comment_id = get_app_all_comment_id($app_id);
+  if ($comment_id != null && $comment_id != "") {
+    foreach ($comment_id as $id)
+    {
+      $html = $html . get_app_one_comment_html($id);
+    }
+  } else {
+    $html = "<span id='prompt'>还没有任何评论，写点什么吧</span>"; 
   }
   return $html;
 }

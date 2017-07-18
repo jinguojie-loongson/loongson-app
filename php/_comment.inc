@@ -6,11 +6,11 @@ include_once('_util.inc');
 function insert_app_comment($app_id, $comment)
 {
 global $conn;
-
+  $comment = addslashes($comment);
   $ip = get_browser_ip();
   $sql = "insert into comment (app_id, comment, date_time, ip, audit) "
        . " values (${app_id}, '${comment}', now(), '${ip}', 1)";
-  db_exec($sql);
+db_exec($sql);
 }
 
 function get_app_newest_comment($app_id)

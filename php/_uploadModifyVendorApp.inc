@@ -30,6 +30,7 @@ function insert_vendor_app($vendor_id, $icon_file, $name, $category_id, $descrip
 function insert_app_basic_information($vendor_id, $name, $category_id, $description, $longdesc, $version, $file_size)
 {
 global $conn;
+  $longdesc = addslashes($longdesc);
   $sql = "insert into app (name, vendor_id, category_id, description, longdesc, version, download_count) "
 	. " values ('${name}', ${vendor_id}, ${category_id}, '${description}', '${longdesc}', '${version}', 0)";
   db_exec($sql);
@@ -476,6 +477,7 @@ function screen_cp_tmp($app_id)
 function update_app_list($app_id, $icon_file, $category_id, $description, $longdesc, $screen_file_count)
 {
 global $conn;
+  $longdesc = addslashes($longdesc);
   $sql = "update app "
 	. " set icon_file = '${icon_file}', category_id = ${category_id}, description = '${description}', longdesc = '${longdesc}', screen_file_count = '${screen_file_count}' "
 	. " where id = ${app_id}";

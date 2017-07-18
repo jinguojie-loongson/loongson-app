@@ -18,7 +18,7 @@ function get_most_rank_app($category_id, $limit, $status, $except = "")
     $sql = $sql . " and app.id <> ". $except;
 
   $sql = $sql
-         . " order by download_count desc "
+         . " and app.is_online = 0 order by download_count desc "
          . " limit ${limit} ";
   return db_get_one_column($sql);
 }

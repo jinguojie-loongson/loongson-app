@@ -13,19 +13,15 @@ $state = isset($_POST['state']) ? $_POST['state'] : "";
 $h_name = "";
 
 if ($state == 0) {
-  $file_name = isset($_POST['file_name']) ? $_POST['file_name'] : "";
-  $file_size = isset($_POST['file_size']) ? $_POST['file_size'] : "";
-  $version = isset($_POST['local_version']) ? $_POST['local_version'] : "";
-  $install_script = isset($_POST['install_script']) ? $_POST['install_script'] : "";
-  $uninstall_script = isset($_POST['uninstall_script']) ? $_POST['uninstall_script'] : "";
-  if ($file_name == "" && $file_size == "" && $version == "" && $install_script == "" && $uninstall_script == "")
+  $os_content = isset($_POST['os_content']) ? $_POST['os_content'] : "";
+  if ($os_content == "")
   {
     $h_name = "提交应用新版本失败，参数错误";
   } else {
     $h_name = "已成功提交应用新版本";
     upload_modify_vendor_app($state, $app_id, get_current_vendor(), "", "", "", "", "",
         "", "", "", "", "",
-        $file_name, $file_size, $version, $install_script, $uninstall_script);
+        $os_content);
   }
 } else if ($state == 1) {
   $appIconName = isset($_POST['appIconName']) ? $_POST['appIconName'] : "";

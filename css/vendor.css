@@ -378,4 +378,9 @@ body {
   border:none;
   border-top:1px solid #555555;
 }
-
+.os-list {
+  width: 540px;
+  height: 35px;
+  float: right;
+  line-height: 35px;
+}

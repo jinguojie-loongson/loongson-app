@@ -50,8 +50,8 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
       echo "<img src='${new_file_url}' style='display:none;'>"
 		. "<input type='hidden'id='file_name' name='file_name' value='${file_name}'>"
 		. "<input type='hidden'id='file_size' name='file_size' value='${file_size}'>"
-		. "<div style='float:left;clear:both;'><span>文件名称：</span><span>${file_name}</span></div>"
-		. "<div style='float:left;clear:both;'><span>文件大小：</span><span>${file_size} KB</span></div>";
+		. "<div id='file_show_name' style='float:left;clear:both;'><span>文件名称：</span><span>${file_name}</span></div>"
+		. "<div id='file_show_size' style='float:left;clear:both;'><span>文件大小：</span><span>${file_size} KB</span></div>";
     } else {
       echo "上传出错了！";
     }

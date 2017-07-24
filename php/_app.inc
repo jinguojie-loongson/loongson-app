@@ -121,12 +121,20 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_file_version_status($id){
+function get_app_file_status_count($id, $status)
+{
+global $conn;
+  $sql = "select count(1) from app_file "
+	. " where id = ${id} and status = '${status}'";
+  return db_get_one_value($sql);
+}
+
+function get_app_file_version_status($id, $os_id)
+{
 global $conn;
   $sql = "select version,status from app_file "
-         . "  where id=${id}  order by version desc limit 1";
+         . "  where id = ${id} and os_id = ${os_id}  order by version desc limit 1";
   return db_get_two_columns($sql);
-
 }
 
 function get_app_download_size($id, $version = "")
@@ -199,22 +207,12 @@ function get_app_status_text($status)
 {
   switch($status)
   {
-    case "new": return "待审核";
     case "published": return "通过审核";
     case "under_review":return "待审核";
     case "rejected":return "未通过审核";
     case "off_the_shelf":return "已下架";
   }
   return "错误状态";
-}
-
-
-function update_app_version_by_id($appid,$version)
-{
-global $conn;
-  $sql = "update app set version='${version}' "
-         . "  where id=${appid} ";
-  return db_exec($sql);
 }
 
 function app_inc_download_count($id)
@@ -418,7 +416,6 @@ function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$st
     if($isExistAudit == 1) {
       set_app_file_status($appid, $status,$versionreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
-      update_app_version_by_id($appid,$versionreview);
     }else if($isExistAudit == 2) {
       set_app_file_status($appid, $status,$versionreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);

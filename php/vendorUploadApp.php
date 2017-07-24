@@ -3,6 +3,7 @@ include_once('vendor_header.php');
 include_once('_vendor.inc');
 include_once('vendor_top.php');
 include_once('_category.inc');
+include_once('_os.inc');
 ?>
 <form id="imageform" method="post" enctype="multipart/form-data" action="uploadVendorAppFile.php">
     <input type="hidden" id="file_type" name="file_type">
@@ -98,23 +99,57 @@ include_once('_category.inc');
       </div>
     </div>
     
-      <div class="vendor-card-div vendor-app-file-div">
-	<div class="vendor-app-file-upload">
-          <button class="btn btn-primary app-file-button pointer" type="button">上传安装文件</button>
-          <!-- <span class="app-file-button pointer">上传安装文件</span> -->
-        </div>
-        <div class="app-file-attribute"></div>
-	<div class="vendor-app-file-attribute">
-          <span class="version">版本号：</span>
-	  <input class="vendor-card-input" type="text" id="version" name="version" placeholder="最多4段数字，以“.”分隔，范围0～65535"><span id="stateDomain"></span>
-        </div>
-	<div class="vendor-app-file-attribute">
+    <div class="vendor-card-div vendor-app-file-div">
+      <div class="vendor-app-file-upload">
+        <button class="btn btn-primary app-file-button pointer" type="button">上传安装文件</button>
+        <!-- <span class="app-file-button pointer">上传安装文件</span> -->
+      </div>
+      <div class="app-file-attribute"></div>
+      <div class="vendor-app-file-attribute">
+        <span class="version">版本号：</span>
+	<input class="vendor-card-input" type="text" id="version" name="version" placeholder="最多4段数字，以“.”分隔，范围0～65535"><span id="stateDomain"></span>
+      </div>
+        
+      <?php
+        $os = get_all_os_with_id();
+        /*计数器*/
+        $count=0;
+        foreach($os as $c)
+        {
+          $c_id = $c[0];
+	  $c_name = $c[1];
+	  $count++;
+	  echo "<script type='text/javascript'>os_fun.auto_addOs(${c_id},'${c_name}',${count}, 'new_app', '', '');</script>";
+	} 
+	echo "<script type='text/javascript'>os_fun.auto_allOs();</script>";
+	echo "<script type='text/javascript'>os_fun.auto_btn();</script>";
+	echo "<script type='text/javascript'>os_fun.selector_event();</script>";
+      ?>
+
+   <!--	<div class="vendor-app-file-attribute">
           <span>安装脚本(shell命令)：</span><input class="vendor-card-input" type="text" id="install_script" name="install_script">
         </div>
         <div class="vendor-app-file-attribute">
           <span>卸载脚本(shell命令)：</span><input class="vendor-card-input" type="text" id="uninstall_script" name="uninstall_script">
-        </div>
+        </div> -->
+    </div>
+
+    <div class="vendor-card-div vendor-app-file-div" id="supportOs">
+      <div class="vendor-app-file-attribute">
+        <span class="version">选择系统：</span> 
       </div>
+      <table class="table table-striped table-bordered table-hover table-condensed" id='oslist'>
+        <tr>
+          <td>系统名称</td>
+          <td>版本号</td>
+          <td>安装文件</td>
+          <td>大小</td>
+          <td width="25%">安装命令</td>
+          <td width="25%">卸载命令</td>
+          <td >操作</td>
+        </tr>
+      </table>
+    </div>
 
     <div class="perform">
       <button class="btn btn-primary" type="button" id="appSubmit">提交应用</button>

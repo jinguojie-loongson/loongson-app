@@ -5,35 +5,46 @@ include_once('_app.inc');
 include_once('_category.inc');
 include_once('_review.inc');
 
-function insert_vendor_app($vendor_id, $icon_file, $name, $category_id, $description, $longdesc, 
-	$screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5, 
-	$file_name, $file_size, $version, $install_script, $uninstall_script)
+function insert_vendor_os_app($vendor_id, $icon_file, $name, $category_id, $description, $longdesc, 
+	$screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5, $os_content)
 {
-  insert_app_basic_information($vendor_id, $name, $category_id, $description, $longdesc, $version, $file_size);
-  
-  $app_id = get_app_id($name, $category_id, $version);
-  
+  /*插入应用基础信息*/
+  $app_id =  insert_app_basic_information($vendor_id, $name, $category_id, $description, $longdesc, 0);
+  /*拷贝应用图标*/
   $icon_file = icon_cp_rename($app_id, $icon_file);
+  /*拷贝应用抓图*/
   $screen_file_count = icon_screen_cp_rename($app_id, $screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5);
-  file_cp($file_name);
-  
+  /*更新应用图标到应用基础信息表*/
   update_app_icon_screen($app_id, $icon_file, $screen_file_count);
 
-  insert_app_file($app_id, $version, $file_name, $file_size, "under_review", $install_script, $uninstall_script);
-  insert_review($app_id, $version, 0, $vendor_id, "under_review", "");
-
+  /*系统数据分解*/
+  $arraylist=split("#",$os_content);
+  for ($i=0;$i<count($arraylist);$i++) //把它们全部输出来
+  {
+    // 0 系统id  1 系统名称 2版本号 3 文件名 4 文件大小 5 安装脚本 6 卸载脚本
+    $os_arr = split("::",$arraylist[$i]);
+    $file_name = $os_arr[3];
+    /*拷贝应用文件*/
+    file_cp( $file_name );
+ 
+    /*应用文件基础信息*/
+    insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6]);
+    /*加入审核*/
+    insert_review($app_id, $os_arr[2], 0, $vendor_id, "under_review", "");
+  }
 }
 
 /*
  * 将基本信息（名称、类别、精简、完整、当前版本、下载量）存入app表
  */
-function insert_app_basic_information($vendor_id, $name, $category_id, $description, $longdesc, $version, $file_size)
+function insert_app_basic_information($vendor_id, $name, $category_id, $description, $longdesc, $is_online)
 {
 global $conn;
   $longdesc = addslashes($longdesc);
-  $sql = "insert into app (name, vendor_id, category_id, description, longdesc, version, download_count) "
-	. " values ('${name}', ${vendor_id}, ${category_id}, '${description}', '${longdesc}', '${version}', 0)";
+  $sql = "insert into app (name, vendor_id, category_id, description, longdesc,  download_count, is_online) "
+	. " values ('${name}', ${vendor_id}, ${category_id}, '${description}', '${longdesc}', 0, 0)";
   db_exec($sql);
+  return mysql_insert_id();
 }
 
 /*
@@ -117,29 +128,16 @@ global $conn;
 }
 
 /*
- * 更新app表中 version 字段
- */
-function update_app_version($app_id, $version)
-{
-global $conn;
-  $sql = "update app "
-	. " set version = '${version}' "
-	. " where id = ${app_id}";
- 
-  db_exec($sql);
-}
-
-/*
  * 插入app_file表
  */
-function insert_app_file($app_id, $version, $file_name, $file_size, $status, $install_script, $uninstall_script)
+function insert_app_file($app_id, $version, $file_name, $file_size, $status, $os_id, $install_script, $uninstall_script)
 {
 global $conn;
   $file_target_url = "../data/app/";
   $file_name_md5 = system("md5sum '${file_target_url}/${file_name}' | cut -b-32");
   $download_size = round($file_size/1024, 1) . "M";
-  $sql = "insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script) "
-	. " values (${app_id}, '${version}', '${file_name}', '${download_size}', '${file_name_md5}', '${status}', '${install_script}', '${uninstall_script}')";
+  $sql = "insert into app_file (id, version, filename, download_size, md5, status, os_id, install_script, uninstall_script) "
+	. " values (${app_id}, '${version}', '${file_name}', '${download_size}', '${file_name_md5}', '${status}', ${os_id}, '${install_script}', '${uninstall_script}')";
 
   db_exec($sql);
 }
@@ -154,13 +152,24 @@ global $conn;
  */
 function upload_modify_vendor_app($state, $app_id, $vendor_id, $icon_file, $name, $category_id, $description, $longdesc,
         $screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5,
-        $file_name, $file_size, $version, $install_script, $uninstall_script)
+        $os_content)
 {
   if ($state == 0) {
-    file_cp($file_name);
-    insert_app_file($app_id, $version, $file_name, $file_size, "under_review", $install_script, $uninstall_script);
-    //update_app_version($app_id, $version);
-    insert_review($app_id, $version, 0, $vendor_id, "under_review", "");
+    /*系统数据分解*/
+    $arraylist=split("#",$os_content);
+    for ($i=0;$i<count($arraylist);$i++) //把它们全部输出来
+    {
+      // 0 系统id  1 系统名称 2版本号 3 文件名 4 文件大小 5 安装脚本 6 卸载脚本
+      $os_arr = split("::",$arraylist[$i]);
+      $file_name = $os_arr[3];
+      /*拷贝应用文件*/
+      file_cp( $file_name );
+
+      /*应用文件基础信息*/
+      insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6]);
+      /*加入审核*/
+      insert_review($app_id, $os_arr[2], 0, $vendor_id, "under_review", "");
+    }
   } else if ($state == 1) {
     del_vendor_app_icon($app_id);
     del_vendor_app_screen($app_id);
@@ -378,46 +387,6 @@ function get_vendor_app_screen($app_id)
         . "</div> \n";
   }
   
-  return $html;
-}
-
-/*
- * 组装 上传安装文件 html
- */
-function get_vendor_app_file($app_id)
-{
-  $his_version_status = get_app_file_version_status($app_id);
-  $his_version = $his_version_status[0][0];
-  $his_status = $his_version_status[0][1];
-  
-  $html = "<div class='vendor-card-div vendor-app-file-div'> \n"
-	. "<input type='hidden' id='his_status' name='his_status' value='${his_status}'> \n"
-	. "<input type='hidden' id='his_version' name='his_version' value='${his_version}'> \n"
-	. "<div class='vendor-app-file-upload'> \n"
-	. "<button class='btn btn-primary pointer' type='button' id='app_file_button'>上传安装文件</button> \n"
-	. "</div> \n"
-	. "<div class='app-file-attribute'></div> \n"
-	. "<div class='vendor-app-file-attribute'> \n"
-	. "<span style='font-size:9pt; color:red; float:left;'> \n"
-        . "通过审核、下架: 版本号必须大于之前最新版本的版本号；<br>\n"
-        . "审核未通过: 可以再次提交相同版本号；<br>\n"
-        . "未审核: 不能上传新版本。\n"
-        . "</span> \n"
-	. "</div> \n"
-	. "<div class='vendor-app-file-attribute'> \n"
-	. "<span class='version'>版本号：</span> \n"
-	. "<input class='vendor-card-input' type='text' id='local_version' name='local_version' placeholder='最多4段数字，以“.”分隔，范围0～65535'> \n"
-	. "<span id='stateDomain'></span> \n"
-	. "</div> \n"
-	. "<div class='vendor-app-file-attribute'> \n"
-	. "<span>安装脚本(shell命令)：</span> \n"
-	. "<input class='vendor-card-input' type='text' id='install_script' name='install_script'> \n"
-	. "</div> \n"
-	. "<div class='vendor-app-file-attribute'> \n"
-	. "<span>卸载脚本(shell命令)：</span> \n"
-	. "<input class='vendor-card-input' type='text' id='uninstall_script' name='uninstall_script'> \n"
-	.  "</div> \n"
-	. "</div> \n";
   return $html;
 }
 

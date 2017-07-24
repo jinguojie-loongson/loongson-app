@@ -162,7 +162,7 @@ global $conn;
 */
 function get_all_app_by_vendorId($vendor_id) {
 global $conn;
-  $sql = "select id,name,category_id,version,description,download_count,icon_file,is_online  from app where id in "
+  $sql = "select id, name, category_id, description, download_count, icon_file, is_online from app where id in "
         ." (select app.id from app, review "
         . " where app.id = review.app_id and  vendor_id = ${vendor_id} "
         . " order by review.date_time desc)";
@@ -170,8 +170,8 @@ global $conn;
   $a = array();
   while ($row = mysql_fetch_row($result))
   {
-    array_push($a, array("id"=>$row[0],"name"=>$row[1],"category_id"=>$row[2],"version"=>$row[3],
-			"description"=>$row[4],"download_count"=>$row[5],"icon_file"=>$row[6],"is_online"=>$row[7]));
+    array_push($a, array("id"=>$row[0],"name"=>$row[1],"category_id"=>$row[2],
+			"description"=>$row[3],"download_count"=>$row[4],"icon_file"=>$row[5],"is_online"=>$row[6]));
   }
   return $a;
 }

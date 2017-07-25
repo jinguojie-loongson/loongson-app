@@ -66,6 +66,8 @@
 <script type="text/javascript" src="../js/vendor_login.js"></script>
 <script type="text/javascript" src="../js/admin.js"></script>
 <script type="text/javascript" src="../js/alert.js"></script>
+<script type="text/javascript" src="../js/category_admin.js"></script>
+
 
 </head>
 

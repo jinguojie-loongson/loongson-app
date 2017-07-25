@@ -52,6 +52,7 @@ include_once('_review.inc');
       <li><a href="admin_hot.php">热门编辑</a></li>
       <li class="active"><a href="admin_app.php">应用审核</a></li>
       <li><a href="admin_vendor.php">开发者管理</a></li>
+      <li><a href="admin_category.php">类别管理</a></li>
 </div>
 <div class="panel-body">
 	<table class="table table-bordered">

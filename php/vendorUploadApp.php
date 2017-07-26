@@ -26,23 +26,39 @@ include_once('_os.inc');
       <span class="vendor-app-attribute">名称：</span><input class="vendor-card-input" type="text" id="app_name" name="app_name"/>
     </div>
     <div class="vendor-card-div"> 
-      <span class="vendor-app-attribute">类别：</span>
-      <!--根据数据库中类别的数量，category-list div 的大小固定了，如果数据库的类别数量变化了，需要调整大小，后面在优化。 -->
-      <div class="category-list">
+     <tr>
+         <td>
+           <span class="vendor-app-attribute">类别：</span>
+           <!--根据数据库中类别的数量，category-list div 的大小固定了，如果数据库的类别数量变化了，需要调整大小，后面在优化。 -->
+         </td>
+         <td>
+           <div class="category-list category-list-span">
+    
+           <?php
+           $category = get_all_category_with_id();
+           $i=0;
 
-      <?php
-        $category = get_all_category_with_id();
-        
-        foreach($category as $c)
-  	{
-    	  $c_id = $c[0];
-    	  $c_name = $c[1];
-	  
-	  echo "<span class='unchecked'  name='category' checked='false' onclick='change(this);' value='${c_id}'>${c_name}</span>";
-  	}
-        echo "<input type='hidden' id='category_id' name='category_id'>";
-      ?>
-      </div>
+           foreach($category as $c)
+           {
+           $i++;
+           $c_id = $c[0];
+           $c_name = $c[1];
+           if ($c_id == 1) {
+             echo "<span class='checked category-list-span'  name='category' checked='false' onclick='change(this);' value='${c_id}'>${c_name}</span>";
+            } else {
+             echo "<span class='unchecked category-list-span'  name='category' checked='false' onclick='change(this);' value='${c_id}'>${c_name}</span>";
+             if ($i % 10 == 0) {
+               echo "<br>";   
+             }
+            }
+           }  
+           echo "<input type='hidden' id='category_id' name='category_id'>";
+           ?>
+ 
+         </td>
+     </tr>
+    </div>
+    
     </div>
     <div class="vendor-card-div">
       <span>精简描述：</span><input class="vendor-card-input" type="text" class="input-thin" id="description" name="description">

@@ -166,10 +166,16 @@ body {
 }
 
 .category-list {
-  width: 540px;
-  height: 35px;
   float: right;
   line-height: 35px;
+  text-align: left;
+  word-break: normal;
+  
+}
+
+.category-list-span{
+  word-break:normal;
+
 }
 
 .vendor-card-input {

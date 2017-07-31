@@ -37,27 +37,34 @@
 
 include_once('_vendor_login.inc');
 include_once('_util.inc');
-	session_start();
-	$loginname = $_POST['loginname'];
-	$password = $_POST['password'];
-	if (is_empty($loginname)) {
-		clear_current_vendor();
-		set_login_message("用户名不得为空！");
- 		request_forward("vendor_login.php");
-	}
-	if (is_empty($password)) {
-		clear_current_vendor();
-		set_login_message("密码不得为空！");
- 		request_forward("vendor_login.php");
-	}
-	$vendor_id = get_vendor_id_by_loginname($loginname, $password);
-	if (is_empty($vendor_id)) {
-		clear_current_vendor();
-		set_login_message("用户名或密码错误！");
- 		request_forward("vendor_login.php");
-	} else {
-		set_current_vendor($vendor_id);
-		clear_login_message();
- 		request_forward("vendorWorkbench.php");
-	}
+  session_start();
+  $loginname = $_GET['loginname'];
+  $password = $_GET['password'];
+  $vendorid = "";
+  $isActive = "";
+
+  $vendorarray = get_vendor_id_by_loginname($loginname, $password);
+
+  foreach($vendorarray  as $vendorkey => $vendorvalue) 
+  { 
+    $vendorid = $vendorvalue['id'] ;
+    $isActive = $vendorvalue['isActive'];	
+  }
+  if($vendorid != "") 
+  {
+    if($isActive == 0 ){
+      $json_arr = array("result"=>"此用户名还没有激活！");
+      $json_obj = json_encode($json_arr);
+      echo $json_obj;
+    } else {
+      set_current_vendor($vendorid);
+      $json_arr = array("result"=>"true");
+      $json_obj = json_encode($json_arr);
+      echo $json_obj;
+    }
+  } else {
+    $json_arr = array("result"=>"用户名或密码不正确！");
+    $json_obj = json_encode($json_arr);
+    echo $json_obj;	  
+  }
 ?>

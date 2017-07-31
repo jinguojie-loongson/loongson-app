@@ -147,7 +147,6 @@ function updateVendorIsActive(vendor_id, isActive)
     }
   });
 }
-
 $(document).ready(function(){
   console.log($(".Audit_yes").length);
   $(".Audit_yes").click(function() {
@@ -192,26 +191,26 @@ $(document).ready(function(){
   $(".installscript").mouseenter(function(e) {
     var v_id = $(e.target).attr('class');
     if (v_id !="popover-content") {
-      $("div[class*='popover']").popover("hide");
+      $(".popover").popover("hide");
     }
     var divid = $(this).attr('id');
     $('#'+divid+'installisshow').popover('show');	
   });
 
-  $(".unistallshow").mouseover(function(e) {
+  $(".unistallshow").mouseenter(function(e) {
     var v_id = $(e.target).attr('class');
     if (v_id !="popover-content") {
-      $("div[class*='popover']").popover("hide");
+      $(".popover").popover("hide");
     }
     var divid = $(this).attr('id');
     $('#'+divid+'unistallisshow').popover('show');
   });
-
-  $("#reviewbtn").click(review_comment);
-
+ 
   $(".Audit_app_del").click(function() {
     audit_app_del($(this), $(this).parent().find("#comment_id").val());
   });
+
+  $("#reviewbtn").click(review_comment);
 
   $(document).click(function(e) {
     var v_id = $(e.target).attr('class'); 

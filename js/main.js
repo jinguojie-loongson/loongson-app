@@ -25,6 +25,33 @@ function get_server_service(url, post_data, func)
   })
 }
 
+
+function get_server_service_json(url, post_data, func)
+{
+  $.ajax({
+    url: url,
+    type: 'POST',
+    async: true,
+    data:{
+        data: post_data
+    },
+    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+    success:function(data, textStatus, jqXHR){
+        console.log('Success:')
+        console.log(data)
+        console.log("textStatus: " + textStatus)
+        
+        func(data);
+    },
+    error:function(xhr,textStatus){
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+    },
+  })
+}
+
+
 function UrlGetQueryString(name)
 {
      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");

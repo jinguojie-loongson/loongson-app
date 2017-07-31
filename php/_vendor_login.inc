@@ -10,10 +10,15 @@ function get_vendor_id_by_loginname($loginname, $password)
 global $conn;
 	$pwd_md5 = md5($password);
 
-	$sql ="select id from vendor "
-		." where login_name='${loginname}'  and password='$pwd_md5' and isActive=1 ";
-	echo $sql;
-	return db_get_one_value($sql);		
+	$sql ="select id,isActive from vendor "
+		." where login_name='${loginname}'  and password='$pwd_md5'";
+        $result = mysql_query($sql);
+	$array = array();
+        while ($row = mysql_fetch_row($result))
+        {
+          array_push($array, array("id"=>$row[0],"isActive"=>$row[1]));
+        }
+        return $array;
 }
 
 /*

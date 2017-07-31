@@ -167,15 +167,13 @@ body {
 
 .category-list {
   float: right;
-  line-height: 35px;
+  width: 800px;
   text-align: left;
-  word-break: normal;
-  
 }
 
-.category-list-span{
-  word-break:normal;
-
+.category-list span {
+  display: inline-block;
+  margin: 5px;
 }
 
 .vendor-card-input {

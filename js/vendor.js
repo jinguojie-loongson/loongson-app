@@ -465,6 +465,34 @@ $(document).ready(function(){
      });
   });
 
+  $("#vendor_loginform").submit(function(){
+    $("#loginmessage").html("");
+    var loginname = $("#loginname").val();
+    var password = $("#password").val();
+    if($.trim(loginname) == "" || $.trim(loginname) == null) {
+      $("#loginmessage").html("用户名不能为空！");
+      return false;
+    }
+    if($.trim(password) == "" || $.trim(password) == null) {
+      $("#loginmessage").html("密码不能为空！");
+      return false;
+    }  
+    var istrue = false;
+    url = window.location.href;
+    n = url.lastIndexOf("/");
+    url = url.substr(0, n) + "/vendorDoLogin.php?" + "loginname=" + loginname+ "&password=" + password;
+
+    get_server_service_json(url, "", function(data) {
+        if(data.result == "true" ){
+           istrue = true;
+        } else {
+          istrue = false;
+          $("#loginmessage").html(data.message);
+        } 
+    });
+    return istrue;
+  });
+
 });
 
 /*
@@ -473,34 +501,6 @@ $(document).ready(function(){
 var obj={
   category:""
 };
-
-function checkvendor_loginform() {
-  $("#loginmessage").html("");
-  var loginname = $("#loginname").val();
-  var password = $("#password").val();
-  if($.trim(loginname) == "" || $.trim(loginname) == null) {
-    $("#loginmessage").html("用户名不能为空！");
-    return false;
-  }
-  if($.trim(password) == "" || $.trim(password) == null) {
-    $("#loginmessage").html("密码不能为空！");
-    return false;
-  }
-  var istrue = false;
-  url = window.location.href;
-  n = url.lastIndexOf("/");
-  url = url.substr(0, n) + "/vendorDoLogin.php?" + "loginname=" + loginname+ "&password=" + password;
-
-  get_server_service_json(url, "", function(data) {
-      if(data.result == "true" ){
-         istrue = true;
-      } else {
-        istrue = false; 
-        $("#loginmessage").html(data.message);
-      }
-  });
-  return istrue;
-}
 
 function change(span)
 {

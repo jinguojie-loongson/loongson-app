@@ -161,8 +161,9 @@ foreach ($apps  as $key => $value) {
 	  <input id="isExistAudit"  name ="isExistAudit" value="" type="hidden">
 	  <input id="versionreview"  name ="versionreview" value="" type="hidden">
     	  <div class="app-comment-div">
-	  <div  id="appcomment_review" name="appcomment_review"  class="input-thin app-comment-input" 
-	    contenteditable="true" placeholder="请填写附言，限制500字以内"></div>
+	    <div  id="appcomment_review" name="appcomment_review"  class="input-thin app-comment-input" 
+	      contenteditable="true" placeholder="请填写附言，限制500字以内">
+            </div>
 	  </div>
 	</div>
 	<div class="modal-footer">

@@ -100,7 +100,7 @@ function review_comment()
 	  if (isExistAudit == 1 ){//"+appid+","+versionreview+"
 	     $('#'+appid+versionreplace+'updatestatus').html("通过审核");	
 		$('#'+appid+versionreplace+'btnisdispay').html("<button type='button' onclick=\"offtheshelf("+appid+",'"+versionreview+"')\" "
-			+" class='btn btn-danger off_the_shelf_appnew' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
+			+" class='btn btn-danger appofftheshelf' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
 			+" <a href='#' title='审核信息'><span class='glyphicon glyphicon-list-alt' title='审核信息' class='btn btn-danger' "
 			+" data-toggle='modal'  data-target='#myModal1' onclick='get_review_byappid("+appid+")'></span></a>");
 	  } else if (isExistAudit == 2 ) {
@@ -162,21 +162,21 @@ $(document).ready(function(){
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
     $("#isExistAudit").val("1");
-    $("#appcomment_review").val("");
+    $("#appcomment_review").empty();
   });
 
   $(".NotAudit_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
     $("#isExistAudit").val("2");
-    $("#appcomment_review").val("");
+    $("#appcomment_review").empty();
   });
 
 
   $(".off_the_shelf_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#isExistAudit").val("3");
-    $("#appcomment_review").val("");
+    $("#appcomment_review").empty();
 	
   });
 
@@ -184,7 +184,7 @@ $(document).ready(function(){
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
     $("#isExistAudit").val("3");
-    $("#appcomment_review").val("");
+    $("#appcomment_review").empty();
 
   });
 

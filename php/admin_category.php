@@ -33,17 +33,12 @@ include_once('_category.inc');
   <div class="panel panel-default" id="admin_category_div">
     <div class="panel-body">
       <div class="input-group">
-      <tr>
-        <td>
         <span class="input-group-addon">应用类别：</span>
-        </td>
-        <td>
         <input id="addCategory"  name="category[]" id ="category_name" type="text" class="form-control">
-        </td>     
-       
-       </tr>
       </div>
-      <button class="btn " id="saveCategory"  type="button">新增</button>
+        <span id='category_message' class='alert-danger'></span>
+        <br> 
+        <button class="btn " id="saveCategory"  type="button">新增</button>
     </div>
   </div>
 </form>

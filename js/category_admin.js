@@ -18,6 +18,19 @@ function deleteCategory(category_id,isActive) {
   });
 }
 
+  /*
+   *类别添加输入框按钮提示
+   */
+function category_input_message(){
+    $('#addCategory').attr("disabled",true);   
+    $("#category_message").text('输入内容不可为空！');
+    setTimeout(
+       '$("#addCategory").attr("disabled",false);'
+       +'$("#category_message").text("")',
+       2000
+	);
+}
+
 
 $(document).ready(function() {
  
@@ -30,10 +43,14 @@ $(document).ready(function() {
 
   $("#saveCategory").click(function() {
     var category_name = $("#addCategory").val();
-    url = window.location.href;
-    n = url.lastIndexOf("/");
-    url = url.substr(0, n) + "/addCategory.php?" + "category_name=" + category_name;
-    
+   
+    if (category_name == ""){
+        category_input_message();
+    }else{
+        url = window.location.href;
+        n = url.lastIndexOf("/");
+        url = url.substr(0, n) + "/addCategory.php?" + "category_name=" + category_name;
+
     get_server_service(url, "", function(data) {
       $("#category_list").append(
           "<tr> \n"
@@ -44,8 +61,9 @@ $(document).ready(function() {
         + " </td> \n"
         + "</tr> \n"
        );
-    
+
        $("#addCategory").val("");
-    });
+     });
+    } 
   });
 })

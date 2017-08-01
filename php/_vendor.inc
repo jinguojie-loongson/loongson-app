@@ -210,18 +210,24 @@ global $conn;
 
 function get_review_by_appId($appId) {
 global $conn;
-  $sql = "select id,date_time,version,is_admin,comment,status from review  where app_id=${appId} order by date_time desc";
+session_start();
+  $sql = "select id,date_time,version,is_admin,comment,status,operator  from review  where app_id=${appId} order by date_time desc";
   $result = mysql_query($sql);
 
   $a = array();
-  $html="<table class ='table table-bordered' ><tr><td>时间</td><td>版本</td><td>is-admin</td><td>管理员附言</td><td>状态</td></tr>";
-
+  $html="<table class ='table table-bordered' ><tr><td>时间</td><td>版本</td><td>操作者</td><td>管理员附言</td><td>状态</td></tr>";
   while ($row = mysql_fetch_row($result))
   {
     $statustext = get_app_status_text($row[5]);
+    $isadmin = $row[3];
+    if($row[3] == 1 ){
+      $isadmin = "管理员";
+    }else{
+      $isadmin =  get_vendor_name($row[6]);
+    }
     $html = $html . "  <tr><td> <span class='app-info'>$row[1]</span></td>  \n"
     . "  <td> <span class='app-info'>$row[2]</span> </td> \n"
-    . "  <td> <span class='app-info'>$row[3]</span> </td>  \n"
+    . "  <td> <span class='app-info'>$isadmin</span> </td>  \n"
     . "  <td> <span class='app-info'>$row[4]</span> </td> \n"
     . " <td > <span class='app-info' >$statustext</span></td></tr>  \n";
   }

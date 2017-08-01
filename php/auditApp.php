@@ -41,7 +41,7 @@ include_once('_util.inc');
 include_once('_app.inc');
 include_once('_review.inc');
 include_once('_vendor_login.inc');
-
+session_start();
 $appid = is_empty($_GET['appid']) ? $_POST['data'] : $_GET['appid'];  
 $isExistAudit =  is_empty($_GET['isExistAudit']) ? $_POST['data'] : $_GET['isExistAudit'];
 $versionreview =  is_empty($_GET['versionreview']) ? $_POST['data'] : $_GET['versionreview'];
@@ -49,12 +49,12 @@ $isappOfftheshelf =  is_empty($_GET['isappOfftheshelf']) ? $_POST['data'] : $_GE
 $comment = is_empty($_GET['comment']) ? $_POST['data'] : $_GET['comment'];
 
 $date_time = time();
-$is_admin = 0;
+$is_admin = 1;
 
 if($isappOfftheshelf == 0) {
-  $is_admin = 1;
+  $is_admin = 0;
 }
-$operator = 0;
+$operator = get_current_vendor();
 $status = "";
 
 if($isExistAudit == 1) { 

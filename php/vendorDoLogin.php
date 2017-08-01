@@ -48,22 +48,23 @@ include_once('_util.inc');
   foreach($vendorarray  as $vendorkey => $vendorvalue) 
   { 
     $vendorid = $vendorvalue['id'] ;
-    $isActive = $vendorvalue['isActive'];	
+    $isActive = $vendorvalue['isActive'];
   }
   if($vendorid != "") 
   {
     if($isActive == 0 ){
-      $json_arr = array("result"=>"此用户名还没有激活！");
+      $json_arr = array("result"=>"false","message"=>"此用户名还没有激活！");
       $json_obj = json_encode($json_arr);
       echo $json_obj;
     } else {
       set_current_vendor($vendorid);
-      $json_arr = array("result"=>"true");
+      
+      $json_arr = array("result"=>"true","message"=>$vendorid);
       $json_obj = json_encode($json_arr);
       echo $json_obj;
     }
   } else {
-    $json_arr = array("result"=>"用户名或密码不正确！");
+    $json_arr = array("result"=>"false","message"=>"用户名或密码不正确！");
     $json_obj = json_encode($json_arr);
     echo $json_obj;	  
   }

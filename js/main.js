@@ -31,7 +31,7 @@ function get_server_service_json(url, post_data, func)
   $.ajax({
     url: url,
     type: 'POST',
-    async: true,
+    async: false,
     data:{
         data: post_data
     },

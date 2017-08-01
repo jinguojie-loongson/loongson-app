@@ -47,7 +47,7 @@
     <div class="panel-body">
       <p class="text-warning"> <?= get_admin_login_message() ?> </p>
 
-      <form id="vendor_loginform" name="vendor_loginform" method="post" action="adminDoLogin.php"  >
+      <form id="admin_loginform" name="admin_loginform" method="post" action="adminDoLogin.php"  >
         <input type="password" style="position: fixed; top: -999px "/>
 
         <div class="form-group">

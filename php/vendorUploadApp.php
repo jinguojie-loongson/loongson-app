@@ -44,7 +44,7 @@ include_once('_os.inc');
             
             }
            }  
-           echo "<input type='hidden' id='category_id' name='category_id'>";
+           echo "<input type='hidden' id='category_id' name='category_id' value='1'>";
            ?> 
     
           </div>

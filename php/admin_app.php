@@ -53,6 +53,7 @@ include_once('_review.inc');
   <li class="active"><a href="admin_app.php">应用审核</a></li>
   <li><a href="admin_vendor.php">开发者管理</a></li>
   <li><a href="admin_category.php">类别管理</a></li>
+  <li><a href="admin_os.php">操作系统</a></li>
 </div>
 <div class="panel-body">
   <table class="table table-bordered">

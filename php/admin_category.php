@@ -16,6 +16,7 @@ include_once('_category.inc');
   <li><a href="admin_app.php">应用审核</a></li>
   <li><a href="admin_vendor.php">开发者管理</a></li>
   <li class="active"><a href="admin_category.php">类别管理</a></li>
+  <li><a href="admin_os.php">操作系统</a></li>
 </div>
 
 <table id="category_list" class="table table-striped table-bordered table-hover table-condensed">
@@ -28,20 +29,16 @@ include_once('_category.inc');
   <?= get_category_list() ?>
 </table>
 
-<div>
-<form id="admin_category_form" name="admin_category_form" method="post" enctype="multipart/form-data" >
-  <div class="panel panel-default" id="admin_category_div">
-    <div class="panel-body">
-      <div class="input-group">
-        <span class="input-group-addon">应用类别：</span>
-        <input id="addCategory"  name="category[]" id ="category_name" type="text" class="form-control">
-      </div>
-        <span id='category_message' class='alert-danger'></span>
-        <br> 
-        <button class="btn " id="saveCategory"  type="button">新增</button>
+<div class="panel panel-default" id="admin_category_div">
+  <div class="panel-body">
+    <div class="input-group">
+      <span class="input-group-addon">应用类别：</span>
+      <input id="addCategory"  name="addCategory" type="text" class="form-control">
     </div>
+    <span id='category_message' class='alert-danger'></span>
+    <br>
+    <button class="btn " id="saveCategory"  type="button">新增</button>
   </div>
-</form>
 </div>
 
 <?php

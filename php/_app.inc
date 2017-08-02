@@ -192,6 +192,17 @@ global $conn;
   return db_get_one_value($sql);
 }
 
+/*
+ * 查询该系统是否有应用使用
+ */
+function get_app_file_os_id_count($os_id)
+{
+global $conn;
+  $sql = "select count(1) from app_file "
+	. " where os_id = ${os_id}";
+  return db_get_one_value($sql);
+}
+
 function set_app_status($id, $status, $version = "")
 {
 global $conn;

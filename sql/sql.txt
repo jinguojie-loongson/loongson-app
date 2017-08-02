@@ -11,7 +11,8 @@ use app;
 create table os (
   id int(5) NOT NULL auto_increment key,
   name varchar(50),
-  description varchar(500)
+  description varchar(500),
+  probe_cmd varchar(500)
 );
 
 #字典表：应用种类
@@ -100,9 +101,9 @@ create table admin (
 );
 
 #示例数据
-insert into os (name, description) VALUES
-  ("中标桌面32位", "中标桌面操作系统（32位版本）"),
-  ("中标桌面64位", "中标桌面操作系统（64位版本）")
+insert into os (name, description, probe_cmd) VALUES
+  ("中标桌面32位", "中标桌面操作系统（32位版本）", "探测脚本"),
+  ("中标桌面64位", "中标桌面操作系统（64位版本）", "探测脚本")
 ;
 
 insert into category (name) VALUES

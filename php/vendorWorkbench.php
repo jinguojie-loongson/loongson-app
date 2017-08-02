@@ -131,6 +131,9 @@ include_once('vendor_top.php');
 		     <div class="panel panel-default">
 		       <div class="panel-heading">
 		         <div class="row">
+                           <div class="col-md-9 textleft" >
+                             <span class="spancolor">操作系统：</span><span> <?= $appfilevalue['os_name'] ?> </span>
+                           </div>
 			   <div class="col-md-4 textleft" >
 			     <span class="spancolor">版本：</span><span> <?= $appfilevalue['version'] ?> </span>
 			   </div>

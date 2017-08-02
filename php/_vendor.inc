@@ -180,14 +180,15 @@ global $conn;
 */
 function get_appfile_by_appid($appid) {
 global $conn;
-  $sql = "select id,version,filename,download_size,status,install_script,uninstall_script from app_file"
-	."  where id=${appid}";
+  $sql = "select app_file.id,app_file.version,app_file.filename,app_file.download_size,app_file.status,app_file.install_script,app_file.uninstall_script,os.name "
+	." from app_file, os "
+	."  where app_file.os_id = os.id and app_file.id=${appid}";
   $result = mysql_query($sql);
   $a = array();
   while ($row = mysql_fetch_row($result))
   {
     array_push($a, array("id"=>$row[0], "version"=>$row[1],"filename"=>$row[2],"download_size"=>$row[3],
-		         "status"=>$row[4],"install_script"=>$row[5],"uninstall_script"=>$row[6]));
+		         "status"=>$row[4],"install_script"=>$row[5],"uninstall_script"=>$row[6],"os_name"=>$row[7]));
   }
   return $a;
 }

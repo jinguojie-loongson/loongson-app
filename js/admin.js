@@ -83,7 +83,7 @@ function review_comment()
   var appid = $("#appidforcommit").val();
   var operation_type = $("#operation_type").val();// 1:"通过审核"按钮  2:"不通过审核"按钮  3:"下架"按钮
   var versionreview = $("#versionreview").val();
-  var from_vendor = $("#from_vendor").val(); //1 app对应的版本下架  0:app下架
+  var is_admin = $("#is_admin").val(); //1 app对应的版本下架  0:app下架
   var versionreplace = versionreview.replace(/\./g,'1');
 
   url = window.location.href;
@@ -91,19 +91,19 @@ function review_comment()
   url = url.substr(0, n) + "/auditApp.php?" + "appid=" + appid+ "&operation_type=" + operation_type
 	+ "&versionreview=" + versionreview
 	+ "&comment=" + encodeURI(comment) 
-	+ "&from_vendor="+ from_vendor;
+	+ "&is_admin="+ is_admin;
   console.log(url);
 
   get_server_service(url, "", function(data) {
-    if (from_vendor == 1 ) { 
+    if (is_admin == 1 ) { 
 	$('#'+appid+versionreplace+'btnisdispay').html("");
-	  if (operation_type == 1 ) {//"+appid+","+versionreview+"
+	  if (operation_type == 'pass' ) {//"+appid+","+versionreview+"
 	     $('#'+appid+versionreplace+'updatestatus').html("通过审核");	
 	     $('#'+appid+versionreplace+'btnisdispay').html("<button type='button' onclick=\"offtheshelf("+appid+",'"+versionreview+"')\" "
 			+" class='btn btn-danger appofftheshelf' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
 			+" <a href='#' title='审核信息'><span class='glyphicon glyphicon-list-alt' title='审核信息' class='btn btn-danger' "
 			+" data-toggle='modal'  data-target='#myModal1' onclick='get_review_byappid("+appid+")'></span></a>");
-	  } else if (operation_type == 2 ) {
+	  } else if (operation_type == 'not_pass' ) {
 	    $('#'+appid+versionreplace+'btnisdispay').html("<a  href='#' title='审核信息'>"
 		+" <span class='glyphicon glyphicon-list-alt' title='审核信息' "
 		+" class='btn btn-danger' data-toggle='modal'  data-target='#myModal1' "
@@ -161,21 +161,21 @@ $(document).ready(function(){
   $(".Audit_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
-    $("#operation_type").val("1");
+    $("#operation_type").val("pass");
     $("#appcomment_review").empty();
   });
 
   $(".NotAudit_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
-    $("#operation_type").val("2");
+    $("#operation_type").val("not_pass");
     $("#appcomment_review").empty();
   });
 
 
   $(".off_the_shelf_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
-    $("#operation_type").val("3");
+    $("#operation_type").val("off_the_shelf");
     $("#appcomment_review").empty();
 	
   });
@@ -183,7 +183,7 @@ $(document).ready(function(){
   $(".appofftheshelf").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
-    $("#operation_type").val("3");
+    $("#operation_type").val("off_the_shelf");
     $("#appcomment_review").empty();
 
   });

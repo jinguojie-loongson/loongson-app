@@ -206,7 +206,7 @@ include_once('vendor_top.php');
         <input id="appidforcommit"  name="appidforcommit" value="" type="hidden">
         <input id="operation_type"  name ="operation_type" value="" type="hidden">
         <input id="versionreview"  name ="versionreview" value="" type="hidden">
-        <input id="from_vendor"  name ="from_vendor" value="0" type="hidden">
+        <input id="is_admin"  name ="is_admin" value="0" type="hidden">
         <div class="app-comment-div">
           <div  id="appcomment_review" name="appcomment_review"  class="input-thin app-comment-input" 
 		contenteditable="true" placeholder="请填写附言，限制500字以内"></div>

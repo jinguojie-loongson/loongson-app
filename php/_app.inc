@@ -421,16 +421,16 @@ global $conn;
   return db_exec($sql);
 
 }
-function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit) 
+function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type) 
 {
   try{
-    if($isExistAudit == 1) {
+    if($operation_type == "pass" ) {
       set_app_file_status($appid, $status,$versionreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
-    }else if($isExistAudit == 2) {
+    }else if($operation_type == "not_pass" ) {
       set_app_file_status($appid, $status,$versionreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
-    }else if($isExistAudit == 3) {
+    }else if($operation_type == "off_the_shelf" ) {
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
       update_app_isonline_by_id($appid);
       update_app_file_status_for_rejected($appid);

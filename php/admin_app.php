@@ -119,7 +119,7 @@ foreach ($apps  as $key => $value) {
 	  <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?>btnisdispay">
 	    <input id="app_id" type="hidden" value="<?= @${id} ?>">
 	    <input id="version" type="hidden" value="<?= @${version} ?>">
-	    <input id="from_vendor" type="hidden" value="1">
+	    <input id="is_admin" type="hidden" value="1">
             <?php if ($value['status'] == "under_review") {  ?>
               <button type="button" class="btn btn-primary Audit_app" data-toggle="modal"  data-target="#myModal" >
                 通过审核

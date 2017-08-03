@@ -60,7 +60,7 @@ global $conn;
 
   $sql = "select comment from comment "
          . "  where id=${comment_id}";
-  return db_get_one_value($sql);
+  return htmlentities(db_get_one_value($sql));
 }
 
 /*

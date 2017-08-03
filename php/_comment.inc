@@ -124,7 +124,7 @@ global $conn;
  */
 function get_app_one_comment_html($id)
 {
-  $comment = htmlentities(get_app_comment($i));
+  $comment =  htmlentities(get_app_comment($i));
   $date_time = get_app_comment_date_time($id);
 
 /*

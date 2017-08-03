@@ -10,12 +10,14 @@ include_once('_os.inc');
 $os_id = is_empty($_GET['os_id']) ? $_POST['data'] : $_GET['os_id'];
 $state = is_empty($_GET['state']) ? $_POST['data'] : $_GET['state'];
 $os_json = "";
-if ($state == 0) {
+if ($state == "query") {
   $os_json = get_or_modify_os_id($os_id, "", "", "", $state);
-} else if ($state == 1) {
-  $os_name = is_empty($_GET['os_name']) ? $_POST['data'] : $_GET['os_name'];
-  $os_description = is_empty($_GET['os_description']) ? $_POST['data'] : $_GET['os_description'];
-  $os_probe_cmd = is_empty($_GET['os_probe_cmd']) ? $_POST['data'] : $_GET['os_probe_cmd'];
+} else if ($state == "update") {
+  $json = json_decode($_POST['data']);
+  $os_name = $json -> os_json -> os_name;
+  $os_description = $json -> os_json -> os_description;
+  $os_probe_cmd = $json -> os_json -> os_probe_cmd;
+
   $os_json = get_or_modify_os_id($os_id, $os_name, $os_description, $os_probe_cmd, $state);
 }
 echo $os_json;

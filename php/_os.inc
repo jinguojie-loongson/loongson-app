@@ -87,6 +87,7 @@ function get_os_list()
 function check_os_name($name)
 {
 global $conn;
+  $name = addslashes($name);
   $sql = "select count(1) from os "
 	. " where name = '${name}'";
   return db_get_one_value($sql);
@@ -98,6 +99,7 @@ global $conn;
 function update_check_os_name($os_id, $name)
 {
 global $conn;
+  $name = addslashes($name);
   $sql = "select count(1) from os "
 	. " where id <> ${os_id} and name = '${name}'";
   return db_get_one_value($sql);
@@ -116,17 +118,6 @@ global $conn;
 }
 
 /*
- * 校验系统是否被使用
- */
-function check_app_file_os_id($os_id)
-{
-global $conn;
-  $sql = "select count(1) from app_file "
-	. " where os_id = ${os_id}";
-  return db_get_one_value($sql);
-}
-
-/*
  * 根据id删除一条记录
  */
 function delete_os_id($os_id)
@@ -142,7 +133,7 @@ global $conn;
  */
 function submit_delete_os_event($os_id)
 {
-  $count = check_app_file_os_id($os_id);
+  $count = get_app_file_os_id_count($os_id);
   if ($count == 0) {
     delete_os_id($os_id);
     return "true";
@@ -156,17 +147,17 @@ function submit_delete_os_event($os_id)
  */
 function get_or_modify_os_id($os_id, $os_name, $os_description, $os_probe_cmd, $state)
 {
-  if ($state == 0) {
+  if ($state == "query") {
     $name = get_os_name($os_id);
     $description = get_os_description($os_id);
     $probe_cmd = get_os_probe_cmd($os_id);
 
     $arr = array ("return"=>"true", "os_id"=>$os_id, "os_name"=>$name, "os_description"=>$description, "probe_cmd"=>$probe_cmd);
     return json_encode($arr);
-  } else if ($state == 1) {
+  } else if ($state == "update") {
     $count = update_check_os_name($os_id, $os_name);
     if ($count == 0) {
-      update_os_id($os_id, $os_name, $os_description, $os_probe_cmd);
+      update_os_by_os_id($os_id, addslashes($os_name), addslashes($os_description), addslashes($os_probe_cmd));
 
       $name = get_os_name($os_id);
       $description = get_os_description($os_id);
@@ -187,7 +178,7 @@ function get_or_modify_os_id($os_id, $os_name, $os_description, $os_probe_cmd, $
 /*
  * 根据os_id 更新 os表数据
  */
-function update_os_id($os_id, $os_name, $os_description, $os_probe_cmd)
+function update_os_by_os_id($os_id, $os_name, $os_description, $os_probe_cmd)
 {
 global $conn;
   $sql = "update os set name = '${os_name}', description = '${os_description}', probe_cmd = '${os_probe_cmd}' "
@@ -202,7 +193,7 @@ function add_os($name, $description, $probe_cmd)
 {
   $state = check_os_name($name);
   if ($state == 0) {
-    $os_id = insert_os($name, $description, $probe_cmd);
+    $os_id = insert_os(addslashes($name), addslashes($description), addslashes($probe_cmd));
     $html = "<tr> \n"
         . " <td>${os_id}</td> \n"
         . " <td id='os_name_$(os_id)'>${name}</td> \n"

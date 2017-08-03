@@ -60,7 +60,7 @@ global $conn;
 
   $sql = "select comment from comment "
          . "  where id=${comment_id}";
-  return htmlentities(db_get_one_value($sql));
+  return db_get_one_value($sql);
 }
 
 /*
@@ -124,7 +124,7 @@ global $conn;
  */
 function get_app_one_comment_html($id)
 {
-  $comment = get_app_comment($id);
+  $comment = htmlentities(get_app_comment($i));
   $date_time = get_app_comment_date_time($id);
 
 /*

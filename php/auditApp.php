@@ -41,34 +41,37 @@ include_once('_util.inc');
 include_once('_app.inc');
 include_once('_review.inc');
 include_once('_vendor_login.inc');
+include_once('_admin.inc');
 session_start();
 $appid = is_empty($_GET['appid']) ? $_POST['data'] : $_GET['appid'];  
-$isExistAudit =  is_empty($_GET['isExistAudit']) ? $_POST['data'] : $_GET['isExistAudit'];
+$operation_type =  is_empty($_GET['operation_type']) ? $_POST['data'] : $_GET['operation_type'];
 $versionreview =  is_empty($_GET['versionreview']) ? $_POST['data'] : $_GET['versionreview'];
-$isappOfftheshelf =  is_empty($_GET['isappOfftheshelf']) ? $_POST['data'] : $_GET['isappOfftheshelf'];
+$from_vendor =  is_empty($_GET['from_vendor']) ? $_POST['data'] : $_GET['from_vendor'];
 $comment = is_empty($_GET['comment']) ? $_POST['data'] : $_GET['comment'];
 
 $date_time = time();
 $is_admin = 1;
-
-if($isappOfftheshelf == 0) {
+$operator = 1;
+if($from_vendor == 0) {
   $is_admin = 0;
+  $operator = get_current_vendor();
+} else {
+  $operator = get_current_admin();
 }
-$operator = get_current_vendor();
 $status = "";
 
-if($isExistAudit == 1) { 
+if($operation_type == 1) { 
   $status = "published";
-  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
 }
-if($isExistAudit == 2) {
+if($operation_type == 2) {
   $status = "rejected";
-  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
   echo $result;
 }
-if($isExistAudit == 3) {
+if($operation_type == 3) {
   $status = "off_the_shelf";
-  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$isExistAudit);
+  $result=update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
   echo $result;
 }
  

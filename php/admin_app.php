@@ -119,7 +119,7 @@ foreach ($apps  as $key => $value) {
 	  <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?>btnisdispay">
 	    <input id="app_id" type="hidden" value="<?= @${id} ?>">
 	    <input id="version" type="hidden" value="<?= @${version} ?>">
-	    <input id="isappOfftheshelf" type="hidden" value="1">
+	    <input id="from_vendor" type="hidden" value="1">
             <?php if ($value['status'] == "under_review") {  ?>
               <button type="button" class="btn btn-primary Audit_app" data-toggle="modal"  data-target="#myModal" >
                 通过审核
@@ -159,7 +159,7 @@ foreach ($apps  as $key => $value) {
 	</div>
 	<div class="modal-body">
 	  <input id="appidforcommit"  name="appidforcommit" value="" type="hidden">
-	  <input id="isExistAudit"  name ="isExistAudit" value="" type="hidden">
+	  <input id="operation_type"  name ="operation_type" value="" type="hidden">
 	  <input id="versionreview"  name ="versionreview" value="" type="hidden">
     	  <div class="app-comment-div">
 	    <div  id="appcomment_review" name="appcomment_review"  class="input-thin app-comment-input" 

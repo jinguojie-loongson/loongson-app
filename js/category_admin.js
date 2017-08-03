@@ -43,15 +43,22 @@ $(document).ready(function() {
 
   $("#saveCategory").click(function() {
     var category_name = $("#addCategory").val();
+    var category_json={
+          "category_json":{
+                         "category_name" : category_name
+                         }
+        };
+        var obj=JSON.stringify(category_json);
+
    
     if (category_name == ""){
         category_input_message();
     }else{
         url = window.location.href;
         n = url.lastIndexOf("/");
-        url = url.substr(0, n) + "/addCategory.php?" + "category_name=" + category_name;
+        url = url.substr(0, n) + "/addCategory.php?";
 
-    get_server_service(url, "", function(data) {
+    get_server_service_json(url, obj, function(data) {
       $("#category_list").append(
           "<tr> \n"
         + " <td>" + data + "</td> \n"

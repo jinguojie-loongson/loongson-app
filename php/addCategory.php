@@ -2,8 +2,9 @@
 include_once('_util.inc');
 include_once('_category.inc');
 
+$J=json_decode($_POST['data']);
+$category_name=addslashes($J -> category_json -> category_name);
 
-$category_name = is_empty($_GET['category_name']) ? $_POST['data'] : $_GET['category_name'];
-$result = add_category($category_name);
+$result = htmlentities(add_category($category_name));
 echo $result;
 ?>

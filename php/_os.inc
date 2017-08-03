@@ -196,7 +196,7 @@ function add_os($name, $description, $probe_cmd)
     $os_id = insert_os(addslashes($name), addslashes($description), addslashes($probe_cmd));
     $html = "<tr> \n"
         . " <td>${os_id}</td> \n"
-        . " <td id='os_name_$(os_id)'>${name}</td> \n"
+        . " <td id='os_name_${os_id}'>${name}</td> \n"
         . " <td id='os_description_${os_id}'>${description}</td> \n"
         . " <td id='os_probe_cmd_${os_id}'>${probe_cmd}</td> \n"
         . " <td> \n"

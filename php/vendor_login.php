@@ -48,7 +48,7 @@
     <div class="panel-body">
       <p class="text-warning" id="loginmessage"></p>
 
-      <form id="vendor_loginform" name="vendor_loginform" method="post" action="vendorWorkbench.php" >
+      <form id="vendor_loginform" name="vendor_loginform" method="get" action="vendorWorkbench.php" >
         <input type="password" style="position: fixed; top: -999px "/>
 
         <div class="form-group">

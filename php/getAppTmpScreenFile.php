@@ -1,20 +1,24 @@
 <?php
+/*
+ * 返回一个应用tmp目录下的screen图片
+ */
+include_once('_util.inc');
 include_once('_app.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "app/";
+$HOT_DIR = $file_url . "tmp/";
 
 $id = $_GET['id'];
-$version = $_GET['version'];
+$index = $_GET['index'];
 
-$file = $HOT_DIR . get_app_file_by_id_version($id,$version);
+$file = $HOT_DIR . get_app_screen_file_by_id($id, $index);
 
-set_time_limit(0);
-ini_set('memory_limit', '512M');
+if(!file_exist($file))
+  $file = black_filename();
+
 header("Content-type: octet/stream");
 header("Content-disposition:attachment;filename=".basename($file));
 header("Content-Length:".filesize($file));
-ob_end_clean();
 readfile($file);
 exit;
 ?>

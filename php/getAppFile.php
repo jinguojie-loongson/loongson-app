@@ -38,8 +38,9 @@
  * 返回一个应用的Icon图片
  */
 include_once('_app.inc');
+include_once('_config.inc');
 
-$HOT_DIR = "../data/app/";
+$HOT_DIR = $file_url . "app/";
 
 $id = $_GET['id'];
 $file = $HOT_DIR . get_app_file_by_id($id);

@@ -4,6 +4,7 @@ include_once('_util.inc');
 include_once('_app.inc');
 include_once('_category.inc');
 include_once('_review.inc');
+include_once('global.inc');
 
 function insert_vendor_os_app($vendor_id, $icon_file, $name, $category_id, $description, $longdesc, 
 	$screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5, $os_content)
@@ -64,7 +65,8 @@ global $conn;
  */
 function icon_cp_rename($app_id, $icon_file)
 {
-  $icon_target_url = "../data/icon/";
+global $file_url;
+  $icon_target_url = $file_url . "icon/";
   
   copy($icon_file, $icon_target_url . $app_id . ".png");
 
@@ -76,7 +78,8 @@ function icon_cp_rename($app_id, $icon_file)
  */
 function icon_screen_cp_rename($app_id, $screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5)
 {
-  $screen_target_url = "../data/screen/";
+global $file_url;
+  $screen_target_url = $file_url . "screen/";
   $screen_sum = 0;  
 
   if (!is_empty($screen_file_1)) {
@@ -107,8 +110,9 @@ function icon_screen_cp_rename($app_id, $screen_file_1, $screen_file_2, $screen_
  */
 function file_cp($file_name)
 {
-  $current_url = "../data/tmp/";
-  $file_target_url = "../data/app/";
+global $file_url;
+  $current_url = $file_url . "tmp/";
+  $file_target_url = $file_url . "app/";
   
   copy($current_url . $file_name, $file_target_url . $file_name);
   //unlink($current_url . $file_name);
@@ -133,7 +137,8 @@ global $conn;
 function insert_app_file($app_id, $version, $file_name, $file_size, $status, $os_id, $install_script, $uninstall_script)
 {
 global $conn;
-  $file_target_url = "../data/app/";
+global $file_url;
+  $file_target_url = $file_url . "app/";
   $file_name_md5 = system("md5sum '${file_target_url}/${file_name}' | cut -b-32");
   $download_size = round($file_size/1024, 1) . "M";
   $sql = "insert into app_file (id, version, filename, download_size, md5, status, os_id, install_script, uninstall_script) "
@@ -236,11 +241,12 @@ function get_error_html($name)
  */
 function get_vendor_app_icon($app_id)
 {
+global $file_url;
   $icon = get_app_icon_file_by_id($app_id);
 
-  $icon_url = "../data/tmp/" . $icon;
+  $icon_url = $file_url . "tmp/" . $icon;
   $html = "<div class='app-icon' style='margin-top: 50px;'> \n"
-	. "<img src='${icon_url}' class='app-icon-preview' style='width:150px; height:150px;'> \n"
+	. "<img src='getAppTmpIcon.php?id=${app_id}' class='app-icon-preview' style='width:150px; height:150px;'> \n"
 	. "<input type='hidden' id='appIconName' name='appIconName' value='${icon_url}'> \n"
 	. "<div id='app-icon-status' style='display:none'> \n"
 	. "<img class='loader-img' src='../images/loader.gif' alt='uploading'/> \n"
@@ -335,6 +341,7 @@ function get_vendor_app_longdesc($app_id)
  */
 function get_vendor_app_screen($app_id)
 {
+global $file_url;
   $screen_file_count = get_app_screen_file_count($app_id);
   $html = "";
   
@@ -349,10 +356,10 @@ function get_vendor_app_screen($app_id)
     $class = "app-screen-edit-" . $num;
     $i_id = "app-screen-del-" . $num; 
 
-    $url = "../data/tmp/" . $app_id . "_" . $i . ".png";
+    $url = $file_url . "tmp/" . $app_id . "_" . $i . ".png";
     
     $html = $html . "<div class='${divClass} app-screen'> \n"
-	. "<img src='${url}' class='${imgClass}' style='width:150px; height:150px;'> \n"
+	. "<img src='getAppTmpScreenFile.php?id=${app_id}&index=${i}' class='${imgClass}' style='width:150px; height:150px;'> \n"
 	. "<input type='hidden' id='${idOrName}' name='${idOrName}' value='${url}'> \n"
 	. "<div id='${divId}' style='display:none'> \n"
 	. "<img class='loader-img' src='../images/loader.gif' alt='uploading'/> \n"
@@ -395,7 +402,8 @@ function get_vendor_app_screen($app_id)
  */
 function del_vendor_app_icon($app_id)
 {
-  $icon_url = "../data/icon/" . $app_id . ".png";
+global $file_url;
+  $icon_url = $file_url . "icon/" . $app_id . ".png";
   if (file_exists ($icon_url)) {
     unlink($icon_url);
   }
@@ -406,8 +414,9 @@ function del_vendor_app_icon($app_id)
  */
 function del_vendor_app_screen($app_id)
 {
+global $file_url;
   for ($i = 0; $i < 5; $i++) {
-    $screen_url = "../data/screen/" . $app_id . "_" . $i . ".png";
+    $screen_url = $file_url . "screen/" . $app_id . "_" . $i . ".png";
     if (file_exists ($screen_url)) {
       unlink($screen_url);
     } 
@@ -419,8 +428,9 @@ function del_vendor_app_screen($app_id)
  */
 function icon_cp_tmp($app_id)
 {
-  $tmp_url = "../data/tmp/";
-  $icon_url = "../data/icon/" . $app_id . ".png";
+global $file_url;
+  $tmp_url = $file_url . "tmp/";
+  $icon_url = $file_url . "icon/" . $app_id . ".png";
 
   if (file_exists ($icon_url)) {
     copy($icon_url, $tmp_url . $app_id . ".png");
@@ -432,9 +442,10 @@ function icon_cp_tmp($app_id)
  */
 function screen_cp_tmp($app_id)
 {
-  $tmp_url = "../data/tmp/";
+global $file_url;
+  $tmp_url = $file_url . "tmp/";
   for ($i = 0; $i < 5; $i++) {
-    $screen_url = "../data/screen/" . $app_id . "_" . $i . ".png";
+    $screen_url = $file_url . "screen/" . $app_id . "_" . $i . ".png";
     if (file_exists ($screen_url)) {
       copy($screen_url, $tmp_url . $app_id . "_" . $i . ".png");
     }

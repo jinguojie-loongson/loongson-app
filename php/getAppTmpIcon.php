@@ -1,20 +1,18 @@
 <?php
+/*
+ * 返回一个应用tmp目录下的Icon图片
+ */
 include_once('_app.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "app/";
+
+$HOT_DIR = $file_url . "tmp/";
 
 $id = $_GET['id'];
-$version = $_GET['version'];
-
-$file = $HOT_DIR . get_app_file_by_id_version($id,$version);
-
-set_time_limit(0);
-ini_set('memory_limit', '512M');
+$file = $HOT_DIR . get_app_icon_file_by_id($id);
 header("Content-type: octet/stream");
 header("Content-disposition:attachment;filename=".basename($file));
 header("Content-Length:".filesize($file));
-ob_end_clean();
 readfile($file);
 exit;
 ?>

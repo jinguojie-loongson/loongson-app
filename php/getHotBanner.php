@@ -38,8 +38,9 @@
  * 返回一个Hot应用的图片数据
  */
 include_once('_hot.inc');
+include_once('_config.inc');
 
-$HOT_DIR = "../data/hot/";
+$HOT_DIR = $file_url . "hot/";
 
 $id = $_GET['id'];
 $file = get_hot_banner_file_by_id($id);

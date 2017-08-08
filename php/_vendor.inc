@@ -55,7 +55,7 @@ function get_vendor_one_app_html($app_id)
   $description = get_app_description($app_id);
   
   $html = "<div class='vendor-app-card' id=${app_id}> \n"
-	. "  <img src='../data/icon/${icon}' /> \n"
+	. "  <img src='getAppIcon.php?id=${app_id}' /> \n"
 	. "  <span class='app-title'> ${name} </span> <br> \n"
 	. "  <span class='app-info'>版本号：${version} </span><br> \n"
 	. "  <i class='fa fa-file-o'></i> <span class='app-info'>大小：${download_size}</span>  \n"

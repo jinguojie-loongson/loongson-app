@@ -69,12 +69,12 @@ include_once('vendor_top.php');
 	    <div class="row">
 	      <?php if ($value['is_online'] == 0 ) {  ?>
 	        <div class="col-md-12 " id="<?= $value['id'] ?>img">
-		  <img src='../data/icon/<?= $value['icon_file'] ?>' class="imgsize"  />
+		  <img src='getAppIcon.php?id=<?= $value['id'] ?>' class="imgsize"  />
 		</div>
 	      <?php } else {	?>
 	        <div class="col-md-12" id="<?= $value['id'] ?>img">
 		   <p><span class='badge pull-right'>已下架</span></p>
-		     <img src='../data/icon/<?= $value['icon_file'] ?>' class="imgsize" />
+		     <img src='getAppIcon.php?id=<?= $value['id']?>' class="imgsize" />
 		</div>
 	      <?php } ?>
 	    </div>

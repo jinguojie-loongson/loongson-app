@@ -1,4 +1,5 @@
 <?php
+include_once('_config.inc');
 /*
  * 开发者上传应用，文件存储
  */
@@ -6,7 +7,7 @@
 /*
  * 上传文件的临时路径
  */
-$TEMPORAY_FILE_URL = "../data/tmp/";
+$TEMPORAY_FILE_URL = $file_url . "tmp/";
 
 $imgArr = array("jpg", "png", "gif");
 
@@ -28,10 +29,11 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
   $new_file_url = new_file_name($file_name, $suffix, $TEMPORAY_FILE_URL, $file_type);
   $tmp = $_FILES['photoimg']['tmp_name'];
   
-
+  $n = strripos($new_file_url, "/");
+  $file = substr($new_file_url, $n+1);
   if ($file_type == "icon") {
     if (move_uploaded_file($tmp, $new_file_url)) {
-      echo "<img src='${new_file_url}' class='app-icon-preview' style='width:150px; height:150px;'>"
+      echo "<img src='getAppTmpFile.php?file_name=${file}' class='app-icon-preview' style='width:150px; height:150px;'>"
 		. "<input type='hidden' id='appIconName' name='appIconName' value='${new_file_url}'>";
     } else {
       echo "上传出错了！";
@@ -39,7 +41,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     exit;
   } else if ($file_type == "screen") {
     if (move_uploaded_file($tmp, $new_file_url)) {
-       echo "<img src='${new_file_url}' class='app-screen-preview-${screen_number}' style='width:150px; height:150px;'>"
+       echo "<img src='getAppTmpFile.php?file_name=${file}' class='app-screen-preview-${screen_number}' style='width:150px; height:150px;'>"
                 . "<input type='hidden'id='appScreenName${screen_number}' name='appScreenName${screen_number}' value='${new_file_url}'>";
     } else {
       echo "上传出错了！";
@@ -47,7 +49,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
     exit;
   } else {
     if (move_uploaded_file($tmp, $new_file_url)) {
-      echo "<img src='${new_file_url}' style='display:none;'>"
+      echo "<img src='getAppTmpFile.php?file_name=${file}' style='display:none;'>"
 		. "<input type='hidden'id='file_name' name='file_name' value='${file_name}'>"
 		. "<input type='hidden'id='file_size' name='file_size' value='${file_size}'>"
 		. "<div id='file_show_name' style='float:left;clear:both;'><span>文件名称：</span><span>${file_name}</span></div>"

@@ -39,8 +39,9 @@
  */
 include_once('_util.inc');
 include_once('_app.inc');
+include_once('_config.inc');
 
-$HOT_DIR = "../data/screen/";
+$HOT_DIR = $file_url . "screen/";
 
 $id = $_GET['id'];
 $index = $_GET['index'];

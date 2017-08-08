@@ -2,6 +2,7 @@
 
 include_once('_db.inc');
 include_once('_util.inc');
+include_once('global.inc');
 
 function get_hot_count()
 {
@@ -52,11 +53,12 @@ function get_hot_banner_html()
 
 function upload_hot_app_banner($index, $hot_id)
 {
+global $file_url;
   $file_size = $_FILES["hot_img"]['size'][$index];
   $file_name = $_FILES["hot_img"]['name'][$index];
   $tmp_file  = $_FILES["hot_img"]['tmp_name'][$index];
 
-  $HOT_DIR = "../data/hot/";
+  $HOT_DIR = $file_url . "hot/";
   $FILE = $hot_id . ".png";
 
   if(is_uploaded_file($tmp_file)) {  

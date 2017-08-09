@@ -50,6 +50,22 @@
     fatal_error("传入应用程序的ID不能为空！");
 ?>
 
+<?php
+@session_start();
+
+$token=md5(getrandcode());
+$_SESSION['token'] = $token;
+function  getrandcode(){
+    $str =array(1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h');
+    $res='';
+    for($i=0;$i<4;$i++){
+        $rand=mt_rand(1,16);
+        $res .=$str[$rand];
+    }
+    return  $res;
+}
+?>
+
 <div class="app-form">
   <div id="app-back"> <i class='fa fa-chevron-left'></i> </div>
 
@@ -58,6 +74,7 @@
       <td class="td-img" rowspan="6">
         <?= get_app_icon_html($app_id); ?> 
         <div class="button installed" id="installApp">获取应用状态...</div>
+        <input type='hidden' id='download_count_token' value="<?php echo $token?>" />
         <input type="hidden" id="app_id" value="<?= $app_id ?>">
         <input type="hidden" id="app_name" value="<?= get_app_name($app_id) ?>">
         <input type="hidden" id="app_version" value="<?= get_app_version($app_id) ?>">

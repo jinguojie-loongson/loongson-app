@@ -40,9 +40,16 @@
 include_once('_util.inc');
 include_once('_app.inc');
 
-$id = is_empty($_GET['id']) ? $_POST['data'] : $_GET['id'];
-app_inc_download_count($id);
+@session_start();
+$J = json_decode($_POST['data']);
+$id = $J -> download_count_json -> app_id;
+$download_count_token = $J -> download_count_json -> download_count_token;
 
+if (!empty($download_count_token)&&($download_count_token == $_SESSION['token'])) {
+   app_inc_download_count($id);
+   unset($_SESSION['token']);
+
+}
 echo $id;
 exit;
 ?>

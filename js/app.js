@@ -252,10 +252,17 @@ function app_inc_download_count(id)
 {
   url = window.location.href;
   n = url.lastIndexOf("/");
-  url = url.substr(0, n) + "/incAppDownloadCount.php?" + "id=" + id;
-  
-console.log(url);
-  get_server_service(url, "", function() {});
+  url = url.substr(0, n) + "/incAppDownloadCount.php?";
+  var download_count_token=$("#download_count_token").val();
+  var download_count_json={
+          "download_count_json":{
+                         "app_id" : id,
+                         "download_count_token" : download_count_token
+                         }
+        };
+  var obj=JSON.stringify(download_count_json);
+  console.log(url);
+  get_server_service_json(url, obj, function() {});
 }
 
 /*

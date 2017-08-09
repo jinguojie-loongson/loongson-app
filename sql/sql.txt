@@ -90,6 +90,7 @@ create table review (
   operator int(10),
   status varchar(50),
   comment  varchar(500),
+  os_id int(5),
   date_time     DATETIME
 );
 
@@ -163,8 +164,8 @@ insert into  vendor (id, login_name, password, vendor_name, email, description, 
   (7, "loongson", "96e79218965eb72c92a549dd5a330112", "龙芯中科技术有限公司", "renyafei@loongson.cn", "注册用户", 1)
 ;
 
-insert into review (id, app_id, version, is_admin, operator, status, comment, date_time) VALUES
-  (1, 1, "1.0.016", 1, 1, "published", "通过审核", now())
+insert into review (id, app_id, version, is_admin, operator, status, comment, date_time,os_id) VALUES
+  (1, 1, "1.0.016", 1, 1, "published", "通过审核", now(),1)
 ;
 
 insert into admin (id, login_name, password) VALUES

@@ -85,6 +85,7 @@ foreach ($apps  as $key => $value) {
   $subuninstall_script =substr_replace($uninstall_script, '...', 6, strlen($uninstall_script)) ;
   $filename = $value['filename'];
   $isonline = $value['is_online'];
+  $os_id = $value['os_id'];
 ?>
     <tr>
       <td> <?= @$id ?> </td>
@@ -93,21 +94,21 @@ foreach ($apps  as $key => $value) {
       <td> <?= @$category ?> </td>
       <td> <?= @$version ?> </td>
       <td>
-        <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?>updatestatus">  <?= @$status ?>  </div>
+        <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?><?= @$os_id ?>updatestatus">  <?= @$status ?>  </div>
       </td>
       <td>
-        <div id ="<?= @$id ?><?= @$versionreplace ?>installisshow" 
+        <div id ="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>installisshow"
 	  class="popover-show" data-container="body" data-toggle="popover" data-content="<?= @$install_script ?>">
 	</div>   
-	<div id="<?= @$id ?><?= @$versionreplace ?>" class="installscript"   >
+	<div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>" class="installscript"   >
 	  <?= @$subinstall_script ?>
         </div>
       </td>
       <td>
-        <div id="<?= @$id ?><?= @$versionreplace ?>unistallisshow" 
+        <div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>unistallisshow"
 	  class="popover-show" data-container="body" data-toggle="popover"  data-content="<?= @$uninstall_script ?>">
         </div>
-	<div id="<?= @$id ?><?= @$versionreplace ?>" class="unistallshow"   >
+	<div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>" class="unistallshow"   >
           <?= @$subuninstall_script ?>
 	</div>
       </td>
@@ -116,19 +117,20 @@ foreach ($apps  as $key => $value) {
       </td>
       <td>
         <div class="row">
-	  <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?>btnisdispay">
+	  <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?><?= @$os_id ?>btnisdispay">
 	    <input id="app_id" type="hidden" value="<?= @${id} ?>">
 	    <input id="version" type="hidden" value="<?= @${version} ?>">
 	    <input id="is_admin" type="hidden" value="1">
-            <?php if ($value['status'] == "under_review") {  ?>
-              <button type="button" class="btn btn-primary Audit_app" data-toggle="modal"  data-target="#myModal" >
-                通过审核
-              </button>
-              <button type="button" class="btn btn-warning NotAudit_app" data-toggle="modal"  data-target="#myModal">
-                拒绝审核
-              </button>
-	    <?php } ?>
+	    <input id="os_id" type="hidden" value="<?= @${os_id} ?>">
 	    <?php if ($isonline == 0 ) {  ?>
+              <?php if ($value['status'] == "under_review") {  ?>
+                <button type="button" class="btn btn-primary Audit_app" data-toggle="modal"  data-target="#myModal" >
+                  通过审核
+                </button>
+                <button type="button" class="btn btn-warning NotAudit_app" data-toggle="modal"  data-target="#myModal">
+                  拒绝审核
+                </button>
+              <?php } ?>
               <button type="button" class="btn btn-danger appofftheshelf" data-toggle="modal"  data-target="#myModal" >
                 下架
               </button>
@@ -161,6 +163,7 @@ foreach ($apps  as $key => $value) {
 	  <input id="appidforcommit"  name="appidforcommit" value="" type="hidden">
 	  <input id="operation_type"  name ="operation_type" value="" type="hidden">
 	  <input id="versionreview"  name ="versionreview" value="" type="hidden">
+	  <input id="os_idreview"  name ="os_idreview" value="" type="hidden">
     	  <div class="app-comment-div">
 	    <div  id="appcomment_review" name="appcomment_review"  class="input-thin app-comment-input" 
 	      contenteditable="true" placeholder="请填写附言，限制500字以内">

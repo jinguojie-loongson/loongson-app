@@ -46,6 +46,7 @@ session_start();
 $appid = is_empty($_GET['appid']) ? $_POST['data'] : $_GET['appid'];  
 $operation_type =  is_empty($_GET['operation_type']) ? $_POST['data'] : $_GET['operation_type'];
 $versionreview =  is_empty($_GET['versionreview']) ? $_POST['data'] : $_GET['versionreview'];
+$os_idreview =  is_empty($_GET['os_idreview']) ? $_POST['data'] : $_GET['os_idreview'];
 $is_admin =  is_empty($_GET['is_admin']) ? $_POST['data'] : $_GET['is_admin'];
 $comment = is_empty($_GET['comment']) ? $_POST['data'] : $_GET['comment'];
 
@@ -60,16 +61,16 @@ $status = "";
 
 if($operation_type == "pass" ) { 
   $status = "published";
-  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
+  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type,$os_idreview);
 }
 if($operation_type == "not_pass" ) {
   $status = "rejected";
-  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
+  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type,$os_idreview);
   echo $result;
 }
 if($operation_type == "off_the_shelf" ) {
   $status = "off_the_shelf";
-  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type);
+  $result = update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type,$os_idreview);
   echo $result;
 }
  

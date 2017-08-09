@@ -39,18 +39,11 @@ function audit_app($btn, $id)
   });
 }
 
-function offtheshelf(appid,version)
+function offtheshelf(appid)
 {
   $("#appidforcommit").val(appid);
-  //$("#versionreview").val(version);
-  $("#isExistAudit").val("3");
-  $("#appcomment_review").val("");
-}
-
-function appofftheself(appid)
-{
-  $("#appidforcommit").val(appid);
-  $("#isExistAudit").val("3");
+  $("#operation_type").val("off_the_shelf");
+  $("#appcomment_review").empty();
 }
 
 function cutString(str, len)
@@ -83,6 +76,7 @@ function review_comment()
   var appid = $("#appidforcommit").val();
   var operation_type = $("#operation_type").val();// 1:"通过审核"按钮  2:"不通过审核"按钮  3:"下架"按钮
   var versionreview = $("#versionreview").val();
+  var os_idreview = $("#os_idreview").val();
   var is_admin = $("#is_admin").val(); //1 app对应的版本下架  0:app下架
   var versionreplace = versionreview.replace(/\./g,'1');
 
@@ -90,31 +84,33 @@ function review_comment()
   n = url.lastIndexOf("/");
   url = url.substr(0, n) + "/auditApp.php?" + "appid=" + appid+ "&operation_type=" + operation_type
 	+ "&versionreview=" + versionreview
-	+ "&comment=" + encodeURI(comment) 
+	+ "&comment=" + encodeURI(comment)
+	+ "&os_idreview=" + os_idreview
 	+ "&is_admin="+ is_admin;
   console.log(url);
 
   get_server_service(url, "", function(data) {
     if (is_admin == 1 ) { 
-	$('#'+appid+versionreplace+'btnisdispay').html("");
-	  if (operation_type == 'pass' ) {//"+appid+","+versionreview+"
-	     $('#'+appid+versionreplace+'updatestatus').html("通过审核");	
-	     $('#'+appid+versionreplace+'btnisdispay').html("<button type='button' onclick=\"offtheshelf("+appid+",'"+versionreview+"')\" "
-			+" class='btn btn-danger appofftheshelf' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
-			+" <a href='#' title='审核信息'><span class='glyphicon glyphicon-list-alt' title='审核信息' class='btn btn-danger' "
-			+" data-toggle='modal'  data-target='#myModal1' onclick='get_review_byappid("+appid+")'></span></a>");
+	$('#'+appid+versionreplace+os_idreview+'btnisdispay').html("");
+	  if (operation_type == 'pass' ) {
+	     $('#'+appid+versionreplace+os_idreview+'updatestatus').html("通过审核");
+	     $('#'+appid+versionreplace+os_idreview+'btnisdispay').html("<button type='button'  onclick=\"offtheshelf("+appid+")\" "
+		  +" class='btn btn-danger appofftheshelf' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
+		  +" <a href='#' title='审核信息'><span class='glyphicon glyphicon-list-alt' title='审核信息' class='btn btn-danger' "
+		  +" data-toggle='modal'  data-target='#myModal1' onclick='get_review_byappid("+appid+")'></span></a>");
 	  } else if (operation_type == 'not_pass' ) {
-	    $('#'+appid+versionreplace+'btnisdispay').html("<a  href='#' title='审核信息'>"
-		+" <span class='glyphicon glyphicon-list-alt' title='审核信息' "
-		+" class='btn btn-danger' data-toggle='modal'  data-target='#myModal1' "
-		+" onclick='get_review_byappid("+appid+")'></span></a>");
-		$('#'+appid+versionreplace+'updatestatus').html("未通过审核");
+	    $('#'+appid+versionreplace+os_idreview+'btnisdispay').html("<button type='button' onclick=\"offtheshelf("+appid+")\" "
+                 +" class='btn btn-danger appofftheshelf' data-toggle='modal'  data-target='#myModal' > 下架  </button>"
+                 +" <a  href='#' title='审核信息'>"
+		 +" <span class='glyphicon glyphicon-list-alt' title='审核信息' "
+		 +" class='btn btn-danger' data-toggle='modal'  data-target='#myModal1' "
+		 +" onclick='get_review_byappid("+appid+")'></span></a>");
+	    $('#'+appid+versionreplace+os_idreview+'updatestatus').html("未通过审核");
 	  } else {
-	       $('#'+appid+versionreplace+'btnisdispay').html("<a  href='#' title='审核信息'>"
-		+" <span class='glyphicon glyphicon-list-alt' title='审核信息' "
-	        +" class='btn btn-danger' data-toggle='modal'  data-target='#myModal1' "
-		+" onclick='get_review_byappid("+appid+")'></span></a>");
-		$('#'+appid+versionreplace+'updatestatus').html("已下架");
+               $("div[id^='"+appid+"'][id$='btnisdispay'] ").html("<a  href='#' title='审核信息'>"
+                +" <span class='glyphicon glyphicon-list-alt' title='审核信息' "
+                +" class='btn btn-danger' data-toggle='modal'  data-target='#myModal1' "
+                +" onclick='get_review_byappid("+appid+")'></span></a>");
 	  }
     } else {
 	$('#'+appid+'img').prepend("<p><span class='badge pull-right'>已下架</span></p>");
@@ -161,6 +157,7 @@ $(document).ready(function(){
   $(".Audit_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
+    $("#os_idreview").val($(this).parent().find("#os_id").val());
     $("#operation_type").val("pass");
     $("#appcomment_review").empty();
   });
@@ -168,6 +165,7 @@ $(document).ready(function(){
   $(".NotAudit_app").click(function() {
     $("#appidforcommit").val($(this).parent().find("#app_id").val());
     $("#versionreview").val($(this).parent().find("#version").val());
+    $("#os_idreview").val($(this).parent().find("#os_id").val());
     $("#operation_type").val("not_pass");
     $("#appcomment_review").empty();
   });
@@ -185,7 +183,6 @@ $(document).ready(function(){
     $("#versionreview").val($(this).parent().find("#version").val());
     $("#operation_type").val("off_the_shelf");
     $("#appcomment_review").empty();
-
   });
 
   $(".installscript").mouseenter(function(e) {

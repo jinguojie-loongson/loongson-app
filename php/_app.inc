@@ -393,26 +393,13 @@ function modify_vendor_isActive($vendor_id, $isActive)
   }
 }
 
-function set_app_file_status($id, $status, $version)
+function set_app_file_status($id, $status, $version,$os_id)
 {
 global $conn;
   $sql = "update app_file set status='${status}' "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${version}' and os_id='${os_id}'";
   return db_exec($sql);
 }
-function update_app_file_status_for_rejected($id)
-{
-global $conn;
-$array = get_app_file_version_status($id);
-$version = $array[0][0];
-$status  = $array[0][1];
-  if($status == "under_review") {
-     $sql = "update app_file set status='rejected' "
-         . "  where id=${id} and  version = '${version}' ";
-     db_exec($sql);
-  }
-return 0;
-} 
 function update_app_isonline_by_id($id)
 {
 global $conn;
@@ -421,19 +408,18 @@ global $conn;
   return db_exec($sql);
 
 }
-function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type) 
+function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time,$operation_type,$os_idreview)
 {
   try{
     if($operation_type == "pass" ) {
-      set_app_file_status($appid, $status,$versionreview);
+      set_app_file_status($appid, $status,$versionreview,$os_idreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
     }else if($operation_type == "not_pass" ) {
-      set_app_file_status($appid, $status,$versionreview);
+      set_app_file_status($appid, $status,$versionreview,$os_idreview);
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
     }else if($operation_type == "off_the_shelf" ) {
       insert_review($appid,$versionreview,$is_admin,$operator,$status,$comment,$date_time);
       update_app_isonline_by_id($appid);
-      update_app_file_status_for_rejected($appid);
     }
   echo "true";
   }catch(Exception $e) {   

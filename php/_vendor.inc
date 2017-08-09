@@ -197,14 +197,15 @@ function get_all_app_appfile() {
 global $conn;
   $sql = "select  app.id,app.name,app.vendor_id,app.category_id,app_file.version ,"
 	." app_file.filename,app_file.status,app_file.install_script,app_file.uninstall_script,"
-	." app.is_online from app, app_file "
+	." app.is_online,app_file.os_id from app, app_file "
 	." where app.id= app_file.id order by download_count desc limit 99999999";
   $result = mysql_query($sql);
   $array = array();
   while ($row = mysql_fetch_row($result))
   {
     array_push($array, array("id"=>$row[0], "name"=>$row[1],"vendorid"=>$row[2],"categoryid"=>$row[3],"version"=>$row[4],
-			     "filename"=>$row[5],"status"=>$row[6],"install_script"=>$row[7],"uninstall_script"=>$row[8],"is_online"=>$row[9]));
+			     "filename"=>$row[5],"status"=>$row[6],"install_script"=>$row[7],"uninstall_script"=>$row[8],
+			     "is_online"=>$row[9],"os_id"=>$row[10]));
   }
   return $array;
 }

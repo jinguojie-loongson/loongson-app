@@ -5,7 +5,7 @@
 include_once('_config.inc');
 
 
-$HOT_DIR = $file_url . "tmp/";
+$HOT_DIR = $app_data_url . "tmp/";
 
 $file_name = $_GET['file_name'];
 $file = $HOT_DIR . $file_name;

@@ -40,7 +40,7 @@
 include_once('_hot.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "hot/";
+$HOT_DIR = $app_data_url . "hot/";
 
 $id = $_GET['id'];
 $file = get_hot_banner_file_by_id($id);

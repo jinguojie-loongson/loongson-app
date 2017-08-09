@@ -6,7 +6,7 @@ include_once('_util.inc');
 include_once('_app.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "tmp/";
+$HOT_DIR = $app_data_url . "tmp/";
 
 $id = $_GET['id'];
 $index = $_GET['index'];

@@ -41,7 +41,7 @@ include_once('_app.inc');
 include_once('_config.inc');
 
 
-$HOT_DIR = $file_url . "icon/";
+$HOT_DIR = $app_data_url . "icon/";
 
 $id = $_GET['id'];
 $file = $HOT_DIR . get_app_icon_file_by_id($id);

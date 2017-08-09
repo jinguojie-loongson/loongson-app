@@ -2,7 +2,7 @@
 include_once('_app.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "app/";
+$HOT_DIR = $app_data_url . "app/";
 
 $id = $_GET['id'];
 $version = $_GET['version'];

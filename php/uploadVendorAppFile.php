@@ -7,7 +7,7 @@ include_once('_config.inc');
 /*
  * 上传文件的临时路径
  */
-$TEMPORAY_FILE_URL = $file_url . "tmp/";
+$TEMPORAY_FILE_URL = $app_data_url . "tmp/";
 
 $imgArr = array("jpg", "png", "gif");
 
@@ -34,7 +34,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
   if ($file_type == "icon") {
     if (move_uploaded_file($tmp, $new_file_url)) {
       echo "<img src='getAppTmpFile.php?file_name=${file}' class='app-icon-preview' style='width:150px; height:150px;'>"
-		. "<input type='hidden' id='appIconName' name='appIconName' value='${new_file_url}'>";
+		. "<input type='hidden' id='appIconName' name='appIconName' value='${file}'>";
     } else {
       echo "上传出错了！";
     }
@@ -42,7 +42,7 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
   } else if ($file_type == "screen") {
     if (move_uploaded_file($tmp, $new_file_url)) {
        echo "<img src='getAppTmpFile.php?file_name=${file}' class='app-screen-preview-${screen_number}' style='width:150px; height:150px;'>"
-                . "<input type='hidden'id='appScreenName${screen_number}' name='appScreenName${screen_number}' value='${new_file_url}'>";
+                . "<input type='hidden'id='appScreenName${screen_number}' name='appScreenName${screen_number}' value='${file}'>";
     } else {
       echo "上传出错了！";
     }

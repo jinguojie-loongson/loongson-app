@@ -6,5 +6,5 @@
   $smtpuser = "renyafei@loongson.cn";//SMTP服务器的用户帐号，注：部分邮箱只需@前面的用户名
   $smtppass = "RENYAFEI2017";//SMTP服务器的用户密码
   $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
-  $file_url = "/opt/data/";
+  $app_data_url = "/opt/data/";
 ?>

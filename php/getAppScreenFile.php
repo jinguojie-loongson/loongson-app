@@ -41,7 +41,7 @@ include_once('_util.inc');
 include_once('_app.inc');
 include_once('_config.inc');
 
-$HOT_DIR = $file_url . "screen/";
+$HOT_DIR = $app_data_url . "screen/";
 
 $id = $_GET['id'];
 $index = $_GET['index'];

@@ -94,7 +94,7 @@ include_once('vendor_top.php');
 			 <input id="app_id" type="hidden" value="<?= $value['id'] ?>">
 	        <a class="btn btn-primary" href="vendorUploadModifyApp.php?id=<?= $value['id'] ?>&state=1">修改应用信息</a>
 	        <?php 
-		   $sum =get_app_file_status_count($value['id'], "under_review");
+		   $sum = get_app_file_status_count($value['id'], "under_review");
 		   if ($sum != 0 ) {
 	        ?>		
 		   <a class="btn btn-primary"   disabled="disabled">提交新版本</a>

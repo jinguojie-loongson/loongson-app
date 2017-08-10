@@ -58,15 +58,13 @@ include_once('_review.inc');
 <div class="panel-body">
   <table class="table table-bordered">
     <tr>
-      <td> 应用Id </td>
+      <td class="tdwidth"> 应用Id </td>
       <td class="tdwidthname" > 应用名称 </td>
       <td class="tdwidthname" > 开发者 </td>
-      <td class="tdwidthcategory"> 分类 </td>
-      <td> 版本 </td>
+      <td class="tdwidth"> 分类 </td>
+      <td class="tdwidth"> 版本 </td>
       <td class="tdwidthstatus"> 状态 </td>
-      <td class="tdwidth"> 安装命令 </td>
-      <td class="tdwidth"> 卸载命令 </td>
-      <td> 文件名 </td>
+      <td class="tdwidth"> 安装文件 </td>
       <td class="tdwidthdefult"></td>
     </tr>
 <?php
@@ -79,10 +77,6 @@ foreach ($apps  as $key => $value) {
   $versionreplace = str_replace('.','1',$version);
   $category= get_category_name($value['categoryid']);
   $status = get_app_status_text($value['status']);
-  $install_script =$value['install_script'];
-  $uninstall_script = $value['uninstall_script'];
-  $subinstall_script = substr_replace($install_script, '...', 6, strlen($install_script));
-  $subuninstall_script =substr_replace($uninstall_script, '...', 6, strlen($uninstall_script)) ;
   $filename = $value['filename'];
   $isonline = $value['is_online'];
   $os_id = $value['os_id'];
@@ -97,23 +91,10 @@ foreach ($apps  as $key => $value) {
         <div class="col-md-12" id="<?= @${id} ?><?= @$versionreplace ?><?= @$os_id ?>updatestatus">  <?= @$status ?>  </div>
       </td>
       <td>
-        <div id ="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>installisshow"
-	  class="popover-show" data-container="body" data-toggle="popover" data-content="<?= @$install_script ?>">
-	</div>   
-	<div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>" class="installscript"   >
-	  <?= @$subinstall_script ?>
-        </div>
-      </td>
-      <td>
-        <div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>unistallisshow"
-	  class="popover-show" data-container="body" data-toggle="popover"  data-content="<?= @$uninstall_script ?>">
-        </div>
-	<div id="<?= @$id ?><?= @$versionreplace ?><?= @$os_id ?>" class="unistallshow"   >
-          <?= @$subuninstall_script ?>
-	</div>
-      </td>
-      <td>
-        <a href="downloadFile.php?id=<?= @$id ?>&version=<?= @$version ?>"> <?= @$filename ?> </a>
+         <a  href="#" title="安装文件信息">
+               <span id="<?= @$id ?>" class="glyphicon glyphicon-chevron-down installationFileMessage" title="查看信息"
+                data-toggle="modal"  data-target="#myModal2" ></span>
+         </a>
       </td>
       <td>
         <div class="row">
@@ -136,7 +117,7 @@ foreach ($apps  as $key => $value) {
               </button>
             <?php } ?>
 	     <a  href="#" title="审核信息">
-	       <span id="<?= @$id ?>" class="glyphicon glyphicon-list-alt reviewmessage" title="审核信息" 
+	       <span id="<?= @$id ?>" class="glyphicon glyphicon-list-alt reviewmessage" title="审核信息"
 	 	data-toggle="modal"  data-target="#myModal1" ></span>
 	     </a> 
 	   </div>
@@ -204,6 +185,29 @@ foreach ($apps  as $key => $value) {
     </div>
   </div>
 </div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          安装文件信息
+        </h4>
+      </div>
+      <div class="modal-dialog">
+        <div class="modal-body" >
+          <div class="panel-body" id="installationFile"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
   include_once('vendor_footer.php');
 ?>

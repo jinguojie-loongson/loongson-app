@@ -427,11 +427,11 @@ function update_app_appfile_review($appid,$versionreview,$is_admin,$operator,$st
     exit();   
   }   
 }
-function get_app_file_by_id_version($id,$version) 
+function get_app_file_by_id_version($id,$version,$os_id)
 {
 global $conn;
   $sql = "select filename from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${version}' and os_id=${os_id} ";
   return db_get_one_value($sql);
 }
 

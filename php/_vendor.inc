@@ -2,6 +2,7 @@
 include_once('_db.inc');
 include_once('_util.inc');
 include_once('_app.inc');
+include_once('_os.inc');
 
 /*
  * 查询出所有开发者id
@@ -236,4 +237,27 @@ session_start();
   return $html;
 }
 
+function get_installationFile_by_appId_version_osId($appId,$version,$os_id){
+global $conn;
+  $sql = "select id,version,os_id,filename,install_script,uninstall_script from app_file "
+          ."where id=${appId}  and version='${version}' and os_id=${os_id}";
+  $result = mysql_query($sql);
+
+  $a = array();
+  $html="<table class ='table table-bordered' >";
+  while ($row = mysql_fetch_row($result))
+  {
+    $os_name = get_os_name($row[2]);
+    $html = $html . "  <tr><td>操作系统名称</td>  \n"
+    . "  <td> <span class='app-info'>" . $os_name ." </td> </tr> "
+    . "  <tr> <td> <span class='app-info'>文件名</span> </td>  \n"
+    . "  <td> <span class='app-info'> <a href='downloadFile.php?id=$row[0]&version=$row[1]&os_id=$row[2]'>$row[3]</a></span> "
+    . "  </td> </tr>"
+    . "  <tr>  <td > <span class='app-info' >安装命令</span></td>  \n"
+    . "  <td > <span class='app-info' >$row[4]</span></td></tr>  \n"
+    . "  <tr>  <td > <span class='app-info' >卸载命令</span></td>  \n"
+    . "  <td > <span class='app-info' >$row[5]</span></td></tr>  \n";
+  }
+  return $html;
+}
 ?>

@@ -493,6 +493,28 @@ $(document).ready(function(){
     return istrue;
   });
 
+  $(".installationFileMessage").on("click",function(){
+    var appid = $(this).parent().parent().parent().find("#app_id").val();
+    var version = $(this).parent().parent().parent().find("#version").val();
+    var os_id = $(this).parent().parent().parent().find("#os_id").val();
+
+        $.ajax({
+          type: "post",
+          url: "getInstallationFileHtml.php",
+          data: {"appid":appid,"version":version,"os_id":os_id},
+          async : false,
+          dataType: "text",
+        success: function (data ,textStatus, jqXHR)
+        {
+                $("#installationFile").html(data);
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("请求失败！"+XMLHttpRequest+"==="+textStatus+"==="+errorThrown);
+        }
+     });
+  });
+
+
 });
 
 /*

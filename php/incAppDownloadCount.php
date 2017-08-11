@@ -47,8 +47,7 @@ $download_count_token = $J -> download_count_json -> download_count_token;
 
 if (!empty($download_count_token)&&($download_count_token == $_SESSION['token'])) {
    app_inc_download_count($id);
-   unset($_SESSION['token']);
-
+   clear_token('token');
 }
 echo $id;
 exit;

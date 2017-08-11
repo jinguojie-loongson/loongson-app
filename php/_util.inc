@@ -126,4 +126,37 @@ function make_uri($_server, $last_part)
 	return $url;
 }
 
+/*
+ *随机生成Token值
+ */
+function getrandcode(){
+    $str =array(1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h');
+    $res='';
+    for($i=0;$i<4;$i++){
+        $rand=mt_rand(1,16);
+        $res .=$str[$rand];
+    }
+    return  $res;
+  }
+
+/*
+ *创建Token
+ */
+function create_new_token($token_name)
+{
+  @session_start();
+
+  $token=md5(getrandcode());
+  $_SESSION["$token_name"] = $token;
+ 
+  return $token;
+}
+/*
+ *清除session中的Token
+ */
+function clear_token($token_name)
+{
+  unset($_SESSION["$token_name"]);
+}
+
 ?>

@@ -237,7 +237,7 @@ session_start();
   return $html;
 }
 
-function get_installationFile_by_appId_version_osId($appId,$version,$os_id){
+function get_installationFileHTML_by_appId_version_osId($appId,$version,$os_id){
 global $conn;
   $sql = "select id,version,os_id,filename,install_script,uninstall_script from app_file "
           ."where id=${appId}  and version='${version}' and os_id=${os_id}";

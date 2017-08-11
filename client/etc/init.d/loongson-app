@@ -2,7 +2,7 @@ prog=loongson-app
 
 start() {
         echo -n $"Starting $prog: "
-	/opt/app/localserver/app.py &
+	/opt/app/localserver/app.py 2> /dev/null
         echo
 	RETVAL=0
         return 0

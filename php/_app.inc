@@ -435,4 +435,16 @@ global $conn;
   return db_get_one_value($sql);
 }
 
+/*
+ * 拆分版本号，重新组装，每段补全成5位
+ */
+function set_app_file_version_unified($version)
+{
+  $version_arr = explode(".",$version);
+  $version_unified = "";
+  foreach ($version_arr as $version_subString) {
+    $version_unified = $version_unified . sprintf('%05s', $version_subString);
+  }
+  return $version_unified;
+}
 ?>

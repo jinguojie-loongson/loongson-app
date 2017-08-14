@@ -46,7 +46,8 @@ create table app_file (
   status varchar(50),
   install_script varchar(500),   # 可以使用“[FILE]”代表要安装的文件名。命令返回值0代表安装成功
   uninstall_script varchar(500),   # 可以使用“[FILE]”代表要安装的文件名。命令返回值0代表卸载成功
-  os_id int(5)
+  os_id int(5),
+  version_unified varchar(20)
 );
 
 #热门应用（首页轮播）
@@ -139,12 +140,12 @@ insert into hot (id, app_id, banner_file) VALUES
   (4, 5, "5.png")
 ;
 
-insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script, os_id) VALUES
-  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 1),
-  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 2),
-  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm", 1),
-  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 2),
-  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1)
+insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script, os_id, version_unified) VALUES
+  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 1, '000010000000012'),
+  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 2, '000010000000015'),
+  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm", 1, '000010000000016'),
+  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 2, '00002000030024502500'),
+  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1, '00002000030024502501')
 ;
 
 insert into comment (app_id, comment, date_time, ip, audit) VALUES

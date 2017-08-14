@@ -27,9 +27,10 @@ function insert_vendor_os_app($vendor_id, $icon_file, $name, $category_id, $desc
     $file_name = $os_arr[3];
     /*拷贝应用文件*/
     file_cp( $file_name );
- 
+
+    $version_unified = set_app_file_version_unified($os_arr[2]);
     /*应用文件基础信息*/
-    insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6]);
+    insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6], $version_unified);
     /*加入审核*/
     insert_review($app_id, $os_arr[2], 0, $vendor_id, "under_review", "");
   }
@@ -134,15 +135,15 @@ global $conn;
 /*
  * 插入app_file表
  */
-function insert_app_file($app_id, $version, $file_name, $file_size, $status, $os_id, $install_script, $uninstall_script)
+function insert_app_file($app_id, $version, $file_name, $file_size, $status, $os_id, $install_script, $uninstall_script, $version_unified)
 {
 global $conn;
 global $app_data_url;
   $file_target_url = $app_data_url . "app/";
   $file_name_md5 = system("md5sum '${file_target_url}/${file_name}' | cut -b-32");
   $download_size = round($file_size/1024, 1) . "M";
-  $sql = "insert into app_file (id, version, filename, download_size, md5, status, os_id, install_script, uninstall_script) "
-	. " values (${app_id}, '${version}', '${file_name}', '${download_size}', '${file_name_md5}', '${status}', ${os_id}, '${install_script}', '${uninstall_script}')";
+  $sql = "insert into app_file (id, version, filename, download_size, md5, status, os_id, install_script, uninstall_script, version_unified) "
+	. " values (${app_id}, '${version}', '${file_name}', '${download_size}', '${file_name_md5}', '${status}', ${os_id}, '${install_script}', '${uninstall_script}', '${version_unified}')";
 
   db_exec($sql);
 }
@@ -170,8 +171,9 @@ function upload_modify_vendor_app($state, $app_id, $vendor_id, $icon_file, $name
       /*拷贝应用文件*/
       file_cp( $file_name );
 
+      $version_unified = set_app_file_version_unified($os_arr[2]);
       /*应用文件基础信息*/
-      insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6]);
+      insert_app_file($app_id,  $os_arr[2], $os_arr[3], $os_arr[4], "under_review", $os_arr[0], $os_arr[5], $os_arr[6], $version_unified);
       /*加入审核*/
       insert_review($app_id, $os_arr[2], 0, $vendor_id, "under_review", "");
     }

@@ -133,7 +133,7 @@ function get_app_file_version_status($id, $os_id)
 {
 global $conn;
   $sql = "select version,status from app_file "
-         . "  where id = ${id} and os_id = ${os_id}  order by version desc limit 1";
+         . "  where id = ${id} and os_id = ${os_id}  order by version_unified desc limit 1";
   return db_get_two_columns($sql);
 }
 

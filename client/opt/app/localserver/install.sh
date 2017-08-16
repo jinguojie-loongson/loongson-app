@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 参数
-# id，version，download_url，download_file, md5sum，install_script
+# id，version，download_url，download_file, md5sum，install_script,install_type
 
 
 ID=$1
@@ -10,18 +10,18 @@ DOWNLOAD_URL=$3
 DOWNLOAD_FILE=$4
 MD5=$5
 INSTALL_SCRIPT=$6
-
+INSTALL_TYPE=$7
 
 # 文件名： id
 # 内  容： id:version:状态:时间
 STATUS_FILE=/opt/app/db/${ID}
 
-echo "Installing $ID, $VERSION..."
+echo "Installing $ID, $VERSION ,$INSTALL_TYPE..."
 rm -f  $STATUS_FILE*
 
 log_status()
 {
-    echo "${ID}:${VERSION}:$1:`date`" > $STATUS_FILE
+    echo "${ID}:${VERSION}:$1:${INSTALL_TYPE}" > $STATUS_FILE
 }
 
 download()

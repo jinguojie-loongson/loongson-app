@@ -90,7 +90,7 @@ function app_get_status(id, func) {
 
   var callback = function(data, errno) {
     var found_version = "";
-    if (errno != 0)
+    if(errno != 0)
     {
       status = "not-installed";
     }
@@ -221,7 +221,6 @@ function app_button_change_status($btn, id, status)
 
    if (status.indexOf("error") != -1)
    {
-     app_button_change_status($btn, id, "not-installed");
      warning_message(app_get_name(id) + app_get_button_text(status));
      app_clear_status($btn,id);
    }
@@ -268,26 +267,26 @@ function app_inc_download_count(id)
 function app_install($btn, id,install_type)
 {
     /*获取老的版本*/
-   var old_verson_cmd = "cut -d: -f2 /opt/app/db/"+id;
-   var old_version_callback = function(data, errno){
-    if (errno == 0){
-    install_type = install_type + "-" + data;
-    };
-    $btn.css("disabled", "true");
-    console.log("app_install: " + id);
+  var old_verson_cmd = "cut -d: -f2 /opt/app/db/"+id;
+  var old_version_callback = function(data, errno){
+  if (errno == 0){
+   install_type = install_type + "-" + data;
+  };
+  $btn.css("disabled", "true");
+  console.log("app_install: " + id);
 
-    app_button_change_status($btn, id, "installing");
+  app_button_change_status($btn, id, "installing");
 
-    var version= app_get_server_version(id);
-    var download_url = app_get_download_url(id);
-    var download_file = app_get_download_local_file(id);
-    var md5 = app_get_md5(id);
+  var version= app_get_server_version(id);
+  var download_url = app_get_download_url(id);
+  var download_file = app_get_download_local_file(id);
+  var md5 = app_get_md5(id);
 
-    /* 处理“[FILE]”通配符 */
-    var install_script = app_get_install_script(id)
+  /* 处理“[FILE]”通配符 */
+  var install_script = app_get_install_script(id)
               .replace("[FILE]", download_file);
 
-    cmd = INSTALL_SCRIPT + " "
+  cmd = INSTALL_SCRIPT + " "
               + id + " "
               + version + " "
               + download_url + " "
@@ -295,28 +294,28 @@ function app_install($btn, id,install_type)
               + md5
               + " \"" + install_script + "\" "
               + install_type;
-    console.log(cmd);
+  console.log(cmd);
 
-    var callback = function(data, errno) {
-      if (errno != 0)
-      {
-        // 弹出错误提示，自动消失
-        console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
-      }
-      else
-      {
-        success_message(app_get_name(id) + "安装成功");
-        app_inc_download_count(id);
-      }
+  var callback = function(data, errno) {
+    if (errno != 0)
+    {
+      // 弹出错误提示，自动消失
+      console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
     }
-
-    console.log("开始安装");
-    get_local_service(cmd, callback);
-
-    /* 轮询更新按钮状态 */
-    poll_status($btn, id);
+    else
+    {
+      success_message(app_get_name(id) + "安装成功");
+      app_inc_download_count(id);
+    }
   }
-    get_local_service(old_verson_cmd,old_version_callback);
+
+  console.log("开始安装");
+  get_local_service(cmd, callback);
+
+  /* 轮询更新按钮状态 */
+  poll_status($btn, id);
+  }
+  get_local_service(old_verson_cmd,old_version_callback);
 
 }
 
@@ -325,7 +324,7 @@ function app_install($btn, id,install_type)
  */
 function app_update($btn, id, install_type)
 {
-    app_install($btn, id,install_type);
+  app_install($btn, id,install_type);
 }
 
 /*
@@ -382,22 +381,22 @@ function app_clear_status($btn,id)
   var check_cmd = "cat /opt/app/db/"+id;
   var check_callback = function(data,errno){
     var data_array = data.split(":");
-    var old_version = data_array[3].split("-");
+    var old_version_array = data_array[3].split("-");
     var cmd = "";
 
     /*根据检测结果判断，是否删除本机记录*/
     if(data_array[3] == "new_install"){
       console.log("clear app: " + id);
       cmd = " rm -f " + SYS_DATA_DIR + id;
-     }
-     if(old_version[0] == "update"){
-      cmd = " rm -f " + SYS_DATA_DIR + id + ";" + "echo " + id +":" + old_version[1] + ":installed:new_install  >"+ SYS_DATA_DIR + id;
-     }
-      var callback = function(data, errno) {
+    }
+    if(old_version_array[0] == "update"){
+      cmd = "echo " + id +":" + old_version_array[1] + ":installed:new_install  >"+ SYS_DATA_DIR + id;
+    }
+    var callback = function(data, errno) {
       refresh_app_status($btn,id);
-      };
+    };
 
-      get_local_service(cmd, callback);
+    get_local_service(cmd, callback);
 
   };
 

@@ -264,14 +264,10 @@ function app_inc_download_count(id)
 /*
  * 安装一个应用
  */
+
+
 function app_install($btn, id,install_type)
 {
-    /*获取老的版本*/
-  var old_verson_cmd = "cut -d: -f2 /opt/app/db/"+id;
-  var old_version_callback = function(data, errno){
-  if (errno == 0){
-   install_type = install_type + "-" + data;
-  };
   $btn.css("disabled", "true");
   console.log("app_install: " + id);
 
@@ -282,11 +278,19 @@ function app_install($btn, id,install_type)
   var download_file = app_get_download_local_file(id);
   var md5 = app_get_md5(id);
 
-  /* 处理“[FILE]”通配符 */
-  var install_script = app_get_install_script(id)
-              .replace("[FILE]", download_file);
+  /* 获取老的版本 */
+  var old_verson_cmd = "cut -d: -f2 /opt/app/db/" + id;
 
-  cmd = INSTALL_SCRIPT + " "
+  var get_old_version_callback = function(data, errno) {
+    if (errno == 0) { // 命令正常执行，说明该应该已经安装过，也就是升级操作
+      install_type = install_type + "-" + data;
+    }
+
+    /* 处理“[FILE]”通配符 */
+    var install_script = app_get_install_script(id)
+             .replace("[FILE]", download_file);
+
+    cmd = INSTALL_SCRIPT + " "
               + id + " "
               + version + " "
               + download_url + " "
@@ -294,29 +298,28 @@ function app_install($btn, id,install_type)
               + md5
               + " \"" + install_script + "\" "
               + install_type;
-  console.log(cmd);
+    console.log(cmd);
 
-  var callback = function(data, errno) {
-    if (errno != 0)
-    {
-      // 弹出错误提示，自动消失
-      console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
+    var callback = function(data, errno) {
+      if (errno != 0)
+      {
+        console.log("安装应用程序不正常（返回值为" + data[0] + "）！");
+      }
+      else
+      {
+        success_message(app_get_name(id) + "安装成功");
+        app_inc_download_count(id);
+      }
     }
-    else
-    {
-      success_message(app_get_name(id) + "安装成功");
-      app_inc_download_count(id);
-    }
-  }
 
   console.log("开始安装");
   get_local_service(cmd, callback);
 
   /* 轮询更新按钮状态 */
   poll_status($btn, id);
-  }
-  get_local_service(old_verson_cmd,old_version_callback);
+}
 
+  get_local_service(old_verson_cmd, get_old_version_callback);
 }
 
 /*

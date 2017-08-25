@@ -465,7 +465,7 @@ $(document).ready(function(){
      });
   });
 
-  $("#vendor_loginform").submit(function(){
+  $("#vendorloginbtn").on("click",function(){
     $("#loginmessage").html("");
     var loginname = $("#loginname").val();
     var password = $("#password").val();
@@ -485,6 +485,7 @@ $(document).ready(function(){
     get_server_service_json(url, "", function(data) {
         if(data.result == "true" ){
            istrue = true;
+	   window.location.href = "vendorWorkbench.php";
         } else {
           istrue = false;
           $("#loginmessage").html(data.message);

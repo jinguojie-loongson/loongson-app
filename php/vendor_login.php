@@ -48,7 +48,7 @@
     <div class="panel-body">
       <p class="text-warning" id="loginmessage"></p>
 
-      <form id="vendor_loginform" name="vendor_loginform" method="get" action="vendorWorkbench.php" >
+      <form id="vendor_loginform" name="vendor_loginform" method="post">
         <input type="password" style="position: fixed; top: -999px "/>
 
         <div class="form-group">
@@ -62,7 +62,7 @@
         </div>
 
         <p>
-        <button class="btn btn-primary" id="vendorloginsubmit"  name="vendorloginsubmit"  type="submit">登 录</button>
+        <button class="btn btn-primary" id="vendorloginbtn"  name="vendorloginbtn"  type="button">登 录</button>
       </form>
     </div>
 

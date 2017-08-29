@@ -25,5 +25,7 @@ ln -s ../init.d/loongson-app S99loongson-app
 cd /etc/rc5.d
 ln -s ../init.d/loongson-app S99loongson-app
 
+chkconfig loongson-app on # Fedora21需要这一句(#72)
+
 SERVICE=loongson-app
 service $SERVICE restart

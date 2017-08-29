@@ -2,6 +2,8 @@
 SERVICE=loongson-app
 service $SERVICE stop
 
+chkconfig loongson-app off
+
 rm -f /etc/init.d/*loongson-app*
 rm -f /etc/rc3.d/*loongson-app*
 rm -f /etc/rc5.d/*loongson-app*

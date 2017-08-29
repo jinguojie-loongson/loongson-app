@@ -40,7 +40,6 @@
   include_once('_app.inc');
   include_once('_comment.inc');
   include_once('_util.inc');
-  include_once('vendor_header.php');
 ?>
 
 <!-- 
@@ -63,7 +62,7 @@
 
   <table class="app-header" border="0" width="100%">
     <tr>
-      <td class="td-img" rowspan="14" width="400">
+      <td class="td-img" rowspan="14" width="180">
         <?= get_app_icon_html($app_id); ?> 
         <div class="button installed" id="installApp">获取应用状态...</div>
         <input type='hidden' id='download_count_token' value="<?= create_new_token('token') ?>" />

@@ -103,8 +103,8 @@ create table admin (
 
 #示例数据
 insert into os (name, description, probe_cmd) VALUES
-  ("中标桌面32位", "中标桌面操作系统（32位版本）", "探测脚本"),
-  ("中标桌面64位", "中标桌面操作系统（64位版本）", "探测脚本")
+  ("中标桌面32位", "中标桌面操作系统（32位版本）", "if test -e /etc/issue ; then grep Loongnix /etc/issue > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && if test -e /.buildstamp ; then grep Product=Fedora /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && grep Version=21 /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi && echo 0"),
+  ("中标桌面64位", "中标桌面操作系统（64位版本）", "1212")
 ;
 
 insert into category (name) VALUES
@@ -144,7 +144,8 @@ insert into app_file (id, version, filename, download_size, md5, status, install
   (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 2, "000010000000015"),
   (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm", 1, "000010000000016"),
   (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 2, "00002000030024502500"),
-  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1, "00002000030024502501")
+  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1, "00002000030024502501"),
+  (999999, "1.0.1", "应用公社", "0M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5;", 1, "00001000000000100000")
 ;
 
 insert into comment (app_id, comment, date_time, ip, audit) VALUES
@@ -155,12 +156,12 @@ insert into comment (app_id, comment, date_time, ip, audit) VALUES
 
 insert into  vendor (id, login_name, password, vendor_name, email, description, isActive) VALUES
   # 密码“111111”的md5是"96e79218965eb72c92a549dd5a330112"
-  (1, "kingsoft", "96e79218965eb72c92a549dd5a330112", "金山软件", "renyafei@loongson.cn", "注册用户", 1),
-  (2, "tencent", "96e79218965eb72c92a549dd5a330112", "腾讯", "renyafei@loongson.cn", "注册用户", 1),
-  (3, "liya", "96e79218965eb72c92a549dd5a330112", "个人爱好者", "renyafei@loongson.cn", "注册用户", 1),
-  (4, "adobe", "96e79218965eb72c92a549dd5a330112", "Adobe Software Inc.", "renyafei@loongson.cn", "注册用户", 1),
-  (5, "baidu", "96e79218965eb72c92a549dd5a330112", "Baidu.com", "renyafei@loongson.cn", "注册用户", 1),
-  (6, "tonghuashun", "96e79218965eb72c92a549dd5a330112", "北京同花顺科技有限公司", "renyafei@loongson.cn", "注册用户", 1),
+  (1, "kingsoft", "96e79218965eb72c92a549dd5a330112", "金山软件", "11111@loongson.cn", "注册用户", 1),
+  (2, "tencent", "96e79218965eb72c92a549dd5a330112", "腾讯", "22222@loongson.cn", "注册用户", 1),
+  (3, "liya", "96e79218965eb72c92a549dd5a330112", "个人爱好者", "33333@loongson.cn", "注册用户", 1),
+  (4, "adobe", "96e79218965eb72c92a549dd5a330112", "Adobe Software Inc.", "44444@loongson.cn", "注册用户", 1),
+  (5, "baidu", "96e79218965eb72c92a549dd5a330112", "Baidu.com", "555555@loongson.cn", "注册用户", 1),
+  (6, "tonghuashun", "96e79218965eb72c92a549dd5a330112", "北京同花顺科技有限公司", "666666@loongson.cn", "注册用户", 1),
   (7, "loongson", "96e79218965eb72c92a549dd5a330112", "龙芯中科技术有限公司", "renyafei@loongson.cn", "注册用户", 1)
 ;
 

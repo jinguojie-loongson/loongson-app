@@ -27,7 +27,6 @@ create table app (
   name varchar(50),
   vendor_id int,
   category_id int(5),
-  version varchar(50),     # 当前最新版本，也就是在app_file中最大的版本号
   description varchar(500),
   longdesc varchar(50000),
   icon_file varchar(500),   #图片文件，位于data/icon目录下
@@ -122,14 +121,14 @@ insert into category (name) VALUES
   ("其它")
 ;
 
-insert into app (id, name, vendor_id, category_id, version, description, icon_file, screen_file_count, download_count,is_online) VALUES
-  (1, "WPS Office", 1, 1, "1.0.016", "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502,0),
-  (2, "QQ", 2, 2, "2.3.245.2501", "腾讯即时通讯软件", "2.png", 4, 235935,0),
-  (3, "扫雷", 3, 7, "2.3.245.2500", "简单游戏", "3.png", 5, 234,0),
-  (4, "Photoshop", 4, 5, "2.3.245.2500", "Adobe图像处理软件", "4.png", 2, 93487,0),
-  (5, "百度盘", 5, 10, "2.3.245.2500", "百度的个人数据同步客户端", "5.png", 1, 82344,0),
-  (6, "同花顺", 6, 10, "2.3.245.2500", "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 5, 23434,0),
-  (999999, "应用公社", 7, 9, "1.0.0", "龙芯官方的应用下载平台，鼓励开发者提交应用并获得积分奖励", "6.png", 1, 23434,0)
+insert into app (id, name, vendor_id, category_id, description, icon_file, screen_file_count, download_count,is_online) VALUES
+  (1, "WPS Office", 1, 1, "金山办公软件套装。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "1.png", 3, 524502,0),
+  (2, "QQ", 2, 2, "腾讯即时通讯软件", "2.png", 4, 235935,0),
+  (3, "扫雷", 3, 7, "简单游戏", "3.png", 5, 234,0),
+  (4, "Photoshop", 4, 5, "Adobe图像处理软件", "4.png", 2, 93487,0),
+  (5, "百度盘", 5, 10, "百度的个人数据同步客户端", "5.png", 1, 82344,0),
+  (6, "同花顺", 6, 10, "炒股软件。Clementine是一个音乐播放器和媒体库管理器，载 Podcast 播客、远程控制等功。。。", "6.png", 5, 23434,0),
+  (999999, "应用公社", 7, 9, "龙芯官方的应用下载平台，鼓励开发者提交应用并获得积分奖励", "6.png", 1, 23434,0)
 ;
 
 insert into hot (id, app_id, banner_file) VALUES
@@ -141,11 +140,11 @@ insert into hot (id, app_id, banner_file) VALUES
 ;
 
 insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script, os_id, version_unified) VALUES
-  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 1, '000010000000012'),
-  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 2, '000010000000015'),
-  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm", 1, '000010000000016'),
-  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 2, '00002000030024502500'),
-  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1, '00002000030024502501')
+  (1, "1.0.012", "wps.1.0.012.rpm", "128M", "458f33a00909bdf99a6d69c2872a054f", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 1, "000010000000012"),
+  (1, "1.0.015", "wps.1.0.015.rpm", "129M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "cp [FILE] /opt ", "rm -f /opt/wps*.rpm", 2, "000010000000015"),
+  (1, "1.0.016", "wps.1.0.015.rpm", "117M", "d1b67a2e2fff3f45c4e3f379da1637f9", "published", "sleep 10; cp [FILE] /opt ", "sleep 5; rm -f /opt/wps*.rpm", 1, "000010000000016"),
+  (2, "2.3.245.2500", "qq.2.3.245.2500.rpm", "5.2M", "5672f920a1c7a4bfcef415343e3bee79", "published", "cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 2, "00002000030024502500"),
+  (2, "2.3.245.2501", "qq.2.3.245.2501.rpm", "6.4M", "069110ff421f709c473e904f081d18b3", "published", "sleep 4; cp [FILE] /opt", "sleep 5; rm -f /opt/qq*.rpm", 1, "00002000030024502501")
 ;
 
 insert into comment (app_id, comment, date_time, ip, audit) VALUES

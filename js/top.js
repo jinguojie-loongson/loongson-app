@@ -38,9 +38,10 @@ function on_receive_update_number(number)
 
 function get_update_number(app_list_data, func)
 {
+  var os_id = $("#os_id").val();
   url = window.location.href;
   n = url.lastIndexOf("/");
-  url = url.substr(0, n) + "/getUpdateNumber.php";
+  url = url.substr(0, n) + "/getUpdateNumber.php?os_id=" + os_id;
   
   get_server_service(url, app_list_data, func);
 }
@@ -117,4 +118,22 @@ $(document).ready(function(){
   /* 安装客户端工具的提示框 */
   if (window.location.href.indexOf("client.php") == -1)
     init_client_prompt();
+
+  /*获取当前计算机操作系统*/
+  url = window.location.href;
+  n = url.lastIndexOf("/");
+  url = url.substr(0, n) + "/getOsId.php";
+  get_server_service_json(url, "", function(data) {
+    var callback = function(data, errno){
+      if (data != 0) {
+      } else {
+        $("#os_id").val(this.os_id);
+      }
+    }
+    var error_func = function (txt){}
+    $.each(data, function(i,item){
+      var obj = item;
+      get_local_service_overloading(item.probe_cmd, callback, error_func, obj);
+    });
+  });
 });

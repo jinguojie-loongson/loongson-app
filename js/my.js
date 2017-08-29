@@ -21,11 +21,11 @@ function on_receive_app_html(html)
   init_uninstall_button();
 }
 
-function get_my_app_html(app_list_data, func)
+function get_my_app_html(app_list_data, func, os_id)
 {
   url = window.location.href;
   n = url.lastIndexOf("/");
-  url = url.substr(0, n) + "/getMyAppHtml.php";
+  url = url.substr(0, n) + "/getMyAppHtml.php?os_id=" + os_id;
   
   get_server_service(url, app_list_data, func);
 }
@@ -33,10 +33,13 @@ function get_my_app_html(app_list_data, func)
 /* 只用于“我的”页面 */
 function init_my_app_list()
 {
+  var os_id = $("#os_id").val();
   var func = function(app_list_data, errno) {
     if (errno == 0)
     {
-      get_my_app_html(app_list_data, on_receive_app_html);
+      if (os_id != null && os_id != "") {
+        get_my_app_html(app_list_data, on_receive_app_html, os_id);
+      }
     }
     else
       $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");

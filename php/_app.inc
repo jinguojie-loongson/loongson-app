@@ -42,44 +42,38 @@ function get_app_screen_file_by_id($id, $index)
   return $id . "_" . $index . ".png";
 }
 
-function get_app_file_by_id($id)
+function get_app_file_by_id($id, $os_id, $app_version)
 {
 global $conn;
-  $version = get_app_version($id);
-
   $sql = "select filename from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${app_version}' and os_id=${os_id} ";
   return db_get_one_value($sql);
 }
 
-function get_app_md5_by_id($id)
+function get_app_md5_by_id($id, $os_id, $app_version)
 {
 global $conn;
-  $version = get_app_version($id);
-
   $sql = "select md5 from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${app_version}' and os_id=${os_id} ";
   return db_get_one_value($sql);
 }
 
 
-function get_app_install_script_by_id($id)
+function get_app_install_script_by_id($id, $os_id, $app_version)
 {
 global $conn;
-  $version = get_app_version($id);
-
   $sql = "select install_script from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${app_version}' and os_id=${os_id} ";
   return db_get_one_value($sql);
 }
 
 function get_app_uninstall_script($id)
 {
 global $conn;
-  $version = get_app_version($id);
+  $version = get_app_file_version_status($id, $os_id)[0][0];
 
   $sql = "select uninstall_script from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${version}' and os_id =${os_id} ";
   return db_get_one_value($sql);
 }
 
@@ -112,15 +106,6 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-
-function get_app_version($id)
-{
-global $conn;
-  $sql = "select version from app "
-         . "  where id=${id}";
-  return db_get_one_value($sql);
-}
-
 function get_app_file_status_count($id, $status)
 {
 global $conn;
@@ -137,15 +122,59 @@ global $conn;
   return db_get_two_columns($sql);
 }
 
-function get_app_download_size($id, $version = "")
+function get_app_download_size($id, $app_version, $os_id)
 {
 global $conn;
-  if (is_empty($version))
-    $version = get_app_version($id);
-
   $sql = "select download_size from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${app_version}' and os_id=${os_id} ";
   return db_get_one_value($sql);
+}
+
+function get_app_os_and_version($app_id)
+{
+global $conn;
+  $sql ="select c.id, c.name, a.version, a.download_size"
+                . " from app_file a "
+                . " left join os c on a.os_id = c.id"
+                . " where a.id = ${app_id} "
+                . " and (a.version_unified, a.os_id) "
+                . "  in (select max(b.version_unified), b.os_id from app_file b where b.id = ${app_id} group by b.os_id)";
+  return db_get_four_columns($sql);
+}
+
+function get_app_os_and_version_html($app_id, $os_id)
+{
+  $html = "";
+  $os_version_array = get_app_os_and_version($app_id);
+
+  foreach ($os_version_array as $os_version)
+  {
+    $html = $html . get_os_version_one_html($os_version, $os_id);
+  };
+
+  return $html;
+}
+
+function get_os_version_one_html($os_version, $os_id)
+{
+  $top_class = "";
+  $foot_class = "";
+  if($os_id != $os_version[0])
+  {
+    $top_class = "app-os-version-top app-not-this-os-version-color";
+    $foot_class = "app-os-version-foot app-not-this-os-version-foot-color";
+  }
+  else
+  {
+    $top_class = "app-os-version-top app-this-os-version-color";
+    $foot_class = "app-os-version-foot app-this-os-version-foot-color";
+  }
+    $html = " <div class='app-os-version-css'> \n"
+	. "<div class='${top_class}'>${os_version[1]}</div> \n"
+	. "<div class='${foot_class}'>${os_version[2]}(${os_version[3]})</div> \n"
+	. "</div> \n";
+
+  return $html;
 }
 
 function get_app_description($id)
@@ -176,10 +205,10 @@ function get_app_status($id, $version = "")
 {
 global $conn;
   if (is_empty($version))
-    $version = get_app_version($id);
+  $version = get_app_file_version_status($id, $os_id)[0][0];
 
   $sql = "select status from app_file "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${version}' and os_id =${os_id} ";
   return db_get_one_value($sql);
 }
 
@@ -207,10 +236,10 @@ function set_app_status($id, $status, $version = "")
 {
 global $conn;
   if (is_empty($version))
-    $version = get_app_version($id);
+    $version = get_app_file_version_status($id, $os_id)[0][0];
 
   $sql = "update app_file set status='${status}' "
-         . "  where id=${id} and version='${version}' ";
+         . "  where id=${id} and version='${version}' and os_id =${os_id} ";
   return db_exec($sql);
 }
 
@@ -244,30 +273,34 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_card_html($id, $status = "not-defined")
+function get_app_card_html($id, $status = "not-defined", $os_id = "")
 {
   $name = get_app_name($id);
-  $version = get_app_version($id);
   $vendor = get_app_vendor($id);
-  $download_size = get_app_download_size($id);
   $download_count = get_app_download_count($id);
   $description = get_app_description($id);
   $icon_img = get_app_icon_html($id);
-  $uninstall_script = get_app_uninstall_script($id);
   $status_html = "";
   $uninstall_html = "";
 
   $status_html = get_app_status_icon_html($id, $status);
   if ($status == "installed" || $status == "need-updated")
     $uninstall_html = "<span id='${id}' class='uninstall-button'>X</span>";
+
+  $app_version_html = "";
+  if ($os_id != "") {
+    $version = get_app_file_version_status($id, $os_id)[0][0];
+    $app_version_html = "<input type='hidden' id='app_version' value='${version}'> \n";
+  } else {
+    $app_version_html = "<input type='hidden' id='app_version' value=''> \n";
+  }
   $html = "<span class='app-text'> \n"
         . "<p class='app-title'> ${name} </p> \n"
         . "<p class='app-info'> ${vendor} </p> \n"
-        . "<p class='app-info'>${download_size} | ${download_count}下载</p> \n"
+        . "<p class='app-info'>${download_count}下载</p> \n"
         . "</span>\n"
         . "<input type='hidden' id='app_name' value='${name}'> \n"
-        . "<input type='hidden' id='app_version' value='${version}'> \n"
-        ." <input type='hidden' id='app_uninstall_script' value='${uninstall_script}'> \n";
+        . $app_version_html;
   $desc = "<span class='app-desc'> ${description} </span> \n";
   return "<div id='${id}' class='app-card'> ${icon_img} ${html} ${desc} ${status_html} ${uninstall_html} </div> \n";
 }
@@ -445,6 +478,19 @@ function set_app_file_version_unified($version)
   foreach ($version_arr as $version_subString) {
     $version_unified = $version_unified . sprintf('%05s', $version_subString);
   }
+  for ($i = 0; $i < (5 - count($version_arr)); $i++) {
+    $version_unified = $version_unified . "00000";
+  }
   return $version_unified;
 }
+
+function get_app_file_version($app_id, $os_id)
+{
+  $version_status = get_app_file_version_status($app_id, $os_id);
+  if (is_empty($version_status))
+    return "";
+  else
+    return $version_status[0][0];
+}
+
 ?>

@@ -71,6 +71,11 @@ function app_get_install_script(id)
   return $("#app_install_script").attr("value");
 }
 
+function app_get_os_id()
+{
+  return $("#os_id").attr("value");
+}
+
 /*   get_app_status(id)
  * 返回8种状态：
  *   "not-installed" - 未安装，
@@ -229,14 +234,14 @@ function app_button_change_status($btn, id, status)
 /*
  * 下载一个应用
  */
-function app_get_download_url(id)
+function app_get_download_url(id, os_id, app_version)
 {
   // http://localhost/app/php/app.php?id=1
   url = window.location.href;
   // 截取到最后一个“/” 
 
   n = url.lastIndexOf("/");
-  return url.substr(0, n) + "/getAppFile.php?id=" + id;
+  return url.substr(0, n) + "/getAppFile.php?id=" + id + "&os_id=" + os_id + "&version=" + app_version;
 }
 
 function app_get_download_local_file(id)
@@ -274,7 +279,8 @@ function app_install($btn, id,install_type)
   app_button_change_status($btn, id, "installing");
 
   var version= app_get_server_version(id);
-  var download_url = app_get_download_url(id);
+  var os_id = app_get_os_id();
+  var download_url = app_get_download_url(id, os_id, version);
   var download_file = app_get_download_local_file(id);
   var md5 = app_get_md5(id);
 
@@ -457,11 +463,24 @@ function refresh_app_card_status()
     {
       $("#app-card-grid div").each(function() {
         id = $(this).attr("id");
+        os_id = $("#os_id").val();
         version = $(this).find("#app_version").attr("value");
         $status = get_app_status_in_local_list(id, version, app_list_data);
+        $status_icon = $(this).find("#app-icon");
+        if (os_id != null && os_id != "") {
 
-        $status_icon = $(this).find("#app-icon")
-        if ($status == "not-installed")
+        $btn = $(this);
+          url = window.location.href;
+          n = url.lastIndexOf("/");
+          url = url.substr(0, n) + "/getAppFileVersion.php?app_id=" + id + "&os_id=" + os_id;
+          var callback = function(data) {
+            this.find("#app_version").val(data);
+          }
+          var obj = $(this);
+          get_server_service_this(url, "", callback, obj)
+        }
+
+	if ($status == "not-installed")
           $status_icon.fadeOut(1000);
         else
         {
@@ -492,7 +511,7 @@ $(document).ready(function(){
   });
 
   $("#app-card-grid").on('click', 'div', function () {
-    window.location.href = "app.php?id=" + $(this).attr("id");
+    window.location.href = "app.php?id=" + $(this).attr("id") + "&version=" + $(this).find("#app_version").attr("value") + "&os_id=" + $("#os_id").val();
   });
 
   if (window.location.href.indexOf("my.php") == -1

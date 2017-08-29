@@ -10,285 +10,336 @@
 
 
 #app-card-grid {
-	font-size: 12pt;
-	display:inline-block;
-	position:relative;
-	margin:50px;
-	padding:20px;
-	background:#fafafa;
-	box-shadow:0 0 3px rgba(0, 0, 0, 0.2);
-	-moz-border-radius:4px;
-	border-radius:4px;
-	color:rgba(0,0,0, 0.8);
+  font-size: 12pt;
+  display:inline-block;
+  position:relative;
+  margin:50px;
+  padding:20px;
+  background:#fafafa;
+  box-shadow:0 0 3px rgba(0, 0, 0, 0.2);
+  -moz-border-radius:4px;
+  border-radius:4px;
+  color:rgba(0,0,0, 0.8);
 
-	min-width: 50%;
-	min-height: 200px;
+  min-width: 50%;
+  min-height: 200px;
 }
 
 #app-card-grid::before, #app-card-grid::after {
-	position:absolute;
-	content:"";
-	top:10px;
-	bottom:15px;
-	left:10px;
-	width:50%;
-	box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);
-	-webkit-transform: rotate(-3deg);
-	-moz-transform:rotate(-3deg);
-	-o-transform:rotate(-3deg);
-	-ms-transform:rotate(-3deg);
-	transform:rotate(-3deg);
-	z-index:-1;
+  position:absolute;
+  content:"";
+  top:10px;
+  bottom:15px;
+  left:10px;
+  width:50%;
+  box-shadow:0 15px 10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform:rotate(-3deg);
+  -o-transform:rotate(-3deg);
+  -ms-transform:rotate(-3deg);
+  transform:rotate(-3deg);
+  z-index:-1;
 }
 
 #app-card-grid::after {
-	right:10px;
-	left:auto;
-	-webkit-transform:rotate(3deg);
-	-moz-transform:rotate(3deg);
-	-o-transform:rotate(3deg);
-	-ms-transform:rotate(3deg);
-	transform: rotate(3deg);
+  right:10px;
+  left:auto;
+  -webkit-transform:rotate(3deg);
+  -moz-transform:rotate(3deg);
+  -o-transform:rotate(3deg);
+  -ms-transform:rotate(3deg);
+  transform: rotate(3deg);
 }
 
 /* 设置了浏览器宽度不大于500px时 abc 显示100px宽度 */ 
 #app-card-grid div {
-        display: inline-block; 
+  display: inline-block;
 
-        padding: 5px; 
-        margin: 20px; 
-        background-color: #eeeeee;
+  padding: 5px;
+  margin: 20px;
+  background-color: #eeeeee;
 
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -khtml-border-radius: 6px;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -khtml-border-radius: 6px;
 
-	box-shadow: 0px 0px 8px #cccccc;
-	position: relative;
+  box-shadow: 0px 0px 8px #cccccc;
+  position: relative;
 }
 
 .app-card {
-        width: 300px; 		/* 重要：此处定义每一个应用卡片的大小 */
-        height: 150px; 
+  width: 300px;
+  /* 重要：此处定义每一个应用卡片的大小 */
+  height: 150px;
 }
 
 #app-card-grid img {
-        float: left; 
-	margin: 10px;
+  float: left;
+  margin: 10px;
 }
 
 #app-card-grid .app-text {
-        float: left; 
-	margin: 5px;
-	text-align: center;
+  float: left;
+  margin: 5px;
+  text-align: center;
 }
 
 #app-card-grid .app-title {
-	font-size: 14pt;
-	font-weight: bold;
+  font-size: 14pt;
+  font-weight: bold;
 }
 
 #app-card-grid .app-info {
-	margin: 5px;
-	font-size: 10pt;
+  margin: 5px;
+  font-size: 10pt;
 }
 
 #app-card-grid .app-desc {
-	text-align: left;
-        float: left; 
-	margin: 5px;
-	font-size: 9pt;
-	clear: both;
+  text-align: left;
+  float: left;
+  margin: 5px;
+  font-size: 9pt;
+  clear: both;
 }
 
 /*************************************************** 
  * 应用程序详细页面
  */
 .app-form {
-	width: white;
-	background-color: white;
-	margin-left: 50px;
-	margin-right: 50px;
-	padding: 30px;
+  width: white;
+  background-color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 30px;
 }
 
 /* 返回按钮 */
 #app-back {
-	width: 40px;
-	height: 40px;
-	background-color: #dddddd;
-	color: #888888;
-	margin-left: 20px;
-	cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: #dddddd;
+  color: #888888;
+  margin-left: 20px;
+  cursor: pointer;
 
-	font-weight: bold;
+  font-weight: bold;
 
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	float: left;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  float: left;
 }
 
 #app-back i {
-	line-height: 40px;
+  line-height: 40px;
 }
 
 .app-form img {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .app-header {
-	text-align: left;
-	color: gray;
-	font-size: 12pt;
+  text-align: left;
+  color: gray;
+  font-size: 12pt;
 }
 
 .app-header #error {
-	margin-top: 15px;
-	color: red;
+  margin-top: 15px;
+  color: red;
 
-	padding: 5px;
-	display: none;
-	//background-color: #eeeeee;
+  padding: 5px;
+  display: none;
+  //background-color: #eeeeee;
 }
 
 .title {
-	font-size: 16pt;
-	font-weight: bold;	
-	color: black;
-	padding-bottom: 20px;
+  font-size: 16pt;
+  font-weight: bold;
+  color: black;
+  padding-bottom: 20px;
 }
 
 .td-label {
-	width: 120px;
+  width: 120px;
 }
 
 .td-img {
-	padding-left: 150px;
-	padding-right: 150px;
-	text-align: center;
+  padding-left: 150px;
+  padding-right: 150px;
+  text-align: center;
 }
 
 .app-form #longdesc {
-	text-align: left;
+  text-align: left;
 }
 
 /* 应用程序界面：阴影 */
 .screen-file {
-	width: 320px;
-	height: 240px;
-	border: none;
-	margin-left: 20px;
-	margin-right: 20px;
+  width: 320px;
+  height: 240px;
+  border: none;
+  margin-left: 20px;
+  margin-right: 20px;
 
-	-webkit-box-shadow:0 0 20px #888;  
-	-moz-box-shadow:0 0 20px #888;  
-	box-shadow:0 0 20px #888;  
+  -webkit-box-shadow:0 0 20px #888;
+  -moz-box-shadow:0 0 20px #888;
+  box-shadow:0 0 20px #888;
 }
 
 /* 应用程序：按钮 */
 .not-defined {
-	display: none;
+  display: none;
 }
 
 .not-installed {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
+  border: 1px solid red;
+  background-color: red;
+  color: white;
 
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .installed {
-	border: 1px solid green;
-	background-color: green;
-	color: white;
+  border: 1px solid green;
+  background-color: green;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .need-updated {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
+  border: 1px solid red;
+  background-color: red;
+  color: white;
 
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .downloading {
-	border: 1px solid #ff6633;
-	background-color: #ff6633;
-	color: white;
+  border: 1px solid #ff6633;
+  background-color: #ff6633;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .checking-download-file {
-	border: 1px solid #ff6633;
-	background-color: #ff6633;
-	color: white;
+  border: 1px solid #ff6633;
+  background-color: #ff6633;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .checking-download-file-error {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
+  border: 1px solid red;
+  background-color: red;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .installing {
-	border: 1px solid #ff6633;
-	background-color: #ff6633;
-	color: white;
+  border: 1px solid #ff6633;
+  background-color: #ff6633;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .install-error {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
+  border: 1px solid red;
+  background-color: red;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .uninstalling {
-	border: 1px solid #ff6633;
-	background-color: #ff6633;
-	color: white;
+  border: 1px solid #ff6633;
+  background-color: #ff6633;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 .uninstall-error {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
+  border: 1px solid red;
+  background-color: red;
+  color: white;
 
-	cursor: dafault;
+  cursor: dafault;
 }
 
 /*
  * 状态图标
  */
 #app-icon {
-	border: 1px solid white;
+  border: 1px solid white;
 
-	width: 60px;
-	height: 20px;
-	line-height: 20px;
-	font-size: 11pt;
-	font-color: black;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 11pt;
+  font-color: black;
 
-	position: absolute;
-	right: 0px;
-	top: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 
-	padding: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 2px;
 
-	-moz-border-radius: 20px;
-	border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+/*
+ *应用显示桌面，系统及版本展示css样式
+ */
+.app-os-version-top {
+  text-align: center;
+  font-size: 10pt;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 2px;
+}
+
+.app-this-os-version-color {
+  background-color: #FF9900;
+  color: white;
+  border: 1px solid #FF9900;
+
+}
+
+.app-not-this-os-version-color {
+  background-color: #D3D3D3;
+  color: gray;
+  border: 1px solid gray;
+}
+
+.app-os-version-foot {
+  text-align: center;
+  cursor: pointer;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 3px;
+  font-size: 10pt;
+}
+
+.app-this-os-version-foot-color {
+  background-color: white;
+  color: #FF9900;
+  border: 1px solid #FF9900;
+}
+
+.app-not-this-os-version-foot-color {
+  background-color: white;
+  color: gray;
+  border: 1px solid gray;
+}
+
+.app-os-version-css {
+  display: inline-block;
+  margin: 0 5px 0 0;
 }

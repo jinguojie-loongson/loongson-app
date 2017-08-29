@@ -25,6 +25,32 @@ function get_server_service(url, post_data, func)
   })
 }
 
+function get_server_service_this(url, post_data, func, obj)
+{
+  $.ajax({
+    url: url,
+    type: 'POST',
+    context: obj,
+    async: true,
+    data:{
+        data: post_data
+    },
+    dataType:'html',    //返回的数据格式：json/xml/html/script/jsonp/text
+    success:function(data, textStatus, jqXHR){
+        console.log('Success:')
+        console.log(data)
+        console.log("textStatus: " + textStatus)
+        //console.log(jqXHR)
+        func.call(this, data);
+    },
+    error:function(xhr,textStatus){
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+    },
+  })
+}
+
 
 function get_server_service_json(url, post_data, func)
 {

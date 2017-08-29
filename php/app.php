@@ -40,6 +40,7 @@
   include_once('_app.inc');
   include_once('_comment.inc');
   include_once('_util.inc');
+  include_once('vendor_header.php');
 ?>
 
 <!-- 
@@ -49,23 +50,30 @@
   $app_id = $_GET['id'];
   if (is_empty($app_id))
     fatal_error("传入应用程序的ID不能为空！");
+  $app_version = $_GET['version'];
+  if (is_empty($app_version))
+    fatal_error("传入应用程序的version不能为空！");
+  $os_id = $_GET['os_id'];
+  if (is_empty($os_id))
+    fatal_error("传入应用程序的os_id不能为空！");
 ?>
 
 <div class="app-form">
   <div id="app-back"> <i class='fa fa-chevron-left'></i> </div>
 
-  <table class="app-header" border="0">
+  <table class="app-header" border="0" width="100%">
     <tr>
-      <td class="td-img" rowspan="6">
+      <td class="td-img" rowspan="14" width="400">
         <?= get_app_icon_html($app_id); ?> 
         <div class="button installed" id="installApp">获取应用状态...</div>
         <input type='hidden' id='download_count_token' value="<?= create_new_token('token') ?>" />
         <input type="hidden" id="app_id" value="<?= $app_id ?>">
         <input type="hidden" id="app_name" value="<?= get_app_name($app_id) ?>">
-        <input type="hidden" id="app_version" value="<?= get_app_version($app_id) ?>">
-        <input type="hidden" id="app_filename" value="<?= get_app_file_by_id($app_id) ?>">
-        <input type="hidden" id="app_md5" value="<?= get_app_md5_by_id($app_id) ?>">
-        <input type="hidden" id="app_install_script" value="<?= get_app_install_script_by_id($app_id) ?>">
+        <input type="hidden" id="app_version" value="<?= $app_version ?>">
+        <!--<input type="hidden" id="os_id" value="<?= $os_id ?>">-->
+        <input type="hidden" id="app_filename" value="<?= get_app_file_by_id($app_id, $os_id, $app_version) ?>">
+        <input type="hidden" id="app_md5" value="<?= get_app_md5_by_id($app_id, $os_id, $app_version) ?>">
+        <input type="hidden" id="app_install_script" value="<?= get_app_install_script_by_id($app_id, $os_id, $app_version) ?>">
       </td>
       <td colspan="2" class="title"> <?= get_app_name($app_id) ?> </td>
     </tr>
@@ -73,22 +81,27 @@
       <td class="td-label"> 软件作者：</td>
       <td class="gray"> <?= get_app_vendor($app_id) ?> </td>
     </tr>
-    <tr>
+ <!--   <tr>
       <td class="td-label"> 版本：</td>
-      <td class="gray"> <?= get_app_version($app_id) ?> </td>
+      <td class="gray"> <?= $app_version ?> </td>
     </tr>
     <tr>
       <td> 下载大小：</td>
-      <td class="gray"> <?= get_app_download_size($app_id, get_app_version($app_id)) ?>  </td>
-    </tr>
+      <td class="gray"> <?= get_app_download_size($app_id, $app_version, $os_id) ?>  </td>
+    </tr> -->
     <tr>
       <td> 下载次数：</td>
       <td class="gray"> <?= get_app_download_count($app_id) ?>  </td>
     </tr>
     <tr>
-      <td> 软件简介：</td>
-      <td class="gray"> <?= get_app_description($app_id) ?>  </td>
+      <td style="padding-bottom:20px;"> 软件简介：</td>
+      <td class="gray" style="padding-bottom:20px;"> <?= get_app_description($app_id) ?>  </td>
     </tr>
+     <tr>
+       <td colspan="2">
+         <?= get_app_os_and_version_html($app_id, $os_id); ?>
+       </td>
+     </tr>
   </table>
 <!--
     <p> 软件作者：<span class="black"> 腾讯 </span> </p>

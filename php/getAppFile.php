@@ -43,7 +43,9 @@ include_once('_config.inc');
 $HOT_DIR = $app_data_url . "app/";
 
 $id = $_GET['id'];
-$file = $HOT_DIR . get_app_file_by_id($id);
+$os_id = $_GET['os_id'];
+$app_version = $_GET['version'];
+$file = $HOT_DIR . get_app_file_by_id($id, $os_id, $app_version);
 
 set_time_limit(0);
 ini_set('memory_limit', '512M');

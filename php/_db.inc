@@ -63,6 +63,38 @@ global $conn;
   return $a;
 }
 
+function db_get_three_columns($sql)
+{
+global $conn;
+
+  $result = mysql_query($sql, $conn);
+
+  $a = array();
+
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($a, array($row[0], $row[1], $row[2]));
+  }
+
+  return $a;
+}
+
+function db_get_four_columns($sql)
+{
+global $conn;
+
+  $result = mysql_query($sql, $conn);
+
+  $a = array();
+
+  while ($row = mysql_fetch_row($result))
+  {
+    array_push($a, array($row[0], $row[1], $row[2], $row[3]));
+  }
+
+  return $a;
+}
+
 function db_exec($sql)
 {
 global $conn;

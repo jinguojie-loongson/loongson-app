@@ -50,6 +50,7 @@ include_once('_my.inc');
  *  2:2.3.245.2500:状态:日期
  */
 $app_list_data = $_POST['data'];
+$os_id = $_GET['os_id'];
 
 $n = 0;
 
@@ -63,7 +64,7 @@ foreach ($ss as $a)
   $status = $p[2];
 
   /* 如果有升级，则需要显示一个额外的红点 */
-  if ($status == "installed" && app_version_compare($version, get_app_version($app_id)) < 0)
+  if ($status == "installed" && app_version_compare($version, get_app_file_version_status($app_id, $os_id)[0][0]) < 0)
     $n ++;
 }
 

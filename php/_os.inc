@@ -41,6 +41,13 @@ function get_all_os_with_id()
   return db_get_two_columns($sql);
 }
 
+function get_all_os_id_probe_cmd()
+{
+global $conn;
+  $sql = "select id, probe_cmd from os";
+  return db_get_two_columns($sql);
+}
+
 function get_os_one_html($id)
 {
   $name = get_os_name($id);
@@ -214,5 +221,25 @@ function add_os($name, $description, $probe_cmd)
   } else {
     return "false";
   }
+}
+
+/*
+ * 获取所有操作系统的id和prober_cmd 返回json
+ */
+function get_os_id_prober_cmd()
+{
+  $json = array();
+  $os_arr = get_all_os_id_probe_cmd();
+  foreach ($os_arr as $os) {
+    $os_id = $os[0];
+    $probe_cmd = $os[1];
+    $probe_cmd = str_replace("?", "%3F", $probe_cmd);
+    $probe_cmd = str_replace("&", "%26", $probe_cmd);
+    $probe_cmd = str_replace("=", "%3D", $probe_cmd);
+    
+    $arr = array("os_id"=>$os_id, "probe_cmd"=>$probe_cmd);
+    $json[] = $arr;
+  }
+  return json_encode($json);
 }
 ?>

@@ -67,7 +67,7 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_uninstall_script($id)
+function get_app_uninstall_script($id, $os_id)
 {
 global $conn;
   $version = get_app_file_version_status($id, $os_id)[0][0];
@@ -201,17 +201,6 @@ global $conn;
   return db_get_one_value($sql);
 }
 
-function get_app_status($id, $version = "")
-{
-global $conn;
-  if (is_empty($version))
-  $version = get_app_file_version_status($id, $os_id)[0][0];
-
-  $sql = "select status from app_file "
-         . "  where id=${id} and version='${version}' and os_id =${os_id} ";
-  return db_get_one_value($sql);
-}
-
 function get_app_count($id)
 {
 global $conn;
@@ -230,17 +219,6 @@ global $conn;
   $sql = "select count(1) from app_file "
 	. " where os_id = ${os_id}";
   return db_get_one_value($sql);
-}
-
-function set_app_status($id, $status, $version = "")
-{
-global $conn;
-  if (is_empty($version))
-    $version = get_app_file_version_status($id, $os_id)[0][0];
-
-  $sql = "update app_file set status='${status}' "
-         . "  where id=${id} and version='${version}' and os_id =${os_id} ";
-  return db_exec($sql);
 }
 
 function get_app_status_text($status)
@@ -290,7 +268,9 @@ function get_app_card_html($id, $status = "not-defined", $os_id = "")
   $app_version_html = "";
   if ($os_id != "") {
     $version = get_app_file_version_status($id, $os_id)[0][0];
-    $app_version_html = "<input type='hidden' id='app_version' value='${version}'> \n";
+    $uninstall_script = get_app_uninstall_script($id, $os_id);
+    $app_version_html = "<input type='hidden' id='app_version' value='${version}'> \n"
+			. "<input type='hidden' id='app_uninstall_script' value='${uninstall_script}'> \n";
   } else {
     $app_version_html = "<input type='hidden' id='app_version' value=''> \n";
   }

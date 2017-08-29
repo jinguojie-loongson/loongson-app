@@ -225,4 +225,24 @@ global $_SESSION;
   @$_SESSION[“vendor_id”] = "";
 }
 
+function get_login_message()
+{
+global $_SESSION;
+
+  return @$_SESSION[“login_message”];
+}
+
+function set_login_message($login_message)
+{
+global $_SESSION;
+
+  @$_SESSION[“login_message”] = $login_message;
+}
+
+function clear_login_message()
+{
+global $_SESSION;
+
+  @$_SESSION[“login_message”] = "";
+}
 ?>

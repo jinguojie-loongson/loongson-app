@@ -36,14 +36,13 @@
  */
 include_once('_vendor_login.inc');
 include_once('_util.inc');
-include_once('class.smt.php');
 session_start();
 	 $password_revise_old = trim($_POST['password_revise_old']);
       	$vendor_id_revise = trim($_POST['vendor_id_update']);
 	$password_update = trim($_POST['password_update']);
 	$vendor_name_revise_old = trim($_POST['vendor_name_revise_old']);
 	$email_revise_old = trim($_POST['email_revise_old']);
-	$description_revise_old = trim($_POST['$description_revise_old']);
+	$description_revise_old = trim($_POST['description_revise_old']);
 
 	$vendor_name_update = trim($_POST['vendor_name']);
 	$email_update  = trim($_POST['email']);

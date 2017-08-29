@@ -48,7 +48,6 @@
     </div>
 
     <div class="panel-body">
-	<p class="text-warning"> <?= get_login_message() ?> </p>
       <form id="update_vendor_form" name="update_vendor_form" method="post" action="updateVendor.php"  >
         <input type="password" style="position: fixed; top: -999px "/>
 
@@ -58,6 +57,7 @@
 	<input id="email_revise_old" name="email_revise_old" class="input-thin" type="hidden" value="<?= get_vendor_email_by_id($vendor_id) ?>"/> 
    	<input id="description_revise_old" name="description_revise_old" class="input-thin" type="hidden" value="<?= get_vendor_description_by_id($vendor_id) ?>" />
 
+        <p class="text-warning"><?= get_login_message() ?></p>
         <div class="form-group">
           <label>密  码</label> 
           <input id="password_update" name="password_update" type="password" class="form-control" autocomplete="off" />
@@ -91,7 +91,6 @@
 <?php
   clear_login_message();
 ?>
-
 <?php
   include_once('vendor_footer.php');
 ?>

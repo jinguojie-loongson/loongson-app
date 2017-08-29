@@ -469,7 +469,6 @@ function refresh_app_card_status()
         $status_icon = $(this).find("#app-icon");
         if (os_id != null && os_id != "") {
 
-        $btn = $(this);
           url = window.location.href;
           n = url.lastIndexOf("/");
           url = url.substr(0, n) + "/getAppFileVersion.php?app_id=" + id + "&os_id=" + os_id;

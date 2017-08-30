@@ -239,7 +239,6 @@ function app_get_download_url(id, os_id, app_version)
   // http://localhost/app/php/app.php?id=1
   url = window.location.href;
   // 截取到最后一个“/” 
-
   n = url.lastIndexOf("/");
   return url.substr(0, n) + "/getAppFile.php?id=" + id + "&os_id=" + os_id + "&version=" + app_version;
 }
@@ -299,7 +298,7 @@ function app_install($btn, id,install_type)
     cmd = INSTALL_SCRIPT + " "
               + id + " "
               + version + " "
-              + download_url + " "
+              + " \"" + download_url + "\" "
               + download_file + " "
               + md5
               + " \"" + install_script + "\" "

@@ -101,6 +101,12 @@ create table admin (
   password varchar(50)          # 密码的md5
 );
 
+#配置表
+create table config (
+  name varchar(50),
+  value  varchar(500)
+);
+
 #示例数据
 insert into os (name, description, probe_cmd) VALUES
   ("中标桌面32位", "中标桌面操作系统（32位版本）", "if test -e /etc/issue ; then grep Loongnix /etc/issue > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && if test -e /.buildstamp ; then grep Product=Fedora /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && grep Version=21 /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi && echo 0"),
@@ -172,4 +178,14 @@ insert into review (id, app_id, version, is_admin, operator, status, comment, da
 insert into admin (id, login_name, password) VALUES
   # 密码“111111”的md5是"96e79218965eb72c92a549dd5a330112"
   (1, "admin", "96e79218965eb72c92a549dd5a330112")
+;
+
+insert into config (name, value) VALUES
+  ("smtpserver", "mail.loongson.cn"),
+  ("smtpserverport", "25"),
+  ("smtpusermail", "renyafei@loongson.cn"),
+  ("smtpuser", "renyafei@loongson.cn"),
+  ("smtppass", "ryf12345A"),
+  ("mailtype", "HTML"),
+  ("app_data_url", "/opt/data/")
 ;

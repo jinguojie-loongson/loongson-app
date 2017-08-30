@@ -315,7 +315,7 @@
 .app-not-this-os-version-color {
   background-color: #D3D3D3;
   color: gray;
-  border: 1px solid gray;
+  border: 1px solid #D3D3D3;
 }
 
 .app-os-version-foot {
@@ -336,7 +336,7 @@
 .app-not-this-os-version-foot-color {
   background-color: white;
   color: gray;
-  border: 1px solid gray;
+  border: 1px solid #D3D3D3;
 }
 
 .app-os-version-css {

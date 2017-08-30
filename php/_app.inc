@@ -138,7 +138,7 @@ global $conn;
                 . " left join os c on a.os_id = c.id"
                 . " where a.id = ${app_id} "
                 . " and (a.version_unified, a.os_id) "
-                . "  in (select max(b.version_unified), b.os_id from app_file b where b.id = ${app_id} group by b.os_id)";
+                . "  in (select max(b.version_unified), b.os_id from app_file b where b.id = ${app_id} and b.status = 'published' group by b.os_id)";
   return db_get_four_columns($sql);
 }
 

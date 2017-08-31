@@ -74,7 +74,7 @@ function conditions_judge($file_name, $file_size, $imgArr, $file_type, $suffix)
      echo '请选择要上传的图片';
      exit;
    }
-   if (!in_array($suffix, $imgArr)) {
+   if (!in_array(strtolower($suffix), $imgArr)) {
      echo '图片格式错误！';
      exit;
    }

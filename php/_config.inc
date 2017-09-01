@@ -8,6 +8,12 @@ global $conn;
 }
 
 
+function update_config($name, $value)
+{
+global $conn;
+  return db_exec("update config set value = '${value}' where name = '${name}' ");
+}
+
 //******************** 配置信息 ********************************
 $smtpserver     = get_config("smtpserver");          //SMTP服务器:例如：mail.loongson.cn 、smtp.qq.com
 $smtpserverport =  get_config("smtpserverport"); //SMTP服务器端口 25

@@ -54,6 +54,7 @@ include_once('_review.inc');
   <li><a href="admin_vendor.php">开发者管理</a></li>
   <li><a href="admin_category.php">类别管理</a></li>
   <li><a href="admin_os.php">操作系统</a></li>
+  <li><a href="admin_config.php">常规设置</a></li>
 </div>
 <div class="panel-body">
   <table class="table table-bordered">

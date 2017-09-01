@@ -17,6 +17,7 @@ include_once('_category.inc');
   <li><a href="admin_vendor.php">开发者管理</a></li>
   <li class="active"><a href="admin_category.php">类别管理</a></li>
   <li><a href="admin_os.php">操作系统</a></li>
+  <li><a href="admin_congfig.php">常规设置</a></li>
 </div>
 
 <table id="category_list" class="table table-striped table-bordered table-hover table-condensed">

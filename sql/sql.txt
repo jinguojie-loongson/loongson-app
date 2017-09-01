@@ -187,5 +187,8 @@ insert into config (name, value) VALUES
   ("smtpuser", "renyafei@loongson.cn"),
   ("smtppass", "ryf12345A"),
   ("mailtype", "HTML"),
-  ("app_data_url", "/opt/data/")
+  ("app_data_url", "/opt/data/"),
+  ("email_receiver", "someone@email.com"),
+  ("email_title", "发自龙芯应用公社的测试邮件"),
+  ("email_body", "测试内容，请勿直接回复")
 ;

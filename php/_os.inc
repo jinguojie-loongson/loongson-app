@@ -233,9 +233,6 @@ function get_os_id_prober_cmd()
   foreach ($os_arr as $os) {
     $os_id = $os[0];
     $probe_cmd = $os[1];
-    $probe_cmd = str_replace("?", "%3F", $probe_cmd);
-    $probe_cmd = str_replace("&", "%26", $probe_cmd);
-    $probe_cmd = str_replace("=", "%3D", $probe_cmd);
     
     $arr = array("os_id"=>$os_id, "probe_cmd"=>$probe_cmd);
     $json[] = $arr;

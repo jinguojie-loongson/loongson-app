@@ -125,8 +125,7 @@ $(document).ready(function(){
   url = url.substr(0, n) + "/getOsId.php";
   get_server_service_json(url, "", function(data) {
     var callback = function(data, errno){
-      if (data != 0) {
-      } else {
+      if (data == "0") {
         $("#os_id").val(this.os_id);
       }
     }

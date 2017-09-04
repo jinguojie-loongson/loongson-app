@@ -67,10 +67,7 @@ include_once('admin_top.php');
 <form id="admin_hot_form" name="admin_hot_form" method="post" enctype="multipart/form-data" action="adminDoHot.php"  >
 
 <?php
-$apps = get_all_hot_id();
-
-$i = 0;
-$id = "";
+$apps = get_all_hot_id_slogan();
 
 foreach ($apps as $id)
 {
@@ -80,10 +77,14 @@ foreach ($apps as $id)
     <div class="panel-body">
       <div class="input-group">
         <span class="input-group-addon">应用ID：</span>
-        <input name="hot_id[]" type="text" class="form-control" value="<?= @${id} ?>">
+        <input name="hot_id[]" type="text" class="form-control" value="<?= $id[0] ?>">
       </div>
       <div class="input-group">
         <input name="hot_img[]" type="file" class="form-control">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">广告语：</span>
+        <input name="hot_slogan[]" type="text" class="form-control" value="<?= $id[1] ?>">
       </div>
 
     </div>
@@ -91,7 +92,6 @@ foreach ($apps as $id)
 
 <?php
 
-  $i++;
 }
 ?>
 

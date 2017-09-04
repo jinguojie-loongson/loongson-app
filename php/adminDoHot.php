@@ -55,10 +55,11 @@ include_once('_util.inc');
  *     )
  *   ) 
  */
-
+$hot_slogan = $_POST["hot_slogan"];
 foreach ($_POST["hot_id"] as $index => $hot_id)
 {
   set_hot_app_id($index, $hot_id);
+  set_hot_slogan($index, $hot_slogan[$index]);
 
   $img = $_FILES["hot_img"]["name"][$index];
   if (!is_empty($img))

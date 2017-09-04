@@ -53,7 +53,8 @@ create table app_file (
 create table hot (
   id int(5) NOT NULL key,
   app_id int(5),
-  banner_file varchar(500)   #图片文件，位于data/hot目录下
+  banner_file varchar(500),   #图片文件，位于data/hot目录下
+  slogan varchar(50)  #广告语
 );
 
 #应用评论
@@ -137,12 +138,11 @@ insert into app (id, name, vendor_id, category_id, description, icon_file, scree
   (999999, "应用公社", 7, 9, "龙芯官方的应用下载平台，鼓励开发者提交应用并获得积分奖励", "6.png", 1, 23434,0)
 ;
 
-insert into hot (id, app_id, banner_file) VALUES
-  (0, 1, "1.png"),
-  (1, 2, "2.png"),
-  (2, 3, "3.png"),
-  (3, 4, "4.png"),
-  (4, 5, "5.png")
+insert into hot (id, app_id, banner_file, slogan) VALUES
+  (0, 1, "1.png", "图片处理工具"),
+  (1, 2, "2.png", "即时通讯"),
+  (2, 3, "3.png", "单机游戏"),
+  (3, 4, "4.png", "photoshop")
 ;
 
 insert into app_file (id, version, filename, download_size, md5, status, install_script, uninstall_script, os_id, version_unified) VALUES

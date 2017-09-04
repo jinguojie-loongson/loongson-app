@@ -9,13 +9,13 @@ function get_hot_count()
   return db_get_one_value("select count(*) from hot");
 }
 
-function get_all_hot_id()
+function get_all_hot_id_slogan()
 {
 global $conn;
-  $sql = "select app_id from hot "
+  $sql = "select app_id, slogan from hot "
        . "  order by id ";
 
-  return db_get_one_column($sql);
+  return db_get_two_columns($sql);
 }
 
 function get_hot_banner_file_by_id($id)
@@ -34,6 +34,14 @@ global $conn;
   return db_exec($sql);
 }
 
+function set_hot_slogan($index, $hot_slogan)
+{
+global $conn;
+  $sql = "update hot set slogan='${hot_slogan}' "
+	. " where id=${index}";
+  return db_exec($sql);
+}
+
 function set_hot_banner_file_by_id($id, $name)
 {
 global $conn;
@@ -45,8 +53,12 @@ global $conn;
 function get_hot_banner_html()
 {
   $html = "";
-  foreach(get_all_hot_id() as $id) {
-    $html = $html . "<img src='getHotBanner.php?id=${id}' alt='app.php?id=${id}' width='960' height='400' /> \n";
+  foreach(get_all_hot_id_slogan() as $id_slogan) {
+    $html = $html . "<div id='${id_slogan[0]}' style='display: inline-block; width: 300px; padding: 20px; vertical-align: top'> \n"
+	. "<img src='getHotBanner.php?id=${id_slogan[0]}' class='hot-img'/> \n"
+	. "<p class='hot-p'>${id_slogan[1]}</p> \n"
+	. "<input type='hidden' id='hot_app_version' value=''> \n"
+	. "</div>";
   }
   return $html;
 }
@@ -63,7 +75,6 @@ global $app_data_url;
 
   if(is_uploaded_file($tmp_file)) {  
     $user_path = $HOT_DIR . $FILE;
-
     if (move_uploaded_file($tmp_file, $user_path)) {
       set_hot_banner_file_by_id($index, $FILE);
       return 1;

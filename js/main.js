@@ -106,37 +106,3 @@ function is_email(txt) {
   return true;
 }
 
-if (window.location.href.indexOf("index.php") != -1)
-{
-  $(document).ready(function() {
-
-    /* 2017/6/7 首页广告轮播 */
-    $(function() {
-      $(".container .loading-prompt").fadeOut(1800);
-
-      $('#slides').slidesjs({
-        width: 920,
-        height: 400,
-        navigation: true,
-        pagination: {
-          active: true,
-          effect: "slide",
-        },
-        play: {
-          active: false,
-          auto: true,
-          interval: 3000,
-          effect: "slide",
-        },
-        preload: true,
-        preloadImage: '../images/nopic.png',
-        generateNextPrev: false,
-        generatePagination: true
-      });
-    });
-
-    $('#slides img').click(function() {
-      window.location.href = $(this).attr("alt");
-    });
-  });
-}

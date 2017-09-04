@@ -460,39 +460,70 @@ function refresh_app_card_status()
   get_local_app_list(function(app_list_data, errno) {
     if (errno == 0)
     {
-      $("#app-card-grid div").each(function() {
-        id = $(this).attr("id");
-        os_id = $("#os_id").val();
-        version = $(this).find("#app_version").attr("value");
-        $status = get_app_status_in_local_list(id, version, app_list_data);
-        $status_icon = $(this).find("#app-icon");
-        if (os_id != null && os_id != "") {
-
-          url = window.location.href;
-          n = url.lastIndexOf("/");
-          url = url.substr(0, n) + "/getAppFileVersion.php?app_id=" + id + "&os_id=" + os_id;
-          var callback = function(data) {
-            this.find("#app_version").val(data);
-          }
-          var obj = $(this);
-          get_server_service_this(url, "", callback, obj)
-        }
-
-	if ($status == "not-installed")
-          $status_icon.fadeOut(1000);
-        else
-        {
-          $status_icon.removeClass($status_icon.attr("class")).addClass($status);
-          $status_icon.text(app_get_status_short_text($status));
-          $status_icon.fadeIn(1000);
-        }
-      });
+      app_card_grid_each(app_list_data);
     }
     else
       $("#app-card-grid").html("本机还没有安装任何应用程序，赶快去逛逛吧。");
   });
 
   setTimeout(refresh_app_card_status, 1000);  
+}
+
+/*封装app卡片循环*/
+function app_card_grid_each(app_list_data)
+{
+  $("#app-card-grid div").each(function() {
+    id = $(this).attr("id");
+    os_id = $("#os_id").val();
+    version = $(this).find("#app_version").attr("value");
+    $status = get_app_status_in_local_list(id, version, app_list_data);
+    $status_icon = $(this).find("#app-icon");
+    obj = $(this);
+
+    get_app_card_version(id, os_id, obj, "app_version");
+
+    if ($status == "not-installed")
+      $status_icon.fadeOut(1000);
+    else
+    {
+      $status_icon.removeClass($status_icon.attr("class")).addClass($status);
+      $status_icon.text(app_get_status_short_text($status));
+      $status_icon.fadeIn(1000);
+    }
+  });
+}
+
+function refresh_hot_app_card_status()
+{
+  hot_card_grid_each();
+  setTimeout(refresh_hot_app_card_status, 3000);
+}
+
+/*封装hot卡片循环*/
+function hot_card_grid_each()
+{
+  $("#hot-card-grid div").each(function() {
+    os_id = $("#os_id").val();
+    id = $(this).attr("id");
+    obj = $(this);
+    get_app_card_version(id, os_id, obj, "hot_app_version");
+  });
+}
+
+/*获取当前应用的最大版本号*/
+function get_app_card_version(id, os_id, current_dom, version_hidden)
+{
+  if (os_id != null && os_id != "") {
+
+    url = window.location.href;
+    n = url.lastIndexOf("/");
+    url = url.substr(0, n) + "/getAppFileVersion.php?app_id=" + id + "&os_id=" + os_id;
+    var callback = function(data) {
+      this.find("#" + version_hidden).val(data);
+    }
+    var obj = current_dom;
+    get_server_service_this(url, "", callback, obj)
+    }
 }
 
 $(document).ready(function(){
@@ -509,7 +540,28 @@ $(document).ready(function(){
   });
 
   $("#app-card-grid").on('click', 'div', function () {
+    /*如果点击卡片的时候已经获取到version则直接使用，如果没有获取到，重新获取一次在使用*/
+    version = $(this).find("#app_version").attr("value");
+    var app_version = "";
+    if (version == null || version == "") {
+      id = $(this).attr("id");
+      os_id = $("#os_id").val();
+      obj = $(this);
+
+      get_app_card_version(id, os_id, obj, "app_version");
+    }
+
     window.location.href = "app.php?id=" + $(this).attr("id") + "&version=" + $(this).find("#app_version").attr("value") + "&os_id=" + $("#os_id").val();
+  });
+
+  $("#hot-card-grid").on('click', 'img', function () {
+    var td = $(this).parent();
+    version = td.find("#hot_app_version").attr("value");
+    if (version == null || version == "") {
+      get_app_card_version(td.attr("id"), $("#os_id").val(), td, "hot_app_version");
+      td = $(this).parent();
+    }
+    window.location.href = "app.php?id=" + td.attr("id") + "&version=" + td.find("#hot_app_version").attr("value") + "&os_id=" + $("#os_id").val();
   });
 
   if (window.location.href.indexOf("my.php") == -1
@@ -530,9 +582,16 @@ $(document).ready(function(){
   if (window.location.href.indexOf("app.php") != -1)
   {
     var $btn = $("#installApp");
+
+    if ($("#app_version").val() == null || $("#app_version").val() == "") {
+      $("#installApp").hide();
+      info_message("该应用没有当前操作系统的版本！");
+    }
     var id = $("#app_id").attr("value");
 
     /* 安装按钮 */
     initButton($btn, id);
   }
+
+  refresh_hot_app_card_status();
 });

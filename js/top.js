@@ -127,6 +127,17 @@ $(document).ready(function(){
     var callback = function(data, errno){
       if (data == "0") {
         $("#os_id").val(this.os_id);
+
+        hot_card_grid_each();
+
+        $("#app-card-grid div").each(function() {
+          id = $(this).attr("id");
+          os_id = $("#os_id").val();
+          obj = $(this);
+
+          get_app_card_version(id, os_id, obj, "app_version");
+
+        });
       }
     }
     var error_func = function (txt){}

@@ -140,8 +140,10 @@ include_once('vendor_top.php');
 			   <div class="col-md-9 textleft" >
 			     <span class="spancolor">文件名：</span>
 			     <span>
-			       <a id="<?= $value['id'] ?>filename" 
-			         href="downloadFile.php?id=<?= $value['id'] ?>&version=<?= $appfilevalue['version'] ?>"><?= $appfilevalue['filename'] ?>
+			       <a type="button" id="<?= $value['id'] ?>filename"
+			          href="downloadFile.php?id=<?= $value['id'] ?>&version=<?= $appfilevalue['version'] ?>&os_id=<?= $appfilevalue['os_id'] ?>">
+                                  <?= $appfilevalue['filename'] ?>
+                               </a>
 			       </a>
 			     </span>
 			   </div>

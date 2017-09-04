@@ -110,7 +110,8 @@ create table config (
 
 #示例数据
 insert into os (name, description, probe_cmd) VALUES
-  ("中标桌面32位", "中标桌面操作系统（32位版本）", "if test -e /etc/issue ; then grep Loongnix /etc/issue > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && if test -e /.buildstamp ; then grep Product=Fedora /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && grep Version=21 /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi && echo 0"),
+  ("Loongson", "Loongson操作系统", "if test -e /etc/issue ; then grep Loongnix /etc/issue > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && if test -e /.buildstamp ; then grep Product=Fedora /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi fi && grep Version=21 /.buildstamp > /dev/null; if [ $? -eq 1 ] ; then echo 1; exit; fi && echo 0"),
+  ("中标桌面32位", "中标桌面操作系统（32位版本）", "3434"),
   ("中标桌面64位", "中标桌面操作系统（64位版本）", "1212")
 ;
 

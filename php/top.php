@@ -46,7 +46,9 @@
   <div class="topbar-button" id="top-my"><i class="fa fa-user-circle"></i> 我的<span class="update-circle">0</span></div>
 
   <!-- 隐藏一个刷新按钮 --!>
+  <!--
   <input type="button" class="invisible-button" onclick="javascript: window.location.reload();" value="">
+  -->
   <input type="hidden" id="os_id" value="">
   <input id="searchText" class="input-thin" type="text" value="搜索应用..." />
 </div>

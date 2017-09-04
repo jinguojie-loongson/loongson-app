@@ -183,9 +183,9 @@ insert into admin (id, login_name, password) VALUES
 insert into config (name, value) VALUES
   ("smtpserver", "mail.loongson.cn"),
   ("smtpserverport", "25"),
-  ("smtpusermail", "renyafei@loongson.cn"),
-  ("smtpuser", "renyafei@loongson.cn"),
-  ("smtppass", "ryf12345A"),
+  ("smtpusermail", "somone@loongson.cn"),
+  ("smtpuser", "somone@loongson.cn"),
+  ("smtppass", "111111"),
   ("mailtype", "HTML"),
   ("app_data_url", "/opt/data/"),
   ("email_receiver", "someone@email.com"),

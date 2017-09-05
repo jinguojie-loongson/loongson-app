@@ -11,21 +11,27 @@ include_once('_config.inc');
   //发送邮件
   if (!empty($email_test_token)&&($email_test_token == $_SESSION['email_session_token']))
   {
+    date_default_timezone_set("PRC");
     $ret = send_email($email_receiver, $email_title, $email_body);
 
     //记录已发送邮件信息
     update_config('email_receiver' ,$email_receiver);
     update_config('email_title', $email_title);
     update_config('email_body', $email_body);
-   
-    echo json_encode($ret);
+
+    if($ret == "ok")
+    {
+      echo json_encode(array(1=>"ok"));
+    }
+    else
+    {
+      echo json_encode(array(1=>"error"));
+    }
   }
   else
   {
-    $ret = "error";
-    echo json_encode($ret);
+     echo json_encode(array(1=>"error"));
   }
-
 
 
 ?>

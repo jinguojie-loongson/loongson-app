@@ -60,7 +60,7 @@ $(document).ready(function(){
       url = url.substr(0, n) + "/sendMailTest.php?";
 
       get_server_service_json(url, obj, function(data){
-        if(data == "ok"){
+        if(data[1] == "ok"){
           success_message("测试邮件发送成功");
         }else{
           fail_message("测试邮件发送失败");

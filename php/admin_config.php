@@ -23,64 +23,103 @@ include_once('_config.inc');
 
 <div class="panel panel-default" id="admin_hot_div">
   <div class="panel-body">
-   <form id="generalSetting_form" name="generalSetting_form" >
+   <form id="mail_set_form" name="mail_set_form" >
     <input type='hidden' id='email_test_token' value="<?= create_new_token('email_session_token') ?>" />
+   
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">邮箱参数配置</span>
+      </div>
+    </div>
 
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">SMTP服务器 : </span>
-      <label id="smtpserver" name="smtpserver" type="text" class="form-control"><?= get_config("smtpserver")?></label>
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">SMTP服务器 : </span>
+        <input id="smtpserver" name="smtpserver" type="text" class="form-control" value="<?= get_config("smtpserver")?>"/>
+      </div>
     </div>
     
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">SMTP服务器端口 : </span>
-      <label id="smtpserverport" name="smtpserverport" type="text" class="form-control"><?= get_config("smtpserverport")?></label>
-    </div>
-
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户邮箱 : </span>
-      <label id="smtpusermail" name="smtpusermail" type="text" class="form-control"><?= get_config("smtpusermail")?></label>
-    </div>
-
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户帐号 : </span>
-      <label id="smtpuser" name="smtpuser" type="text" class="form-control"><?= get_config("smtpuser")?></label>
-    </div>
-
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户密码 : </span>
-      <label id="smtppass" name="smtppass" type="text" class="form-control"><?= get_config("smtppass")?></label>
-    </div>
-
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">邮件格式（HTML/TXT) :  </span>
-      <label id="mailtype" name="mailtype" type="text" class="form-control"><?= get_config("mailtype")?></label>
-    </div>
-
-    <div class="input-group send-test-email-width">
-      <span class="input-group-addon send-test-email-label-width">app_data_url : </span>
-      <label id="app_data_url" name="app_data_url" type="text" class="form-control"><?= get_config("app_data_url")?></label>
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">SMTP服务器端口 : </span>
+        <input id="smtpserverport" name="smtpserverport" type="text" class="form-control" value="<?= get_config("smtpserverport")?>"/>
+      </div>
     </div>
 
     <div class="form-group">
-      <span class="input-group-addon">收件人</span>
-      <input id="email_receiver" name="email_receiver" type="text" class="form-control" autocomplete="off" value="<?= get_config("email_receiver")?>"/>
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户邮箱 : </span>
+        <input id="smtpusermail" name="smtpusermail" type="text" class="form-control" value="<?= get_config("smtpusermail")?>"/>
+      </div>
     </div>
 
     <div class="form-group">
-      <span class="input-group-addon">主题</span>
-      <input id="email_title" name="email_title" type="text" class="form-control" autocomplete="off" value="<?= get_config("email_title")?>"/>
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户帐号 : </span>
+        <input id="smtpuser" name="smtpuser" type="text" class="form-control" value="<?= get_config("smtpuser")?>"/>
+      </div>
     </div>
 
     <div class="form-group">
-      <span class="input-group-addon">内容</span>
-      <textarea id="email_body" rows=3  name="email_body" type="text" class="form-control"><?= get_config("email_body")?></textarea>
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">SMTP服务器的用户密码 : </span>
+        <input id="smtppass" name="smtppass" type="text" class="form-control" value="<?= get_config("smtppass")?>"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">邮件格式（HTML/TXT) :  </span>
+        <input id="mailtype" name="mailtype" type="text" class="form-control" value="<?= get_config("mailtype")?>"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">app_data_url : </span>
+        <input id="app_data_url" name="app_data_url" type="text" class="form-control" value="<?= get_config("app_data_url")?>"/>
+      </div>
+    </div>
+
+    <div>
+      <label></label>
+      <button class="btn btn-primary" id="mail_set_btn"  name="mail_set_btn"  type="button">保 存</button>
+    </div>
+  </form> 
+
+  <form id="mail_test_form">
+    <div class="form-group">
+      <div class="input-group send-test-email-width"> 
+        <span class="input-group-addon send-test-email-label-width">测试邮件发送</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">收件人</span>
+        <input id="email_receiver" name="email_receiver" type="text" class="form-control" autocomplete="off" value="<?= get_config("email_receiver")?>"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">主题</span>
+        <input id="email_title" name="email_title" type="text" class="form-control" autocomplete="off" value="<?= get_config("email_title")?>"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group send-test-email-width">
+        <span class="input-group-addon send-test-email-label-width">内容</span>
+        <textarea id="email_body" rows=3  name="email_body" type="text" class="form-control"><?= get_config("email_body")?></textarea>
+      </div>
     </div>
 
     <div>
       <label></label>
       <button class="btn btn-primary" id="mail_test_btn"  name="mail_test_btn"  type="button">发 送</button>
     </div>
-   </form>
+  </form>
 
   </div>
 </div>

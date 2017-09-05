@@ -46,7 +46,7 @@
 <?php
   include_once('_category.inc');
 ?>
-
+<div>
 <div class="category-menu">
 <?php
   $category = get_all_category_with_id();
@@ -70,10 +70,11 @@
 ?>
 </div>
 
-<div id="app-card-grid">
+<div id="app-card-grid" style="margin: 0px 50px 0px 200px">
         <?= get_most_rank_app_html_by_category($_GET["category"]); ?>
 </div>
 
+</div>
 <script type="text/javascript" src="../js/category.js"></script>
 <?php
   include_once('footer.php');

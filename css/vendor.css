@@ -140,8 +140,8 @@ body {
   border-radius:4px;
   color:rgba(0,0,0, 0.8);
 
-  min-width: 70%;
   min-height: 200px;
+  width: 80%;
 }
 .unchecked{
   padding: 6px 6px 6px 6px;

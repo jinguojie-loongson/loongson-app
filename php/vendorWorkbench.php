@@ -60,6 +60,13 @@ include_once('vendor_top.php');
 <div class="container" >
 <?php
   $arrayapp = get_all_app_by_vendorId(get_current_vendor());
+
+  if ($arrayapp == null || $arrayapp == "") {
+?>
+  <h2>还没有上传应用</h2>
+  <h4><a href="vendorUploadApp.php">上传第一个应用</a></h4>
+<?php
+} else {
   foreach($arrayapp  as $key => $value) { 
 ?>			
     <div class="row" >
@@ -189,7 +196,7 @@ include_once('vendor_top.php');
       </div>
 </div>              
 <hr class="hrstyle">
-	<?php } ?>
+	<?php } } ?>
 </div>
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

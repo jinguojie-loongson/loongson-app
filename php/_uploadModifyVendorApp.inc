@@ -246,7 +246,7 @@ function get_vendor_app_icon($app_id)
 global $app_data_url;
   $icon = get_app_icon_file_by_id($app_id);
 
-  $html = "<div class='app-icon' style='margin-top: 50px;'> \n"
+  $html = "<div class='app-icon' > \n"
 	. "<img src='getAppTmpIcon.php?id=${app_id}' class='app-icon-preview' style='width:150px; height:150px;'> \n"
 	. "<input type='hidden' id='appIconName' name='appIconName' value='${icon}'> \n"
 	. "<div id='app-icon-status' style='display:none'> \n"
@@ -297,7 +297,7 @@ function get_vendor_app_category($app_id)
 
   $html = "<div class='vendor-card-div'> \n"
 	. "<span class='vendor-app-attribute'>类别：</span> \n"
-	. "<div class='category-list' style='width: 585px;'> \n"
+	. "<div class='category-list' > \n"
 	. $span
 	. "<input type='hidden' id='category_id' name='category_id' value='${category_id}'> \n"
 	. "</div> \n"

@@ -51,7 +51,6 @@ include_once('vendor_top.php');
 <link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../lib/bootstrapValidator.min.css" />
 </head>
-<body class="vendorWork-body-backgroud">
 <br>
 <br>
 <br>
@@ -71,6 +70,7 @@ include_once('vendor_top.php');
   $arrayapp = get_all_app_by_vendorId(get_current_vendor());
   if ($arrayapp == null || $arrayapp == "") {
 ?>
+<body class="vendorWork-body-backgroud">
   <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
@@ -93,6 +93,7 @@ include_once('vendor_top.php');
         </div>
       </div>
   </div>
+</body>
 <?php
 } else {
   foreach($arrayapp  as $key => $value) { 
@@ -291,4 +292,3 @@ include_once('vendor_top.php');
      include_once('vendor_footer.php');
    }
 ?>
-</body>

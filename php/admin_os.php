@@ -44,7 +44,7 @@ include_once('admin_top.php');
     </div>
     <div class="input-group">
       <span class="input-group-addon">探测脚本：</span>
-      <input id="os_probe_cmd"  name="os_probe_cmd" type="text" class="form-control" style="width:60%">
+      <textarea id="os_probe_cmd"  name="os_probe_cmd" style="float: left; width:60%" rows="4"></textarea>
       <span id="os_probe_cmd_text" class="btn-sm" style="color:red;"></span>
     </div>
     <button class="btn" id="saveOs"  type="button">新增</button>
@@ -73,7 +73,7 @@ include_once('admin_top.php');
           </div>
           <div class="input-group">
             <span class="input-group-addon">探测脚本：</span>
-            <input id="edit_os_probe_cmd"  name="edit_os_probe_cmd" type="text" class="form-control" style="width:60%">
+            <textarea id="edit_os_probe_cmd"  name="edit_os_probe_cmd" style="float: left;" rows="4" cols="35"></textarea>
             <span id="edit_os_probe_cmd_text" class="btn-sm" style="color:red;"></span>
           </div>
 	</div>

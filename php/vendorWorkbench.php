@@ -51,20 +51,48 @@ include_once('vendor_top.php');
 <link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../lib/bootstrapValidator.min.css" />
 </head>
+<body class="vendorWork-body-backgroud">
 <br>
 <br>
 <br>
+<?php
+  $arrayapp = get_all_app_by_vendorId(get_current_vendor());
+  if ($arrayapp != null && $arrayapp != "") {
+?>
 <div id="workbench-tool">
   <a class="btn btn-primary" id="newApp" href="vendorUploadApp.php">提交新应用</a>
 </div>
+<?php
+}
+?>
+
 <div class="container" >
 <?php
   $arrayapp = get_all_app_by_vendorId(get_current_vendor());
-
   if ($arrayapp == null || $arrayapp == "") {
 ?>
-  <h2>还没有上传应用</h2>
-  <h4><a href="vendorUploadApp.php">上传第一个应用</a></h4>
+  <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+          <div class="inner cover">
+            <h1 class="cover-heading">欢迎您，开发者</h1>
+            <p class="lead">您目前尚未提交任何应用，您可以点击下面的按钮立刻创建新的应用</p>
+            <p class="lead">
+              <a href="vendorUploadApp.php" class="btn btn-lg btn-default">提交新应用</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p><a href="index.php">应用公社首页</a></p>
+              <p>龙芯中科技术有限公司版权所有 2017</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
 <?php
 } else {
   foreach($arrayapp  as $key => $value) { 
@@ -258,5 +286,9 @@ include_once('vendor_top.php');
   </div>
 </div>
 <?php
-  include_once('vendor_footer.php');
+   $arrayapp = get_all_app_by_vendorId(get_current_vendor());
+   if ($arrayapp != null && $arrayapp != "") {
+     include_once('vendor_footer.php');
+   }
 ?>
+</body>

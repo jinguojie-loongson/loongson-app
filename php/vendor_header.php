@@ -56,6 +56,7 @@
 <link type="text/css" rel="Stylesheet" href="../css/admin.css" />
 <link type="text/css" rel="Stylesheet" href="../css/alert.css" />
 <link type="text/css" rel="Stylesheet" href="../css/admin_config.css" />
+<link type="text/css" rel="Stylesheet" href="../css/cover.css" />
 
 <script type="text/javascript" src="../lib/jquery.js"></script>
 <script type="text/javascript" src="../lib/jquery.wallform.js"></script>

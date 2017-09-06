@@ -56,13 +56,9 @@ include_once('admin_top.php');
       <li><a href="admin_config.php">常规设置</a></li>
 </div>
 
-
-<div class="alert alert-success alert-dismissable">
-  <h1>编辑提示</h1>
-  <p> 图片大小：960x400 </p>
-  <p> 不修改图片的，可以留空。</p>
+<div class="admin-hot-alert-div">
+  <span class="admin-hot-alert-span input-group-addon">编辑提示: 不修改图片的，可以留空</span>
 </div>
-
 
 <form id="admin_hot_form" name="admin_hot_form" method="post" enctype="multipart/form-data" action="adminDoHot.php"  >
 
@@ -98,7 +94,6 @@ foreach ($apps as $id)
 <button class="btn btn-primary" id="saveHot" type="submit">保 存</button>
 
 </form>
-
 
 <?php
   include_once('vendor_footer.php');

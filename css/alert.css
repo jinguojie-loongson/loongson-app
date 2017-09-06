@@ -42,3 +42,15 @@
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+
+.admin-hot-alert-span {
+    background-color: #F0F0F0;
+    color: #a94442;
+    text-align:center;
+    font-size: 12pt;
+}
+
+.admin-hot-alert-div {
+    width:42%;
+    margin-left:29%;
+}

@@ -70,7 +70,7 @@ function get_os_one_html($id)
         . " <input type='hidden' name='os_id' value='${id}'> \n"
         . " <input type='hidden' name='os_name' value='${name}'> \n"
         . " <button id='edi_button' class='btn btn-default' data-toggle='modal' data-target='#myModal'> \n"
-        . " <i class='fa fa-pencil'></i> 编辑 \n"
+        . " <i class='fa fa-pencil'></i> 编 辑 \n"
         . " </button> \n"
         . $html_del
         . " </td> \n"

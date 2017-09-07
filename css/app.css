@@ -303,6 +303,7 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   padding: 2px;
+  line-height:17px;
 }
 
 .app-this-os-version-color {

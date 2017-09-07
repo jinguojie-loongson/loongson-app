@@ -22,7 +22,13 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
   $screen_number = $_POST['screen_number'];
   $file_name = $_FILES['photoimg']['name'];
   $file_size = round($_FILES['photoimg']['size'] / 1000,1);
-  
+
+  /*判断文件名是否包含中文和空格*/
+  if (preg_match("/[\x7f-\xff]/", $file_name) || strpos($file_name, " ")) {
+    echo "文件名不能包含中文和空格！";
+    exit;
+  }
+
   $suffix = interception_suffix($file_name);
   conditions_judge($file_name, $file_size, $imgArr, $file_type, $suffix);
   

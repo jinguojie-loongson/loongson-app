@@ -152,7 +152,6 @@ global $app_data_url;
  * 上传新版本、修改资料 提交i
  * state == 0 上传新版本
  *                app_file: insert一条新数据
- *                app:      update 版本号
  *                review:   insert 一条新数据
  * state == 1 修改资料
  */
@@ -184,7 +183,7 @@ function upload_modify_vendor_app($state, $app_id, $vendor_id, $icon_file, $name
     $icon_file = icon_cp_rename($app_id, $icon_file);
     $screen_file_count = icon_screen_cp_rename($app_id, $screen_file_1, $screen_file_2, $screen_file_3, $screen_file_4, $screen_file_5);
    
-    update_app_list($app_id, $icon_file, $category_id, $description, $longdesc, $screen_file_count);
+    update_app_list($app_id, $name, $icon_file, $category_id, $description, $longdesc, $screen_file_count);
     
   } else {
 
@@ -270,7 +269,7 @@ function get_vendor_app_name($app_id)
 
   $html = "<div class='vendor-card-div'> \n"
 	. "<span class='vendor-app-attribute'>名称：</span> \n"
-	. "<input class='vendor-card-input' type='text' id='app_name' name='app_name' value='${name}' readOnly='true'/> \n"
+	. "<input class='vendor-card-input' type='text' id='app_name' name='app_name' value='${name}'/> \n"
 	. "</div> \n";
   return $html;
 }
@@ -455,12 +454,13 @@ global $app_data_url;
 /*
  * 根据app_id 更新app表
  */
-function update_app_list($app_id, $icon_file, $category_id, $description, $longdesc, $screen_file_count)
+function update_app_list($app_id, $app_name, $icon_file, $category_id, $description, $longdesc, $screen_file_count)
 {
 global $conn;
   $longdesc = addslashes($longdesc);
   $sql = "update app "
-	. " set icon_file = '${icon_file}', category_id = ${category_id}, description = '${description}', longdesc = '${longdesc}', screen_file_count = '${screen_file_count}' "
+	. " set name = '${app_name}', icon_file = '${icon_file}', category_id = ${category_id}, "
+	. " description = '${description}', longdesc = '${longdesc}', screen_file_count = '${screen_file_count}' "
 	. " where id = ${app_id}";
   db_exec($sql);
 }

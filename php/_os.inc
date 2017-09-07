@@ -60,6 +60,8 @@ function get_os_one_html($id)
     $html_del = $html_del . " <button id='del_button' class='btn btn-default'> \n"
 	. " <div class='glyphicon glyphicon-trash'></div> 删 除 \n"
 	. " </button> \n";
+  } else {
+    $html_del = $html_del . "<span class='btn-sm'>该系统已被使用，不可删除</span> \n";
   }
   $html = "<tr> \n"
         . " <td>${id}</td> \n"

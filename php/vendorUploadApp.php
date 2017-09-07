@@ -26,7 +26,6 @@ include_once('_os.inc');
       <span class="vendor-app-attribute">名称：</span><input class="vendor-card-input" type="text" id="app_name" name="app_name"/>
     </div>
     <div class="vendor-card-div">
-           <!--根据数据库中类别的数量，category-list div 的大小固定了，如果数据库的类别数量变化了，需要调整大小，后面在优化。 --> 
            <span class="vendor-app-attribute">类别：</span>
            <div class="category-list">
           

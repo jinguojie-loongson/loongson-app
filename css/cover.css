@@ -2,10 +2,16 @@
  * Globals
  */
 .vendorWork-body-backgroud {
-  background-image: url(../images/vendor.png);
   background-size:100% 100%;
   height: 1200px;
   background-repeat:no-repeat;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#FFFFFF,,endColorStr=#BBFFBB); /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, #FFFFFF, #BBFFBB);        /* IE 10 */
+  background:-moz-linear-gradient(top, #FFFFFF, #BBFFBB);/*火狐*/
+  background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#FFFFFF), to(#CCFF99));/*谷歌*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCFF99));      /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, #FFFFFF, #CCFF99);   /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #fff, #CCFF99);  /*Opera 11.10+*/
 }
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {

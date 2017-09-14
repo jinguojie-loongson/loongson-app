@@ -51,8 +51,6 @@
     fatal_error("传入应用程序的ID不能为空！");
   $app_version = $_GET['version'];
   $os_id = $_GET['os_id'];
-  if (is_empty($os_id))
-    fatal_error("传入应用程序的os_id不能为空！");
 ?>
 
 <div class="app-form">

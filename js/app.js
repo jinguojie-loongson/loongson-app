@@ -583,7 +583,7 @@ $(document).ready(function(){
   {
     var $btn = $("#installApp");
 
-    if ($("#app_version").val() == null || $("#app_version").val() == "") {
+    if ($("#app_version").val() == null || $("#app_version").val() == "" || $("#os_id").val() == null || $("#os_id").val() == "") {
       $("#installApp").hide();
       info_message("该应用没有当前操作系统的版本！");
     }

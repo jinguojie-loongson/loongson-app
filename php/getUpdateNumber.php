@@ -62,9 +62,9 @@ foreach ($ss as $a)
   $app_id = $p[0];
   $version = $p[1];
   $status = $p[2];
-
+  $server_version = array_values(get_app_file_version_status($app_id, $os_id));
   /* 如果有升级，则需要显示一个额外的红点 */
-  if ($status == "installed" && app_version_compare($version, get_app_file_version_status($app_id, $os_id)[0][0]) < 0)
+  if ($status == "installed" && app_version_compare($version, $server_version[0][0]) < 0)
     $n ++;
 }
 

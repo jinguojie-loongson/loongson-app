@@ -69,7 +69,7 @@ if ($state == 0) {
           {
             $c_id = $c[0];
             $c_name = $c[1];
-            $app_version_status = get_app_file_version_status($app_id, $c_id);
+            $app_version_status = array_values(get_app_file_version_status($app_id, $c_id));
             $app_version = "";
 	    $app_status = "";
 	    if ($app_version_status != null && $app_version_status != "") {

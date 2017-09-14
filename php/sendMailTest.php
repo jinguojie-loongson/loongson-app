@@ -6,7 +6,7 @@ include_once('_config.inc');
   $email_test_token = ($J -> send_email_test_json -> email_test_token);
   $email_receiver = ($J -> send_email_test_json -> email_receiver);
   $email_title = ($J -> send_email_test_json -> email_title);
-  $email_body = htmlspecialchars($J -> send_email_test_json -> email_body);
+  $email_body = htmlentities(($J -> send_email_test_json -> email_body), ENT_QUOTES, "UTF-8");
 
   //发送邮件
   if (!empty($email_test_token)&&($email_test_token == $_SESSION['email_session_token']))

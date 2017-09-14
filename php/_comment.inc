@@ -124,7 +124,7 @@ global $conn;
  */
 function get_app_one_comment_html($id)
 {
-  $comment = htmlspecialchars(get_app_comment($id));
+  $comment = htmlentities(get_app_comment($id), ENT_QUOTES, "UTF-8");
   $date_time = get_app_comment_date_time($id);
 
 /*

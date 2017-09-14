@@ -65,7 +65,7 @@
         <input type="hidden" id="app_id" value="<?= $app_id ?>">
         <input type="hidden" id="app_name" value="<?= get_app_name($app_id) ?>">
         <input type="hidden" id="app_version" value="<?= $app_version ?>">
-        <!--<input type="hidden" id="os_id" value="<?= $os_id ?>">-->
+        <input type="hidden" id="get_os_id" value="<?= $os_id ?>">
         <input type="hidden" id="app_filename" value="<?= get_app_file_by_id($app_id, $os_id, $app_version) ?>">
         <input type="hidden" id="app_md5" value="<?= get_app_md5_by_id($app_id, $os_id, $app_version) ?>">
         <input type="hidden" id="app_install_script" value="<?= get_app_install_script_by_id($app_id, $os_id, $app_version) ?>">

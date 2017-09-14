@@ -81,7 +81,7 @@ include_once('admin_top.php');
     <td> <?= @$app_id ?> </td>
     <td> <?= get_app_name($app_id) ?> </td>
     <td> <?= @$c_id ?> </td>
-    <td> <?= get_app_comment($c_id) ?> </td>
+    <td> <?= htmlspecialchars(get_app_comment($c_id)) ?> </td>
     <td> <?= get_app_comment_date_time($c_id) ?> </td>
     <td>
       <input id="comment_id" type="hidden" value="<?= @${c_id} ?>">

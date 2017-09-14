@@ -68,7 +68,7 @@ function get_category_list()
  */
 function get_category_one_html($category_id)
 { 
-  $category_name = htmlentities(get_category_name($category_id));
+  $category_name = htmlspecialchars(get_category_name($category_id));
   $isActive = get_category_isActive($category_id);
   $app_num = get_app_count_in_category($category_id);
 

@@ -37,6 +37,7 @@
 
 include_once('_vendor_login.inc');
 include_once('_util.inc');
+  @session_start();  
   $loginname = $_GET['loginname'];
   $password = $_GET['password'];
   $vendorid = "";

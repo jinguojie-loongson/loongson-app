@@ -174,7 +174,6 @@ global $conn;
 
 function get_review_by_appId($appId) {
 global $conn;
-session_start();
   $sql = "select id,date_time,version,is_admin,comment,status,operator  from review  where app_id=${appId} order by date_time desc";
   $result = mysql_query($sql);
 

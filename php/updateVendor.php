@@ -36,7 +36,7 @@
  */
 include_once('_vendor_login.inc');
 include_once('_util.inc');
-session_start();
+@session_start();
 	 $password_revise_old = trim($_POST['password_revise_old']);
       	$vendor_id_revise = trim($_POST['vendor_id_update']);
 	$password_update = trim($_POST['password_update']);

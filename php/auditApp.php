@@ -42,7 +42,7 @@ include_once('_app.inc');
 include_once('_review.inc');
 include_once('_vendor_login.inc');
 include_once('_admin.inc');
-session_start();
+@session_start();
 $appid = is_empty($_GET['appid']) ? $_POST['data'] : $_GET['appid'];  
 $operation_type =  is_empty($_GET['operation_type']) ? $_POST['data'] : $_GET['operation_type'];
 $versionreview =  is_empty($_GET['versionreview']) ? $_POST['data'] : $_GET['versionreview'];

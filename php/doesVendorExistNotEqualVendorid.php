@@ -1,7 +1,7 @@
 <?php
 include_once('_util.inc');
 include_once('_vendor_login.inc');
-session_start();
+@session_start();
 $vendor_id = get_current_vendor();
 foreach ($_POST as $key => $value)
 {

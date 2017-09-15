@@ -1,5 +1,5 @@
 #!/bin/bash
-#chkconfig: 2345 80 90
+#chkconfig: 2345 99 90
 #description:loongson-app
 
 prog=loongson-app

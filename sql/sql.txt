@@ -2,7 +2,7 @@
 #
 #   source /var/www/html/app/sql/sql.txt;
 
-drop database app;
+drop database if exists app;
 
 create database app;
 use app;
